@@ -2,8 +2,10 @@ package com.citic.demo.entity;
 
 import lombok.ToString;
 
+import java.io.Serializable;
+
 @ToString
-public class Student {
+public class Student implements Serializable{
     private Integer id;
 
     private String name;

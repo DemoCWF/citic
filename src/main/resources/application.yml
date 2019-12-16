@@ -9,10 +9,18 @@ spring:
         driver-class-name: com.mysql.cj.jdbc.Driver
         type: com.alibaba.druid.pool.DruidDataSource
     thymeleaf:
-        cache: true
+        cache: false
+        mode: LEGACYHTML5
+        prefix: classpath:/templates/
+        check-template-location: true  #check-tempate-location: 检查模板路径是否存在
+        suffix:  .html
+
     devtools:
         restart:
             enabled: true
+
+
+
 
 mybatis:
   mapper-locations: classpath:mapping/*.xml     #mapper文件路径

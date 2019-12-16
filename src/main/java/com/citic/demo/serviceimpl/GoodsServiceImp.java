@@ -28,7 +28,7 @@ public class GoodsServiceImp implements GoodsService {
      */
     @Override
     public List<GoodsInfo> query(GoodsQuery goodsQuery) throws Exception {
-        return null;
+        return goodsInfoMapper.query(goodsQuery);
     }
 
     /**
@@ -39,7 +39,7 @@ public class GoodsServiceImp implements GoodsService {
      */
     @Override
     public GoodsInfo queryGoodsInfoById(String primaryKey) throws Exception {
-        return goodsInfoMapper.getById(primaryKey);
+        return goodsInfoMapper.queryGoodsInfoById(primaryKey);
     }
 
     /**

@@ -6,7 +6,7 @@ import java.util.List;
 
 /**
  *
- * 类名称：IBaseDao 类描述：Dao基类（声明CRUD常用接口方法） 创建人： 创建时间：2016年11月8日下午5:40:20 修改人： 修改时间： 修改备注： 说明：所有DAO层都必须继承此类
+ * 类名称：IBaseDao 类描述：Dao基类（声明CRUD常用接口方法)
  */
 public interface IBaseDao<T> {
     // 保存

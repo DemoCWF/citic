@@ -1,14 +1,22 @@
 package com.citic.demo.serviceimpl;
 
+import com.citic.demo.base.BaseConverter;
 import com.citic.demo.entity.GoodsInfo;
+import com.citic.demo.mapper.GoodsInfoMapper;
 import com.citic.demo.query.GoodsQuery;
 import com.citic.demo.request.GoodsRequest;
 import com.citic.demo.service.GoodsService;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 public class GoodsServiceImp implements GoodsService {
-    
+
+    @Resource
+    private GoodsInfoMapper goodsInfoMapper;
+    @Resource
+    private BaseConverter<GoodsRequest, GoodsInfo> requestConverter;
+
     /**
      * 获取商品信息
      *
@@ -29,7 +37,7 @@ public class GoodsServiceImp implements GoodsService {
      */
     @Override
     public GoodsInfo queryGoodsInfoById(String primaryKey) throws Exception {
-        return null;
+        return goodsInfoMapper.getById(primaryKey);
     }
 
     /**
@@ -41,7 +49,8 @@ public class GoodsServiceImp implements GoodsService {
      */
     @Override
     public int saveGoodsInfo(GoodsRequest goodsRequest) throws Exception {
-        return 0;
+        GoodsInfo goodsInfo = requestConverter.convert(goodsRequest, GoodsInfo.class);
+        return goodsInfoMapper.insert(goodsInfo);
     }
 
     /**
@@ -53,7 +62,8 @@ public class GoodsServiceImp implements GoodsService {
      */
     @Override
     public int updateGoodsInfo(GoodsRequest goodsRequest) throws Exception {
-        return 0;
+        GoodsInfo goodsInfo = requestConverter.convert(goodsRequest, GoodsInfo.class);
+        return goodsInfoMapper.update(goodsInfo);
     }
 
     /**
@@ -65,6 +75,6 @@ public class GoodsServiceImp implements GoodsService {
      */
     @Override
     public int deleteGoodsInfo(String primaryKey) throws Exception {
-        return 0;
+        return goodsInfoMapper.deleteById(primaryKey);
     }
 }

@@ -4,6 +4,7 @@ import com.citic.demo.base.ActionResponse;
 import com.citic.demo.entity.GoodsInfo;
 import com.citic.demo.query.GoodsQuery;
 import com.citic.demo.request.GoodsRequest;
+import com.citic.demo.service.GoodsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,7 +18,7 @@ import java.util.List;
 public class GoodsController {
 
     @Resource
-    private GoodsInfo goodsInfo;
+    private GoodsService goodsService;
 
     @PostMapping(value = "/query")
     public ActionResponse importService(GoodsQuery goodsQuery) throws Exception {

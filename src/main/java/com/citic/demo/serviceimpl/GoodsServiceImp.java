@@ -6,10 +6,12 @@ import com.citic.demo.mapper.GoodsInfoMapper;
 import com.citic.demo.query.GoodsQuery;
 import com.citic.demo.request.GoodsRequest;
 import com.citic.demo.service.GoodsService;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
 
+@Service
 public class GoodsServiceImp implements GoodsService {
 
     @Resource

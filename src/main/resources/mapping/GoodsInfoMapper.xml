@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.citic.demo.mapper.GoodsInfoMapper">
+  <resultMap id="BaseResultMap" type="com.citic.demo.entity.GoodsInfo">
+    <id column="goods_id" jdbcType="INTEGER" property="goodsId" />
+    <result column="goods_name" jdbcType="VARCHAR" property="goodsName" />
+    <result column="des" jdbcType="VARCHAR" property="des" />
+    <result column="goods_photo" jdbcType="VARCHAR" property="goodsPhoto" />
+    <result column="goods_cate" jdbcType="VARCHAR" property="goodsCate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    goods_id, goods_name, des, goods_photo, goods_cate
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from zx_goodsinfo
+    where goods_id = #{goodsId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from zx_goodsinfo
+    where goods_id = #{goodsId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.citic.demo.entity.GoodsInfo">
+    insert into zx_goodsinfo (goods_id, goods_name, des, 
+      goods_photo, goods_cate)
+    values (#{goodsId,jdbcType=INTEGER}, #{goodsName,jdbcType=VARCHAR}, #{des,jdbcType=VARCHAR}, 
+      #{goodsPhoto,jdbcType=VARCHAR}, #{goodsCate,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.citic.demo.entity.GoodsInfo">
+    insert into zx_goodsinfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="goodsId != null">
+        goods_id,
+      </if>
+      <if test="goodsName != null">
+        goods_name,
+      </if>
+      <if test="des != null">
+        des,
+      </if>
+      <if test="goodsPhoto != null">
+        goods_photo,
+      </if>
+      <if test="goodsCate != null">
+        goods_cate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="goodsId != null">
+        #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsName != null">
+        #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="des != null">
+        #{des,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsPhoto != null">
+        #{goodsPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsCate != null">
+        #{goodsCate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.citic.demo.entity.GoodsInfo">
+    update zx_goodsinfo
+    <set>
+      <if test="goodsName != null">
+        goods_name = #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="des != null">
+        des = #{des,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsPhoto != null">
+        goods_photo = #{goodsPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsCate != null">
+        goods_cate = #{goodsCate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where goods_id = #{goodsId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.citic.demo.entity.GoodsInfo">
+    update zx_goodsinfo
+    set goods_name = #{goodsName,jdbcType=VARCHAR},
+      des = #{des,jdbcType=VARCHAR},
+      goods_photo = #{goodsPhoto,jdbcType=VARCHAR},
+      goods_cate = #{goodsCate,jdbcType=VARCHAR}
+    where goods_id = #{goodsId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.citic.demo.entity.GoodsInfo">
+    <id column="goods_id" jdbcType="INTEGER" property="goodsId" />
+    <result column="goods_name" jdbcType="VARCHAR" property="goodsName" />
+    <result column="des" jdbcType="VARCHAR" property="des" />
+    <result column="goods_photo" jdbcType="VARCHAR" property="goodsPhoto" />
+    <result column="goods_cate" jdbcType="VARCHAR" property="goodsCate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    goods_id, goods_name, des, goods_photo, goods_cate
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from zx_goodsinfo
+    where goods_id = #{goodsId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from zx_goodsinfo
+    where goods_id = #{goodsId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.citic.demo.entity.GoodsInfo">
+    insert into zx_goodsinfo (goods_id, goods_name, des, 
+      goods_photo, goods_cate)
+    values (#{goodsId,jdbcType=INTEGER}, #{goodsName,jdbcType=VARCHAR}, #{des,jdbcType=VARCHAR}, 
+      #{goodsPhoto,jdbcType=VARCHAR}, #{goodsCate,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.citic.demo.entity.GoodsInfo">
+    insert into zx_goodsinfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="goodsId != null">
+        goods_id,
+      </if>
+      <if test="goodsName != null">
+        goods_name,
+      </if>
+      <if test="des != null">
+        des,
+      </if>
+      <if test="goodsPhoto != null">
+        goods_photo,
+      </if>
+      <if test="goodsCate != null">
+        goods_cate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="goodsId != null">
+        #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsName != null">
+        #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="des != null">
+        #{des,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsPhoto != null">
+        #{goodsPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsCate != null">
+        #{goodsCate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.citic.demo.entity.GoodsInfo">
+    update zx_goodsinfo
+    <set>
+      <if test="goodsName != null">
+        goods_name = #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="des != null">
+        des = #{des,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsPhoto != null">
+        goods_photo = #{goodsPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsCate != null">
+        goods_cate = #{goodsCate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where goods_id = #{goodsId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.citic.demo.entity.GoodsInfo">
+    update zx_goodsinfo
+    set goods_name = #{goodsName,jdbcType=VARCHAR},
+      des = #{des,jdbcType=VARCHAR},
+      goods_photo = #{goodsPhoto,jdbcType=VARCHAR},
+      goods_cate = #{goodsCate,jdbcType=VARCHAR}
+    where goods_id = #{goodsId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.citic.demo.entity.GoodsInfo">
+    <id column="goods_id" jdbcType="INTEGER" property="goodsId" />
+    <result column="goods_name" jdbcType="VARCHAR" property="goodsName" />
+    <result column="des" jdbcType="VARCHAR" property="des" />
+    <result column="goods_photo" jdbcType="VARCHAR" property="goodsPhoto" />
+    <result column="goods_cate" jdbcType="VARCHAR" property="goodsCate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    goods_id, goods_name, des, goods_photo, goods_cate
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from zx_goodsinfo
+    where goods_id = #{goodsId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from zx_goodsinfo
+    where goods_id = #{goodsId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.citic.demo.entity.GoodsInfo">
+    insert into zx_goodsinfo (goods_id, goods_name, des, 
+      goods_photo, goods_cate)
+    values (#{goodsId,jdbcType=INTEGER}, #{goodsName,jdbcType=VARCHAR}, #{des,jdbcType=VARCHAR}, 
+      #{goodsPhoto,jdbcType=VARCHAR}, #{goodsCate,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.citic.demo.entity.GoodsInfo">
+    insert into zx_goodsinfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="goodsId != null">
+        goods_id,
+      </if>
+      <if test="goodsName != null">
+        goods_name,
+      </if>
+      <if test="des != null">
+        des,
+      </if>
+      <if test="goodsPhoto != null">
+        goods_photo,
+      </if>
+      <if test="goodsCate != null">
+        goods_cate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="goodsId != null">
+        #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsName != null">
+        #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="des != null">
+        #{des,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsPhoto != null">
+        #{goodsPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsCate != null">
+        #{goodsCate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.citic.demo.entity.GoodsInfo">
+    update zx_goodsinfo
+    <set>
+      <if test="goodsName != null">
+        goods_name = #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="des != null">
+        des = #{des,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsPhoto != null">
+        goods_photo = #{goodsPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsCate != null">
+        goods_cate = #{goodsCate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where goods_id = #{goodsId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.citic.demo.entity.GoodsInfo">
+    update zx_goodsinfo
+    set goods_name = #{goodsName,jdbcType=VARCHAR},
+      des = #{des,jdbcType=VARCHAR},
+      goods_photo = #{goodsPhoto,jdbcType=VARCHAR},
+      goods_cate = #{goodsCate,jdbcType=VARCHAR}
+    where goods_id = #{goodsId,jdbcType=INTEGER}
+  </update>
+</mapper>

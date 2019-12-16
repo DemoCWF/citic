@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.citic.demo.mapper.OrderInfoMapper">
+  <resultMap id="BaseResultMap" type="com.citic.demo.entity.OrderInfo">
+    <id column="ORDER_ID" jdbcType="INTEGER" property="orderId" />
+    <result column="USER_ID" jdbcType="INTEGER" property="userId" />
+    <result column="GOODS_ID" jdbcType="INTEGER" property="goodsId" />
+    <result column="GOODS_NAME" jdbcType="VARCHAR" property="goodsName" />
+    <result column="ORDER_TIME" jdbcType="TIMESTAMP" property="orderTime" />
+    <result column="GOODS_NUM" jdbcType="INTEGER" property="goodsNum" />
+    <result column="ORDER_STATE" jdbcType="VARCHAR" property="orderState" />
+    <result column="PAY" jdbcType="VARCHAR" property="pay" />
+    <result column="REAL_PAY" jdbcType="VARCHAR" property="realPay" />
+    <result column="PAY_TIME" jdbcType="TIMESTAMP" property="payTime" />
+    <result column="SALEWAY" jdbcType="VARCHAR" property="saleway" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ORDER_ID, USER_ID, GOODS_ID, GOODS_NAME, ORDER_TIME, GOODS_NUM, ORDER_STATE, PAY, 
+    REAL_PAY, PAY_TIME, SALEWAY
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from zx_orderinfo
+    where ORDER_ID = #{orderId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from zx_orderinfo
+    where ORDER_ID = #{orderId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.citic.demo.entity.OrderInfo">
+    insert into zx_orderinfo (ORDER_ID, USER_ID, GOODS_ID, 
+      GOODS_NAME, ORDER_TIME, GOODS_NUM, 
+      ORDER_STATE, PAY, REAL_PAY, 
+      PAY_TIME, SALEWAY)
+    values (#{orderId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{goodsId,jdbcType=INTEGER}, 
+      #{goodsName,jdbcType=VARCHAR}, #{orderTime,jdbcType=TIMESTAMP}, #{goodsNum,jdbcType=INTEGER}, 
+      #{orderState,jdbcType=VARCHAR}, #{pay,jdbcType=VARCHAR}, #{realPay,jdbcType=VARCHAR}, 
+      #{payTime,jdbcType=TIMESTAMP}, #{saleway,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.citic.demo.entity.OrderInfo">
+    insert into zx_orderinfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        ORDER_ID,
+      </if>
+      <if test="userId != null">
+        USER_ID,
+      </if>
+      <if test="goodsId != null">
+        GOODS_ID,
+      </if>
+      <if test="goodsName != null">
+        GOODS_NAME,
+      </if>
+      <if test="orderTime != null">
+        ORDER_TIME,
+      </if>
+      <if test="goodsNum != null">
+        GOODS_NUM,
+      </if>
+      <if test="orderState != null">
+        ORDER_STATE,
+      </if>
+      <if test="pay != null">
+        PAY,
+      </if>
+      <if test="realPay != null">
+        REAL_PAY,
+      </if>
+      <if test="payTime != null">
+        PAY_TIME,
+      </if>
+      <if test="saleway != null">
+        SALEWAY,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsId != null">
+        #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsName != null">
+        #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="orderTime != null">
+        #{orderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="goodsNum != null">
+        #{goodsNum,jdbcType=INTEGER},
+      </if>
+      <if test="orderState != null">
+        #{orderState,jdbcType=VARCHAR},
+      </if>
+      <if test="pay != null">
+        #{pay,jdbcType=VARCHAR},
+      </if>
+      <if test="realPay != null">
+        #{realPay,jdbcType=VARCHAR},
+      </if>
+      <if test="payTime != null">
+        #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="saleway != null">
+        #{saleway,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.citic.demo.entity.OrderInfo">
+    update zx_orderinfo
+    <set>
+      <if test="userId != null">
+        USER_ID = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsId != null">
+        GOODS_ID = #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsName != null">
+        GOODS_NAME = #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="orderTime != null">
+        ORDER_TIME = #{orderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="goodsNum != null">
+        GOODS_NUM = #{goodsNum,jdbcType=INTEGER},
+      </if>
+      <if test="orderState != null">
+        ORDER_STATE = #{orderState,jdbcType=VARCHAR},
+      </if>
+      <if test="pay != null">
+        PAY = #{pay,jdbcType=VARCHAR},
+      </if>
+      <if test="realPay != null">
+        REAL_PAY = #{realPay,jdbcType=VARCHAR},
+      </if>
+      <if test="payTime != null">
+        PAY_TIME = #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="saleway != null">
+        SALEWAY = #{saleway,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ORDER_ID = #{orderId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.citic.demo.entity.OrderInfo">
+    update zx_orderinfo
+    set USER_ID = #{userId,jdbcType=INTEGER},
+      GOODS_ID = #{goodsId,jdbcType=INTEGER},
+      GOODS_NAME = #{goodsName,jdbcType=VARCHAR},
+      ORDER_TIME = #{orderTime,jdbcType=TIMESTAMP},
+      GOODS_NUM = #{goodsNum,jdbcType=INTEGER},
+      ORDER_STATE = #{orderState,jdbcType=VARCHAR},
+      PAY = #{pay,jdbcType=VARCHAR},
+      REAL_PAY = #{realPay,jdbcType=VARCHAR},
+      PAY_TIME = #{payTime,jdbcType=TIMESTAMP},
+      SALEWAY = #{saleway,jdbcType=VARCHAR}
+    where ORDER_ID = #{orderId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.citic.demo.entity.OrderInfo">
+    <id column="ORDER_ID" jdbcType="INTEGER" property="orderId" />
+    <result column="USER_ID" jdbcType="INTEGER" property="userId" />
+    <result column="GOODS_ID" jdbcType="INTEGER" property="goodsId" />
+    <result column="GOODS_NAME" jdbcType="VARCHAR" property="goodsName" />
+    <result column="ORDER_TIME" jdbcType="TIMESTAMP" property="orderTime" />
+    <result column="GOODS_NUM" jdbcType="INTEGER" property="goodsNum" />
+    <result column="ORDER_STATE" jdbcType="VARCHAR" property="orderState" />
+    <result column="PAY" jdbcType="VARCHAR" property="pay" />
+    <result column="REAL_PAY" jdbcType="VARCHAR" property="realPay" />
+    <result column="PAY_TIME" jdbcType="TIMESTAMP" property="payTime" />
+    <result column="SALEWAY" jdbcType="VARCHAR" property="saleway" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ORDER_ID, USER_ID, GOODS_ID, GOODS_NAME, ORDER_TIME, GOODS_NUM, ORDER_STATE, PAY, 
+    REAL_PAY, PAY_TIME, SALEWAY
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from zx_orderinfo
+    where ORDER_ID = #{orderId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from zx_orderinfo
+    where ORDER_ID = #{orderId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.citic.demo.entity.OrderInfo">
+    insert into zx_orderinfo (ORDER_ID, USER_ID, GOODS_ID, 
+      GOODS_NAME, ORDER_TIME, GOODS_NUM, 
+      ORDER_STATE, PAY, REAL_PAY, 
+      PAY_TIME, SALEWAY)
+    values (#{orderId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{goodsId,jdbcType=INTEGER}, 
+      #{goodsName,jdbcType=VARCHAR}, #{orderTime,jdbcType=TIMESTAMP}, #{goodsNum,jdbcType=INTEGER}, 
+      #{orderState,jdbcType=VARCHAR}, #{pay,jdbcType=VARCHAR}, #{realPay,jdbcType=VARCHAR}, 
+      #{payTime,jdbcType=TIMESTAMP}, #{saleway,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.citic.demo.entity.OrderInfo">
+    insert into zx_orderinfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        ORDER_ID,
+      </if>
+      <if test="userId != null">
+        USER_ID,
+      </if>
+      <if test="goodsId != null">
+        GOODS_ID,
+      </if>
+      <if test="goodsName != null">
+        GOODS_NAME,
+      </if>
+      <if test="orderTime != null">
+        ORDER_TIME,
+      </if>
+      <if test="goodsNum != null">
+        GOODS_NUM,
+      </if>
+      <if test="orderState != null">
+        ORDER_STATE,
+      </if>
+      <if test="pay != null">
+        PAY,
+      </if>
+      <if test="realPay != null">
+        REAL_PAY,
+      </if>
+      <if test="payTime != null">
+        PAY_TIME,
+      </if>
+      <if test="saleway != null">
+        SALEWAY,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsId != null">
+        #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsName != null">
+        #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="orderTime != null">
+        #{orderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="goodsNum != null">
+        #{goodsNum,jdbcType=INTEGER},
+      </if>
+      <if test="orderState != null">
+        #{orderState,jdbcType=VARCHAR},
+      </if>
+      <if test="pay != null">
+        #{pay,jdbcType=VARCHAR},
+      </if>
+      <if test="realPay != null">
+        #{realPay,jdbcType=VARCHAR},
+      </if>
+      <if test="payTime != null">
+        #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="saleway != null">
+        #{saleway,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.citic.demo.entity.OrderInfo">
+    update zx_orderinfo
+    <set>
+      <if test="userId != null">
+        USER_ID = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsId != null">
+        GOODS_ID = #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsName != null">
+        GOODS_NAME = #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="orderTime != null">
+        ORDER_TIME = #{orderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="goodsNum != null">
+        GOODS_NUM = #{goodsNum,jdbcType=INTEGER},
+      </if>
+      <if test="orderState != null">
+        ORDER_STATE = #{orderState,jdbcType=VARCHAR},
+      </if>
+      <if test="pay != null">
+        PAY = #{pay,jdbcType=VARCHAR},
+      </if>
+      <if test="realPay != null">
+        REAL_PAY = #{realPay,jdbcType=VARCHAR},
+      </if>
+      <if test="payTime != null">
+        PAY_TIME = #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="saleway != null">
+        SALEWAY = #{saleway,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ORDER_ID = #{orderId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.citic.demo.entity.OrderInfo">
+    update zx_orderinfo
+    set USER_ID = #{userId,jdbcType=INTEGER},
+      GOODS_ID = #{goodsId,jdbcType=INTEGER},
+      GOODS_NAME = #{goodsName,jdbcType=VARCHAR},
+      ORDER_TIME = #{orderTime,jdbcType=TIMESTAMP},
+      GOODS_NUM = #{goodsNum,jdbcType=INTEGER},
+      ORDER_STATE = #{orderState,jdbcType=VARCHAR},
+      PAY = #{pay,jdbcType=VARCHAR},
+      REAL_PAY = #{realPay,jdbcType=VARCHAR},
+      PAY_TIME = #{payTime,jdbcType=TIMESTAMP},
+      SALEWAY = #{saleway,jdbcType=VARCHAR}
+    where ORDER_ID = #{orderId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.citic.demo.entity.OrderInfo">
+    <id column="ORDER_ID" jdbcType="INTEGER" property="orderId" />
+    <result column="USER_ID" jdbcType="INTEGER" property="userId" />
+    <result column="GOODS_ID" jdbcType="INTEGER" property="goodsId" />
+    <result column="GOODS_NAME" jdbcType="VARCHAR" property="goodsName" />
+    <result column="ORDER_TIME" jdbcType="TIMESTAMP" property="orderTime" />
+    <result column="GOODS_NUM" jdbcType="INTEGER" property="goodsNum" />
+    <result column="ORDER_STATE" jdbcType="VARCHAR" property="orderState" />
+    <result column="PAY" jdbcType="VARCHAR" property="pay" />
+    <result column="REAL_PAY" jdbcType="VARCHAR" property="realPay" />
+    <result column="PAY_TIME" jdbcType="TIMESTAMP" property="payTime" />
+    <result column="SALEWAY" jdbcType="VARCHAR" property="saleway" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ORDER_ID, USER_ID, GOODS_ID, GOODS_NAME, ORDER_TIME, GOODS_NUM, ORDER_STATE, PAY, 
+    REAL_PAY, PAY_TIME, SALEWAY
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from zx_orderinfo
+    where ORDER_ID = #{orderId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from zx_orderinfo
+    where ORDER_ID = #{orderId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.citic.demo.entity.OrderInfo">
+    insert into zx_orderinfo (ORDER_ID, USER_ID, GOODS_ID, 
+      GOODS_NAME, ORDER_TIME, GOODS_NUM, 
+      ORDER_STATE, PAY, REAL_PAY, 
+      PAY_TIME, SALEWAY)
+    values (#{orderId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{goodsId,jdbcType=INTEGER}, 
+      #{goodsName,jdbcType=VARCHAR}, #{orderTime,jdbcType=TIMESTAMP}, #{goodsNum,jdbcType=INTEGER}, 
+      #{orderState,jdbcType=VARCHAR}, #{pay,jdbcType=VARCHAR}, #{realPay,jdbcType=VARCHAR}, 
+      #{payTime,jdbcType=TIMESTAMP}, #{saleway,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.citic.demo.entity.OrderInfo">
+    insert into zx_orderinfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        ORDER_ID,
+      </if>
+      <if test="userId != null">
+        USER_ID,
+      </if>
+      <if test="goodsId != null">
+        GOODS_ID,
+      </if>
+      <if test="goodsName != null">
+        GOODS_NAME,
+      </if>
+      <if test="orderTime != null">
+        ORDER_TIME,
+      </if>
+      <if test="goodsNum != null">
+        GOODS_NUM,
+      </if>
+      <if test="orderState != null">
+        ORDER_STATE,
+      </if>
+      <if test="pay != null">
+        PAY,
+      </if>
+      <if test="realPay != null">
+        REAL_PAY,
+      </if>
+      <if test="payTime != null">
+        PAY_TIME,
+      </if>
+      <if test="saleway != null">
+        SALEWAY,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsId != null">
+        #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsName != null">
+        #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="orderTime != null">
+        #{orderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="goodsNum != null">
+        #{goodsNum,jdbcType=INTEGER},
+      </if>
+      <if test="orderState != null">
+        #{orderState,jdbcType=VARCHAR},
+      </if>
+      <if test="pay != null">
+        #{pay,jdbcType=VARCHAR},
+      </if>
+      <if test="realPay != null">
+        #{realPay,jdbcType=VARCHAR},
+      </if>
+      <if test="payTime != null">
+        #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="saleway != null">
+        #{saleway,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.citic.demo.entity.OrderInfo">
+    update zx_orderinfo
+    <set>
+      <if test="userId != null">
+        USER_ID = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsId != null">
+        GOODS_ID = #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsName != null">
+        GOODS_NAME = #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="orderTime != null">
+        ORDER_TIME = #{orderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="goodsNum != null">
+        GOODS_NUM = #{goodsNum,jdbcType=INTEGER},
+      </if>
+      <if test="orderState != null">
+        ORDER_STATE = #{orderState,jdbcType=VARCHAR},
+      </if>
+      <if test="pay != null">
+        PAY = #{pay,jdbcType=VARCHAR},
+      </if>
+      <if test="realPay != null">
+        REAL_PAY = #{realPay,jdbcType=VARCHAR},
+      </if>
+      <if test="payTime != null">
+        PAY_TIME = #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="saleway != null">
+        SALEWAY = #{saleway,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ORDER_ID = #{orderId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.citic.demo.entity.OrderInfo">
+    update zx_orderinfo
+    set USER_ID = #{userId,jdbcType=INTEGER},
+      GOODS_ID = #{goodsId,jdbcType=INTEGER},
+      GOODS_NAME = #{goodsName,jdbcType=VARCHAR},
+      ORDER_TIME = #{orderTime,jdbcType=TIMESTAMP},
+      GOODS_NUM = #{goodsNum,jdbcType=INTEGER},
+      ORDER_STATE = #{orderState,jdbcType=VARCHAR},
+      PAY = #{pay,jdbcType=VARCHAR},
+      REAL_PAY = #{realPay,jdbcType=VARCHAR},
+      PAY_TIME = #{payTime,jdbcType=TIMESTAMP},
+      SALEWAY = #{saleway,jdbcType=VARCHAR}
+    where ORDER_ID = #{orderId,jdbcType=INTEGER}
+  </update>
+</mapper>

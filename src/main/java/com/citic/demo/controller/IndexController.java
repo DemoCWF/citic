@@ -25,7 +25,6 @@ public class IndexController {
 
     @RequestMapping("/index")
     public String index(Model model){
-        log.info("adasdasdasdasdasdasd");
         model.addAttribute("result", "后台返回index1");
         return "index";
     }

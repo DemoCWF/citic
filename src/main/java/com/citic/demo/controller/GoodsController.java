@@ -20,9 +20,76 @@ public class GoodsController {
     @Resource
     private GoodsService goodsService;
 
-    @PostMapping(value = "/query")
-    public ActionResponse importService(GoodsQuery goodsQuery) throws Exception {
-        List<GoodsInfo> goodsInfoList = null;
+    /**
+     *
+     * 查询所有商品(可模糊查询)
+     *
+     * @param goodsQuery
+     * @return
+     * @throws Exception
+     */
+    @PostMapping(value = "/query/all")
+    public ActionResponse queryGoods(GoodsQuery goodsQuery) throws Exception {
+        List<GoodsInfo> goodsInfoList = goodsService.query(goodsQuery);
+        return ActionResponse.success(goodsInfoList);
+    }
+
+
+    /**
+     *
+     * 查询单件商品详细信息
+     *
+     * @param goodsQuery
+     * @return
+     * @throws Exception
+     */
+    @GetMapping(value = "/query/id")
+    public ActionResponse queryGoodsInfo(GoodsQuery goodsQuery) throws Exception {
+        GoodsInfo goodsInfo = goodsService.queryGoodsInfoById(goodsQuery.getGoodsId().toString());
+        return ActionResponse.success(goodsInfo);
+    }
+
+    /**
+     *
+     * 保存商品
+     *
+     * @param goodsRequest
+     * @return
+     * @throws Exception
+     */
+    @PostMapping(value = "/save")
+    public ActionResponse saveGoodsInfo(GoodsRequest goodsRequest) throws Exception {
+        goodsService.saveGoodsInfo(goodsRequest);
+        return ActionResponse.success();
+    }
+
+
+    /**
+     *
+     * 商品信息修正
+     *
+     * @param goodsRequest
+     * @return
+     * @throws Exception
+     */
+    @PostMapping(value = "/update")
+    public ActionResponse updateGoodsInfo(GoodsRequest goodsRequest) throws Exception {
+        goodsService.updateGoodsInfo(goodsRequest);
+        return ActionResponse.success();
+    }
+
+
+    /**
+     *
+     * 商品删除
+     *
+     * @param goodsQuery
+     * @return
+     * @throws Exception
+     */
+    @PostMapping(value = "/delete")
+    public ActionResponse deleteGoodsInfo(GoodsQuery goodsQuery) throws Exception {
+        goodsService.deleteGoodsInfo(goodsQuery.getGoodsId().toString());
         return ActionResponse.success();
     }
 }

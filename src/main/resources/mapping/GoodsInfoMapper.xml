@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.citic.demo.mapper.GoodsInfoMapper">
+    <resultMap id="BaseResultMap" type="com.citic.demo.entity.GoodsInfo">
+        <id column="goods_id" property="goodsId" jdbcType="INTEGER"/>
+        <result column="goods_name" property="goodsName" jdbcType="VARCHAR"/>
+        <result column="des" property="des" jdbcType="VARCHAR"/>
+        <result column="goods_photo" property="goodsPhoto" jdbcType="VARCHAR"/>
+        <result column="goods_cate" property="goodsCate" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="IF_Base_Column_List">
+        <if test=" goodsId != null">
+            goods_id,
+        </if>
+        <if test=" goodsName != null">
+            goods_name,
+        </if>
+        <if test=" des != null">
+            des,
+        </if>
+        <if test=" goodsPhoto != null">
+            goods_photo,
+        </if>
+        <if test=" goodsCate != null">
+            goods_cate,
+        </if>
+    </sql>
+
+    <sql id="IF_Value_Column_List">
+        <if test=" goodsId != null">
+            #{goodsId },
+        </if>
+        <if test=" goodsName != null">
+            #{goodsName },
+        </if>
+        <if test=" goodsId != null">
+            #{goodsId },
+        </if>
+        <if test=" des != null">
+            #{des },
+        </if>
+        <if test=" goodsPhoto != null">
+            #{goodsPhoto },
+        </if>
+        <if test=" goodsCate != null">
+            #{goodsCate },
+        </if>
+    </sql>
+
+    <select id="query" parameterType="com.citic.demo.query.GoodsQuery" resultMap="BaseResultMap">
+        select
+        goods.goods_id as goods_id,
+        goods.goods_name as goods_name,
+        goods.des as des,
+        goods.goods_photo as goods_photo,
+        goods.goods_cate as goods_cate
+        from zx_goodsinfo goods
+        where 1=1
+        <if test=" mult != null ">
+            and goods.goods_name like CONCAT('%',replace(replace(#{mult},'%','\%'),'_','\_'),'%')
+        </if>
+        <if test=" goodsCate != null and goodsCate.size() > 0 ">
+            and goods.goods_cate in
+            <foreach item="item" index="index" collection="goodsCate"
+                     open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+    </select>
+
+
+    <select id="queryGoodsInfoById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        goods.goods_id as goods_id,
+        goods.goods_name as goods_name,
+        goods.des as des,
+        goods.goods_photo as goods_photo,
+        goods.goods_cate as goods_cate
+        from zx_goodsinfo goods
+        where 1 = 1
+        <if test="goodsId != null">
+            and goods.goods_id = #{goodsId }
+        </if>
+    </select>
+
+
+    <insert id="insert" parameterType="com.citic.demo.entity.GoodsInfo" useGeneratedKeys="true">
+        insert into zx_goodsinfo
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <include refid="IF_Base_Column_List"></include>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <include refid="IF_Value_Column_List"></include>
+        </trim>
+    </insert>
+
+
+    <update id="update" parameterType="com.citic.demo.entity.GoodsInfo">
+        update zx_goodsinfo
+        <trim prefix="SET" suffixOverrides=",">
+            <if test=" goodsName != null">
+                goods_name = #{goodsName },
+            </if>
+            <if test=" des != null">
+                des = #{des },
+            </if>
+            <if test=" goodsPhoto != null">
+                goods_photo = #{goodsPhoto },
+            </if>
+            <if test=" goodsCate != null">
+                goods_cate = #{goodsCate },
+            </if>
+        </trim>
+        where goods_id = #{goodsId}
+    </update>
+
+    <delete id="deleteById" parameterType="java.lang.Integer">
+        delete zx_goodsinfo where goods_id = #{goodsId}
+    </delete>
+
+
+    <select id="queryGoodsCount" parameterType="com.citic.demo.query.GoodsQuery" resultType="java.lang.Integer">
+        select
+        count(goods_id)
+        from zx_goodsinfo
+        where 1=1
+        <if test=" mult != null ">
+            and goods_name like CONCAT('%',replace(replace(#{mult},'%','\%'),'_','\_'),'%')
+        </if>
+        <if test=" goodsCate != null and goodsCate.size() > 0 ">
+            and goods_cate in
+            <foreach item="item" index="index" collection="goodsCate"
+                     open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+    </select>
+
+
+    <select id="queryGoods" parameterType="com.citic.demo.query.GoodsQuery" resultMap="BaseResultMap">
+        select
+        goods.goods_id as goods_id,
+        goods.goods_name as goods_name,
+        goods.des as des,
+        goods.goods_photo as goods_photo,
+        goods.goods_cate as goods_cate
+        from zx_goodsinfo goods
+        where 1 = 1
+        <if test=" mult != null ">
+            and goods.goods_name like CONCAT('%',replace(replace(#{mult},'%','\%'),'_','\_'),'%')
+        </if>
+        <if test=" goodsCate != null and goodsCate.size() > 0 ">
+            and goods.goods_cate in
+            <foreach item="item" index="index" collection="goodsCate"
+                     open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        <if test="pageSize != -1">
+            LIMIT #{pageSize} offset #{pageOffset}
+        </if>
+    </select>
+
+</mapper>

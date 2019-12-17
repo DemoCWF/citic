@@ -1,17 +1,24 @@
 package com.citic.demo.mapper;
 
 import com.citic.demo.entity.GoodsInfo;
+import com.citic.demo.query.GoodsQuery;
+import com.citic.demo.request.GoodsRequest;
+
+import java.util.List;
 
 public interface GoodsInfoMapper {
-    int deleteByPrimaryKey(Integer goodsId);
 
-    int insert(GoodsInfo record);
+    List<GoodsInfo> query(GoodsQuery goodsQuery) throws Exception;
 
-    int insertSelective(GoodsInfo record);
+    GoodsInfo queryGoodsInfoById(Integer goodsId) throws Exception;
 
-    GoodsInfo selectByPrimaryKey(Integer goodsId);
+    int insert(GoodsInfo goodsInfo) throws Exception;
 
-    int updateByPrimaryKeySelective(GoodsInfo record);
+    int update(GoodsInfo goodsInfo) throws Exception;
 
-    int updateByPrimaryKey(GoodsInfo record);
+    int deleteById(Integer goodsId) throws Exception;
+
+    int queryGoodsCount(GoodsQuery goodsQuery);
+
+    List<GoodsInfo> queryGoods(GoodsQuery goodsQuery);
 }

@@ -1,5 +1,6 @@
 package com.citic.demo.service;
 
+import com.citic.demo.base.PageResult;
 import com.citic.demo.entity.GoodsInfo;
 import com.citic.demo.query.GoodsQuery;
 import com.citic.demo.request.GoodsRequest;
@@ -20,12 +21,22 @@ public interface GoodsService {
 
     /**
      *
+     * 分页查询
+     *
+     * @param goodsQuery
+     * @return
+     * @throws Exception
+     */
+    PageResult<GoodsInfo> queryPageGoods(GoodsQuery goodsQuery) throws Exception;
+
+    /**
+     *
      * 获取商品详细信息
      *
-     * @param primaryKey
+     * @param goodsId
      * @return
      */
-    GoodsInfo queryGoodsInfoById(String primaryKey) throws Exception;
+    GoodsInfo queryGoodsInfoById(Integer goodsId) throws Exception;
 
 
     /**
@@ -54,9 +65,9 @@ public interface GoodsService {
      *
      * 删除
      *
-     * @param primaryKey
+     * @param goodsId
      * @return
      * @throws Exception
      */
-    int deleteGoodsInfo(String primaryKey) throws Exception;
+    int deleteGoodsInfo(Integer goodsId) throws Exception;
 }

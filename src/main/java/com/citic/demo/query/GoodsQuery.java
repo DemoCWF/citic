@@ -1,8 +1,10 @@
 package com.citic.demo.query;
 
+import com.citic.demo.base.ObjectQuery;
+
 import java.util.List;
 
-public class GoodsQuery {
+public class GoodsQuery extends ObjectQuery {
 
     private Integer goodsId;
 

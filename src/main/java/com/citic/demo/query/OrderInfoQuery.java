@@ -1,9 +1,10 @@
-package com.citic.demo.entity;
+package com.citic.demo.query;
+
+import com.citic.demo.base.ObjectQuery;
 
 import java.util.Date;
 
-public class OrderInfo {
-
+public class OrderInfoQuery extends ObjectQuery {
     private Integer orderId;
 
     private Integer userId;

@@ -1,14 +1,12 @@
-package com.citic.demo.mapper;
+package com.citic.demo.service;
 
+import com.citic.demo.base.PageResult;
 import com.citic.demo.entity.OrderInfo;
 import com.citic.demo.query.OrderInfoQuery;
 import com.citic.demo.request.OrderRequest;
 import com.citic.demo.response.OrderResponse;
 
-import java.util.List;
-
-public interface OrderInfoMapper {
-
+public interface OrderInfoService {
 
     /**
      * 获取订单列表
@@ -17,16 +15,7 @@ public interface OrderInfoMapper {
      * @return
      * @throws Exception
      */
-    List<OrderInfo> queryOrderList(OrderInfoQuery orderInfoQuery) throws Exception;
-
-    /**
-     * 获取订单数量
-     *
-     * @param orderInfoQuery
-     * @return
-     * @throws Exception
-     */
-    Integer queryOrderCount(OrderInfoQuery orderInfoQuery) throws Exception;
+    PageResult<OrderInfo> queryOrder(OrderInfoQuery orderInfoQuery) throws Exception;
 
     /**
      *
@@ -36,7 +25,7 @@ public interface OrderInfoMapper {
      * @return
      * @throws Exception
      */
-    OrderResponse queryOrderById(Integer orderId) throws Exception;
+    OrderInfo queryOrderById(Integer orderId) throws Exception;
 
     /**
      *

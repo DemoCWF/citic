@@ -122,7 +122,7 @@
 
     <select id="queryGoodsCount" parameterType="com.citic.demo.query.GoodsQuery" resultType="java.lang.Integer">
         select
-        count(goods_id)
+        count(1)
         from zx_goodsinfo
         where 1=1
         <if test=" mult != null ">

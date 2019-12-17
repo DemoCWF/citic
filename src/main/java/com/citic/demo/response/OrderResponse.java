@@ -1,8 +1,8 @@
-package com.citic.demo.entity;
+package com.citic.demo.response;
 
 import java.util.Date;
 
-public class OrderInfo {
+public class OrderResponse {
 
     private Integer orderId;
 
@@ -55,7 +55,7 @@ public class OrderInfo {
     }
 
     public void setGoodsName(String goodsName) {
-        this.goodsName = goodsName == null ? null : goodsName.trim();
+        this.goodsName = goodsName;
     }
 
     public Date getOrderTime() {
@@ -79,7 +79,7 @@ public class OrderInfo {
     }
 
     public void setOrderState(String orderState) {
-        this.orderState = orderState == null ? null : orderState.trim();
+        this.orderState = orderState;
     }
 
     public String getPay() {
@@ -87,7 +87,7 @@ public class OrderInfo {
     }
 
     public void setPay(String pay) {
-        this.pay = pay == null ? null : pay.trim();
+        this.pay = pay;
     }
 
     public String getRealPay() {
@@ -95,7 +95,7 @@ public class OrderInfo {
     }
 
     public void setRealPay(String realPay) {
-        this.realPay = realPay == null ? null : realPay.trim();
+        this.realPay = realPay;
     }
 
     public Date getPayTime() {
@@ -111,6 +111,6 @@ public class OrderInfo {
     }
 
     public void setSaleway(String saleway) {
-        this.saleway = saleway == null ? null : saleway.trim();
+        this.saleway = saleway;
     }
 }

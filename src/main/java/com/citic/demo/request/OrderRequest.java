@@ -1,9 +1,8 @@
-package com.citic.demo.entity;
+package com.citic.demo.request;
 
 import java.util.Date;
 
-public class OrderInfo {
-
+public class OrderRequest {
     private Integer orderId;
 
     private Integer userId;

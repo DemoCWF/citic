@@ -1,6 +1,7 @@
 package com.citic.demo.controller;
 
 import com.citic.demo.base.ActionResponse;
+import com.citic.demo.base.RespBasicCode;
 import com.citic.demo.entity.GoodsInfo;
 import com.citic.demo.query.GoodsQuery;
 import com.citic.demo.request.GoodsRequest;
@@ -28,8 +29,12 @@ public class GoodsController {
      */
     @PostMapping(value = "/query/all")
     @ResponseBody
-    public ActionResponse queryGoods(@RequestBody GoodsQuery goodsQuery) throws Exception {
-        return ActionResponse.success(goodsService.queryPageGoods(goodsQuery));
+    public ActionResponse queryGoods(@RequestBody GoodsQuery goodsQuery){
+        try {
+            return ActionResponse.success(goodsService.queryPageGoods(goodsQuery));
+        } catch (Exception e) {
+            return ActionResponse.fail(RespBasicCode.BUSINESS_EXCEPTION);
+        }
     }
 
 
@@ -43,8 +48,16 @@ public class GoodsController {
      */
     @PostMapping(value = "/query/id")
     @ResponseBody
-    public ActionResponse queryGoodsInfo(@RequestBody GoodsQuery goodsQuery) throws Exception {
-        GoodsInfo goodsInfo = goodsService.queryGoodsInfoById(goodsQuery.getGoodsId());
+    public ActionResponse queryGoodsInfo(@RequestBody GoodsQuery goodsQuery){
+        if (goodsQuery.getGoodsId() == null){
+            ActionResponse.fail(RespBasicCode.PARAMETER_ERROR, "商品ID不能为空!");
+        }
+        GoodsInfo goodsInfo = null;
+        try {
+            goodsInfo = goodsService.queryGoodsInfoById(goodsQuery.getGoodsId());
+        } catch (Exception e) {
+            return ActionResponse.fail(RespBasicCode.BUSINESS_EXCEPTION);
+        }
         return ActionResponse.success(goodsInfo);
     }
 
@@ -58,8 +71,12 @@ public class GoodsController {
      */
     @PostMapping(value = "/save")
     @ResponseBody
-    public ActionResponse saveGoodsInfo(@RequestBody GoodsRequest goodsRequest) throws Exception {
-        goodsService.saveGoodsInfo(goodsRequest);
+    public ActionResponse saveGoodsInfo(@RequestBody GoodsRequest goodsRequest){
+        try {
+            goodsService.saveGoodsInfo(goodsRequest);
+        } catch (Exception e) {
+            return ActionResponse.fail(RespBasicCode.BUSINESS_EXCEPTION);
+        }
         return ActionResponse.success();
     }
 
@@ -74,8 +91,15 @@ public class GoodsController {
      */
     @PostMapping(value = "/update")
     @ResponseBody
-    public ActionResponse updateGoodsInfo(@RequestBody GoodsRequest goodsRequest) throws Exception {
-        goodsService.updateGoodsInfo(goodsRequest);
+    public ActionResponse updateGoodsInfo(@RequestBody GoodsRequest goodsRequest){
+        if (goodsRequest.getGoodsId() == null){
+            ActionResponse.fail(RespBasicCode.PARAMETER_ERROR, "商品ID不能为空!");
+        }
+        try {
+            goodsService.updateGoodsInfo(goodsRequest);
+        } catch (Exception e) {
+            return ActionResponse.fail(RespBasicCode.BUSINESS_EXCEPTION);
+        }
         return ActionResponse.success();
     }
 
@@ -90,8 +114,15 @@ public class GoodsController {
      */
     @PostMapping(value = "/delete")
     @ResponseBody
-    public ActionResponse deleteGoodsInfo(@RequestBody GoodsQuery goodsQuery) throws Exception {
-        goodsService.deleteGoodsInfo(goodsQuery.getGoodsId());
+    public ActionResponse deleteGoodsInfo(@RequestBody GoodsQuery goodsQuery){
+        if (goodsQuery.getGoodsId() == null){
+            ActionResponse.fail(RespBasicCode.PARAMETER_ERROR, "商品ID不能为空!");
+        }
+        try {
+            goodsService.deleteGoodsInfo(goodsQuery.getGoodsId());
+        } catch (Exception e) {
+            return ActionResponse.fail(RespBasicCode.BUSINESS_EXCEPTION);
+        }
         return ActionResponse.success();
     }
 }

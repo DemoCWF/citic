@@ -4,6 +4,8 @@ import com.citic.demo.base.BaseConverter;
 import com.citic.demo.base.PageResult;
 import com.citic.demo.entity.GoodsInfo;
 import com.citic.demo.entity.OrderInfo;
+import com.citic.demo.entity.SaleWay;
+import com.citic.demo.mapper.GoodsInfoMapper;
 import com.citic.demo.mapper.OrderInfoMapper;
 import com.citic.demo.query.OrderInfoQuery;
 import com.citic.demo.request.GoodsRequest;
@@ -11,8 +13,10 @@ import com.citic.demo.request.OrderRequest;
 import com.citic.demo.response.OrderResponse;
 import com.citic.demo.service.OrderInfoService;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.annotation.Resource;
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -20,6 +24,9 @@ public class OrderInfoServiceImp implements OrderInfoService {
 
     @Resource
     private OrderInfoMapper orderInfoMapper;
+
+    @Resource
+    private GoodsInfoMapper goodsInfoMapper;
 
     @Resource
     private BaseConverter<OrderResponse, OrderInfo> reponseConverter;
@@ -54,8 +61,24 @@ public class OrderInfoServiceImp implements OrderInfoService {
      */
     @Override
     public OrderInfo queryOrderById(Integer orderId) throws Exception {
-        OrderResponse orderResponse = orderInfoMapper.queryOrderById(orderId);
-        return reponseConverter.convert(orderResponse, OrderInfo.class);
+        OrderInfo orderInfo = orderInfoMapper.queryOrderById(orderId);
+        GoodsInfo goodsInfo = goodsInfoMapper.queryGoodsInfoById(orderInfo.getGoodsId());
+        List<SaleWay> saleWay = null;
+        if ("".equals(orderInfo.getSaleway()) || orderInfo.getSaleway() != null){
+            List<String> saleWayList = Arrays.asList(orderInfo.getSaleway().split(","));
+            /**
+             *
+             * 优惠金额计算
+             *
+             * 1. 满减/随机减
+             * 2. 优惠券
+             * 3. 积分
+             *
+             */
+
+        }
+
+        return null;
     }
 
     /**

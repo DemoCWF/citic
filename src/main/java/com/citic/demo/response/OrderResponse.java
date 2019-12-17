@@ -1,5 +1,8 @@
 package com.citic.demo.response;
 
+import com.citic.demo.entity.GoodsInfo;
+import com.citic.demo.entity.SaleWay;
+
 import java.util.Date;
 
 public class OrderResponse {
@@ -25,6 +28,10 @@ public class OrderResponse {
     private Date payTime;
 
     private String saleway;
+
+    private GoodsInfo goodsInfo;
+
+    private SaleWay saleWay;
 
     public Integer getOrderId() {
         return orderId;
@@ -112,5 +119,21 @@ public class OrderResponse {
 
     public void setSaleway(String saleway) {
         this.saleway = saleway;
+    }
+
+    public GoodsInfo getGoodsInfo() {
+        return goodsInfo;
+    }
+
+    public void setGoodsInfo(GoodsInfo goodsInfo) {
+        this.goodsInfo = goodsInfo;
+    }
+
+    public SaleWay getSaleWay() {
+        return saleWay;
+    }
+
+    public void setSaleWay(SaleWay saleWay) {
+        this.saleWay = saleWay;
     }
 }

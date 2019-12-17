@@ -2,7 +2,6 @@ package com.citic.demo.mapper;
 
 import com.citic.demo.entity.GoodsInfo;
 import com.citic.demo.query.GoodsQuery;
-import com.citic.demo.request.GoodsRequest;
 
 import java.util.List;
 

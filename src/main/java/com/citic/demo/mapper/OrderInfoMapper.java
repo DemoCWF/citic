@@ -36,7 +36,7 @@ public interface OrderInfoMapper {
      * @return
      * @throws Exception
      */
-    OrderResponse queryOrderById(Integer orderId) throws Exception;
+    OrderInfo queryOrderById(Integer orderId) throws Exception;
 
     /**
      *

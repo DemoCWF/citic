@@ -10,6 +10,7 @@ import com.citic.demo.request.ScoreRequest;
 import com.citic.demo.request.TicketRequest;
 import com.citic.demo.service.ScoreService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * Title:
@@ -17,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * Create time  2019/12/17
  * Author：Democwf
  */
+@Service
 public class ScoreServiceImpl implements ScoreService {
     @Autowired
     private ScoreMapper scoreMapper;

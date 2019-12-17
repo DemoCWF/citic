@@ -63,14 +63,29 @@ public class TicketsController {
         return ActionResponse.success(this.ticketsService.updateTicket(ticketRequest));
     }
 
-    /**查找优惠券
+    /**通过优惠卷id查找优惠券
      * @param id
      * @return
      * @throws Exception
      */
     @ResponseBody
-    @RequestMapping(value = "/get/{id}")
-    public ActionResponse updateTicket(@PathVariable("id") Integer id) throws Exception {
+    @RequestMapping(value = "/getById/{id}")
+    public ActionResponse getTicketById(@PathVariable("id") Integer id) throws Exception {
         return ActionResponse.success(this.ticketsService.getTicketById(id));
     }
+
+    /**通过用户id查找优惠券
+     * @param id
+     * @return
+     * @throws Exception
+     */
+    @ResponseBody
+    @RequestMapping(value = "/getByUserId/{id}")
+    public ActionResponse getTicketByUserId(@PathVariable("id") Integer id) throws Exception {
+        return ActionResponse.success(this.ticketsService.getTicketsByUserId(id));
+    }
+
+
+
+
 }

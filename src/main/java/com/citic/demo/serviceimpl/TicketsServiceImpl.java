@@ -8,6 +8,8 @@ import com.citic.demo.service.TicketsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Title:
  * Description:
@@ -41,5 +43,11 @@ public class TicketsServiceImpl implements TicketsService {
     public int saveTickets(TicketRequest ticketRequest) throws Exception {
         Tickets tickets = this.requestConverter.convert(ticketRequest,Tickets.class);
         return this.ticketsMapper.insert(tickets);
+    }
+
+    @Override
+    public List<Tickets> getTicketsByUserId(Integer id) throws Exception {
+
+        return this.ticketsMapper.selectByUserId(id);
     }
 }

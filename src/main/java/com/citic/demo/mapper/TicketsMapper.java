@@ -2,6 +2,8 @@ package com.citic.demo.mapper;
 
 import com.citic.demo.entity.Tickets;
 
+import java.util.List;
+
 public interface TicketsMapper {
     int deleteByPrimaryKey(Integer ticketsId);
 
@@ -14,4 +16,6 @@ public interface TicketsMapper {
     int updateByPrimaryKeySelective(Tickets record);
 
     int updateByPrimaryKey(Tickets record);
+
+    List<Tickets> selectByUserId(Integer id);
 }

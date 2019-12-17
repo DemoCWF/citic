@@ -1,11 +1,18 @@
 package com.citic.demo.request;
 
+import lombok.*;
+
 /**
  * Title:
  * Description:
  * Create time  2019/12/17
  * Author：Democwf
  */
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class UserRequest {
     private Integer userId;
 

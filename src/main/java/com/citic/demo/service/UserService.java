@@ -29,12 +29,21 @@ public interface UserService {
 
     /**
      *
-     * 获取用户信息
+     * 通过id获取用户信息
      *
      * @param primaryKey
      * @return
      */
     UserInfo queryUserInfoById(Integer id) throws Exception;
+
+    /**
+     *
+     * 通过id获取用户信息
+     *
+     * @param primaryKey
+     * @return
+     */
+    UserInfo queryUserInfoByPhoneAndPwd(UserRequest userRequest) throws Exception;
 
 
     /**

@@ -37,6 +37,12 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
+    public UserInfo queryUserInfoByPhoneAndPwd(UserRequest userRequest) throws Exception {
+        UserInfo userInfo = this.requestConverter.convert(userRequest,UserInfo.class);
+        return this.userInfoMapper.selectByPhoneAndPwd(userInfo);
+    }
+
+    @Override
     public int saveUserInfo(UserRequest userRequest) throws Exception {
         UserInfo userInfo = this.requestConverter.convert(userRequest,UserInfo.class);
         return this.userInfoMapper.insert(userInfo);

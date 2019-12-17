@@ -1,0 +1,84 @@
+.header{
+    background:#ebe5e5;
+    height: 80px;
+}
+/*搜索框*/
+.search-div,.sign-div
+{
+    line-height: 80px;
+}
+.search-div input
+{
+    width: 350px;
+    height: 40px;
+}
+.search-div button
+{
+    margin-left: -6px;
+}
+/*用户头像等信息*/
+.user-info-div .headImg
+{
+    border-radius: 50%;
+    width: 60px;
+}
+.user-info-div .user-name
+{
+    padding-left: 5px;
+    margin:10px 0;
+}
+/*============ 登录和注册弹出框 ==============*/
+#signInDialog .layui-form-item .layui-input-inline,#signUpDialog .layui-form-item .layui-input-inline
+{
+    margin: 0;
+    width: auto;
+}
+#signInDialog .layui-form,#signUpDialog .layui-form
+{
+    text-align: center;
+    margin-top:30px;
+}
+#signInDialog .layui-form-pane .layui-form-label,#signUpDialog .layui-form-pane .layui-form-label
+{
+    height: 45px;
+    line-height: 30px;
+}
+#signInDialog .layui-form-pane .layui-input,#signUpDialog .layui-form-pane .layui-input
+{
+    height: 45px;
+    width: 300px;
+}
+#signInDialog .layui-form-item,#signUpDialog .layui-form-item
+{
+    display: inline-block;
+}
+.layui-layer .layui-layer-btn .layui-layer-btn0
+{
+    width: 120px;
+    display: inline-block;
+    height: 38px;
+    line-height: 38px;
+    padding: 0 18px;
+    background-color: #009688;
+    color: #fff;
+    white-space: nowrap;
+    text-align: center;
+    font-size: 14px;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    margin:-10px 0 5px 0
+}
+#signUpDialog .layui-form-pane .layui-form-radio
+{
+    line-height: 40px;
+}
+#signUpDialog .layui-form-pane .layui-input-block
+{
+    text-align: left;
+    width: 300px;
+}
+#signUpDialog input[type=file]
+{
+    padding-top: 10px;
+}

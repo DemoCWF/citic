@@ -62,9 +62,12 @@ public class UserController {
 
     @ResponseBody
     @RequestMapping(value = "/validate")
-    public ActionResponse valUserInfo(@RequestBody UserRequest userRequest) throws Exception{
+    public ActionResponse valUserInfo(@RequestBody UserRequest userRequest,HttpServletRequest request) throws Exception{
 
         UserInfo userInfo = this.userService.queryUserInfoByPhoneAndPwd(userRequest);
+        if(userInfo!=null){
+            request.getSession().setAttribute("user",userInfo);
+        }
         return ActionResponse.success(userInfo);
     }
 

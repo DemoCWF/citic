@@ -1,0 +1,45 @@
+/*========== 通用 ==========*/
+.f16
+{
+    font-size: 16px;
+}
+.f18
+{
+    font-size: 18px;
+}
+.f20
+{
+    font-size: 20px;
+}
+.f24
+{
+    font-size: 24px;
+}
+.align-center
+{
+    text-align: center;
+}
+.top10
+{
+    margin-top:10px;
+}
+.pointer
+{
+    cursor: pointer;
+}
+.absolute
+{
+    position: absolute;
+}
+.relative
+{
+    position: relative;
+}
+.redFont
+{
+    color:#FF0036;
+}
+.redBg
+{
+    color:#FF0036;
+}

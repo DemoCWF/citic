@@ -1,12 +1,138 @@
-<!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>hello</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>首页</title>
+    <link rel="stylesheet" href="/static/layui/css/layui.css">
+    <link rel="stylesheet" href="/static/css/common.css">
+    <link rel="stylesheet" href="/static/css/index.css">
+    <link rel="stylesheet" href="/static/css/home.css">
+    <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+      <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
 </head>
-<body>
-<!--/*@thymesVar id="name" type="java.lang.String"*/-->
-<p th:text="'Hello！, ' + ${result} + '!'"></p>
-asd
+<body ng-app="PaySystem" id="index">
+    <div class="layui-fluid" ng-controller="indexControl">
+        <div class="header layui-row">
+            <!--搜索框-->
+            <div class="search-div layui-col-xs4 layui-col-md4 layui-col-xs-offset4 layui-inline">
+                <div class="layui-input-inline">
+                    <input type="tel" name="phone" lay-verify="required|phone" autocomplete="off" class="layui-input">
+                </div>
+                <button class="f18 layui-btn layui-icon layui-icon-search"></button>
+           
+            </div>
+            <div class="sign-div layui-col-xs4 layui-col-md4 layui-row">
+                <!--登录与注册-->
+                <div class="log-sign-div layui-col-xs-offset8" ng-if="!isSignUp">
+                    <button ng-click="showSignInDialog()" class="f16 layui-btn layui-btn-warm">登录</button>
+                    <button ng-click="showSignUpDialog()" href="#/signUp" class="layui-btn">注册</button>
+                </div>
+                <!--用户头像和用户名-->
+                <div class="user-info-div layui-col-xs-offset8" ng-if="isSignUp">
+                    <div class="align-center">
+                        <img ng-src="{{currentUser.headImg}}" alt="" class="headImg pointer">
+                        <span class="f16 align-center user-name pointer">{{currentUser.userName}}</span>
+                    </div>
+                    <!--<p class="f16 align-center user-name">{{currentUser.userName}}</p>-->
+                </div>
+            </div>
+        </div>
+        
+        <!--内容-->
+        <div ng-view></div>
+        <footer class="footer">
+            <h1>底部</h1>
+        </footer>
+        
+        <!--登录界面-->
+        <div id="signInDialog" style="display: none">
+            <form class="layui-form layui-form-pane" action="">
+              <div class="layui-form-item">
+                <label class="layui-form-label">用户名</label>
+                <div class="layui-input-inline">
+                  <input ng-model="userName" type="text" name="username" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">密　码</label>
+                <div class="layui-input-inline">
+                  <input ng-model="userPass" type="password" name="password" placeholder="请输入密码" autocomplete="off" class="layui-input">
+                </div>
+              </div>
+             <!--<div class="layui-form-item">-->
+                 <!--<button class="layui-btn" ng-click="signIn()">登　录</button>-->
+                  <!--<input ng-model="userPass" type="button" class="layui-input" value="登录">-->
+             <!--</div>-->
+            </form>
+        </div>
+    </div>
+    
+    <!--登录界面-->
+    <div id="signUpDialog" style="display: none">
+        <form class="layui-form layui-form-pane" action="">
+            <!--昵称-->
+            <div class="layui-form-item">
+                <label class="layui-form-label">昵称</label>
+                <div class="layui-input-inline">
+                    <input ng-model="userHeadImg"  type="file" name="username" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <!--昵称-->
+            <div class="layui-form-item">
+                <label class="layui-form-label">昵称</label>
+                <div class="layui-input-inline">
+                    <input ng-model="signUpUserName" type="text" name="username" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <!--邮箱电话-->
+            <div class="layui-form-item">
+                <label class="layui-form-label">邮箱/电话</label>
+                <div class="layui-input-inline">
+                    <input ng-model="signUpUserCount" type="text" name="password" lay-verify="required|phone|number" placeholder="请输入密码" autocomplete="off" class="layui-input">
+              </div>
+            </div>
+            <!--输入密码-->
+            <div class="layui-form-item">
+                <label class="layui-form-label">输入密码</label>
+                <div class="layui-input-inline">
+                    <input ng-model="signUpUserPass" type="password" name="password" placeholder="请输入密码" autocomplete="off" class="layui-input">
+              </div>
+            </div>
+            <!--确认密码-->
+            <div class="layui-form-item">
+                <label class="layui-form-label">确认密码</label>
+                <div class="layui-input-inline">
+                    <input ng-model="signUpUserConfirmPass" type="password" name="password" placeholder="请输入密码" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            
+            <div class="layui-form-item" pane="">
+                <label class="layui-form-label">单选框</label>
+                <div class="layui-input-block">
+                    <input type="radio" name="sex" value="男" title="男" checked>
+                    <input type="radio" name="sex" value="女" title="女">
+                </div>
+            </div>
+         <!--<div class="layui-form-item">-->
+             <!--<button class="layui-btn" ng-click="signIn()">登　录</button>-->
+              <!--<input ng-model="userPass" type="button" class="layui-input" value="登录">-->
+         <!--</div>-->
+        </form>
+    </div>
+</div>
+
+    <script src="/static/js/jquery-1.9.1.js"></script>
+    <script src="/static/layui/layui.js"></script>
+    <script src="/static/js/angular-1.2.9.js"></script>
+    <script src="/static/js/angular-route-1.2.9.js"></script>
+    <script src="/static/js/index.js"></script>
+
 </body>
+
 </html>

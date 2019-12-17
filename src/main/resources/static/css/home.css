@@ -1,0 +1,38 @@
+#home .banner-div
+{
+    height: 400px;
+}
+.banner-div img
+{
+    width: 100%;
+}
+/*============== 商品列表 ==========*/
+.goods-list-div
+{
+    margin-top:20px;
+}
+.good-img-div
+{
+    margin-bottom: 10px;
+}
+.goods-list-div .good-img
+{
+    width: 100%;
+}
+
+.good-name:hover
+{
+    text-decoration: underline;
+    color: black;
+}
+.good-name
+{
+    font-weight: bold;
+}
+.good-price
+{
+    margin-left: 52%;
+    font-size: 24px;
+    font-weight: bold;
+    color: orangered;
+}

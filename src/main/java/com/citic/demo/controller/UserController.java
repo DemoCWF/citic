@@ -6,12 +6,12 @@ import com.citic.demo.query.GoodsQuery;
 import com.citic.demo.query.UserQuery;
 import com.citic.demo.request.UserRequest;
 import com.citic.demo.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * Title:
@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * Create time  2019/12/16
  * Author：Democwf
  */
+@Slf4j
 @Controller
 @RequestMapping(value = "/user")
 public class UserController {
@@ -39,14 +40,15 @@ public class UserController {
 
     @ResponseBody
     @RequestMapping(value = "/save")
-    public ActionResponse saveUserInfo(UserRequest userRequest) throws Exception{
+    public ActionResponse saveUserInfo(@RequestBody UserRequest userRequest) throws Exception{
+        log.info(userRequest.toString());
         this.userService.saveUserInfo(userRequest);
         return ActionResponse.success();
     }
 
     @ResponseBody
     @RequestMapping(value = "/update")
-    public ActionResponse updateUserInfo(UserRequest userRequest) throws Exception{
+    public ActionResponse updateUserInfo(@RequestBody UserRequest userRequest) throws Exception{
         this.userService.updateUserInfo(userRequest);
         return ActionResponse.success();
     }
@@ -57,5 +59,14 @@ public class UserController {
         this.userService.deleteUserInfo(id);
         return ActionResponse.success();
     }
+
+    @ResponseBody
+    @RequestMapping(value = "/validate")
+    public ActionResponse valUserInfo(@RequestBody UserRequest userRequest) throws Exception{
+
+        UserInfo userInfo = this.userService.queryUserInfoByPhoneAndPwd(userRequest);
+        return ActionResponse.success(userInfo);
+    }
+
 
 }

@@ -3,7 +3,7 @@ server:
 
 spring:
     datasource:
-        url: jdbc:mysql://localhost:3306/demo_test?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2B8
+        url: jdbc:mysql://localhost:3306/zxpay?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2B8
         username: root
         password: 123456
         driver-class-name: com.mysql.cj.jdbc.Driver
@@ -12,7 +12,7 @@ spring:
         cache: false
         mode: LEGACYHTML5
         prefix: classpath:/templates/
-        check-template-location: true  #check-tempate-location: ¼ì²éÄ£°åÂ·¾¶ÊÇ·ñ´æÔÚ
+        check-template-location: true  #check-tempate-location: ï¿½ï¿½ï¿½Ä£ï¿½ï¿½Â·ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½
         suffix:  .html
 
     devtools:
@@ -23,10 +23,12 @@ spring:
 
 
 mybatis:
-  mapper-locations: classpath:mapping/*.xml     #mapperÎÄ¼þÂ·¾¶
-  type-aliases-package: com.citic.demo.entity   #ÊµÌåÀàµÄ°üÂ·¾¶
+  mapper-locations: classpath:mapping/*.xml     #mapperï¿½Ä¼ï¿½Â·ï¿½ï¿½
+  type-aliases-package: com.citic.demo.entity   #Êµï¿½ï¿½ï¿½ï¿½Ä°ï¿½Â·ï¿½ï¿½
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
-#pagehelper·ÖÒ³²å¼þ
+#pagehelperï¿½ï¿½Ò³ï¿½ï¿½ï¿½
 pagehelper:
     helperDialect: mysql
     reasonable: true

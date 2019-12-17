@@ -1,22 +1,17 @@
 package com.citic.demo.mapper;
 
-import com.citic.demo.base.IBaseDao;
 import com.citic.demo.entity.GoodsInfo;
-import com.citic.demo.query.GoodsQuery;
-import com.citic.demo.request.GoodsRequest;
 
-import java.util.List;
+public interface GoodsInfoMapper {
+    int deleteByPrimaryKey(Integer goodsId);
 
-public interface GoodsInfoMapper extends IBaseDao<GoodsInfo> {
+    int insert(GoodsInfo record);
 
-    List<GoodsInfo> query(GoodsQuery goodsQuery) throws Exception;
+    int insertSelective(GoodsInfo record);
 
-    GoodsInfo queryGoodsInfoById(String primaryKey) throws Exception;
+    GoodsInfo selectByPrimaryKey(Integer goodsId);
 
-    int saveGoodsInfo(GoodsRequest goodsRequest) throws Exception;
+    int updateByPrimaryKeySelective(GoodsInfo record);
 
-    int updateGoodsInfo(GoodsRequest goodsRequest) throws Exception;
-
-    int deleteGoodsInfo(String primaryKey) throws Exception;
-
+    int updateByPrimaryKey(GoodsInfo record);
 }

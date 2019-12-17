@@ -20,7 +20,7 @@ import java.util.List;
  * Author：Democwf
  */
 @Service
-public class UserServiceImp implements UserService {
+public class UserServiceImpl implements UserService {
     @Resource
     private UserInfoMapper userInfoMapper;
 

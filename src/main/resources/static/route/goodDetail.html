@@ -1,0 +1,89 @@
+<div id="goodDetail" class="good-detail">
+    <div class="layui-row">
+        <!--图片-->
+        <div class="good-img layui-col-xs3">
+            <img src="" alt="" ng-src="{{currentGood.goodImgSrc}}">
+        </div>
+        <!--详细信息-->
+        <div class="good-info layui-col-xs3 ">
+            <!--标题-->
+            <div class="good-name-div bottom15">
+                <p class="f20 good-name">{{currentGood.goodName}}</p>
+            </div>
+            <!-- 价格和优惠 -->
+            <div class="price-div bottom15">
+                <span class="price-span">
+                    <span class="f18 gray-font">价格</span>
+                    <span class="red-font f28 price">{{currentGood.goodPrice}}</span>
+                </span>
+            </div>
+            <!--商品描述-->
+            <div class="description-span-bottom bottom15">
+                <span class="description-span">
+                    <span class=" gray-font">商品描述</span>
+                    <span class=" description">{{currentGood.goodDescription}}</span>
+                </span>
+            </div>
+            <!--销量评价-->
+            <div class="bottom15 sale-comment-div">
+                <!--销量-->
+                <span class="sale-count-span data-count-span align-center">
+                    <span class=" gray-font">月销量</span>
+                    <span class="red-font">{{currentGood.monthSale}}</span>
+                </span>
+                <span class="comment-count-span data-count-span align-center">
+                    <span class=" gray-font">累计评价</span>
+                    <span class="red-font">{{currentGood.commentCount}}</span>
+                </span>
+                <span class="integral-span data-count-span align-center">
+                    <span class=" gray-font">送积分：</span>
+                    <span class="red-font">{{currentGood.goodIntegral}}</span>
+                </span>
+            </div>
+            <!--尺码、颜色、数量等-->
+            <div>
+                <!--尺码-->
+                <div class="size-div bottom15">
+                    <form action="" class="layui-form ">
+                        <span class="gray-font">尺码</span>
+                        <div class="layui-form-item" pane="">
+                            <div class="layui-input-block">
+                                <input type="radio" class="layui-input-inline" name="size" value="S" title="S">
+                                <input type="radio" class="layui-input-block" name="size" value="M" title="M" checked>
+                                <input type="radio" class="layui-input-inline" name="size" value="L" title="L">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!--颜色-->
+                <div class="color-div bottom15">
+                    <form action="" class="layui-form ">
+                        <span class="gray-font">颜色</span>
+                        <div class="layui-form-item" pane="">
+                            <div class="layui-input-block">
+                                <input type="radio" class="layui-input-inline" name="color" value="灰色" title="灰色" checked>
+                                <input type="radio" class="layui-input-inline" name="color" value="白色" title="白色">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!--数量-->
+                <div class="count-div bottom15">
+                    <span class="gray-font">数量</span>
+                    <input type="number" class="layui-input-inline" max="{{currentGood.count}}">
+                </div>
+                <div class="in-stock-div">
+                    <span class="description-span">
+                        <span class=" gray-font">库存量</span>
+                        <span class="f16 description">{{currentGood.count}}</span>
+                    </span>
+                </div>
+            </div>
+            
+            <!--购买按钮-->
+            <div class="buy-btn-div">
+                <a href="#/orderPay" class="layui-btn red-bg f20 buy-btn">立即购买</a>
+            </div>
+        </div>
+    </div>
+</div>

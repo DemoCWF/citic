@@ -1,0 +1,95 @@
+.good-detail
+{
+    margin-top:50px;
+}
+
+.good-detail .layui-form-item
+{
+    display: inline-block;
+}
+.good-detail .good-img,#goodDetail .good-info
+{
+    /*border:1px solid red;*/
+}
+.good-detail .bottom15
+{
+    margin-bottom: 11px;
+}
+/*商品图片*/
+.good-detail .good-img
+{
+    margin-left: 3%;
+}
+.good-detail .good-img img
+{
+    width: 100%;
+}
+/*商品详细信息*/
+.good-detail .good-info
+{
+    margin-left: 70px;
+}
+.good-detail .gray-font
+{
+    display: inline-block;
+    height: 35px;
+    line-height: 35px;
+    width: 110px;
+    text-align: left;
+    /*padding: 10px 0px;*/
+}
+.good-detail .layui-input-block
+{
+    margin-left: 0px;
+    height: 34px;
+    line-height: 45px;
+}
+.good-detail .good-info .price-div
+{
+    /*background-color:#ebe5e5 ;*/
+}
+.good-detail .good-info .price
+{
+    font-weight: bold;
+}
+.good-detail .layui-form label,.layui-input-block
+{
+    /*border: 1px solid red;*/
+}
+.good-detail .data-count-span
+{
+    display: inline-block;
+    width: 32%;
+    /*height: 40px;*/
+    text-align: center;
+}
+.good-detail .data-count-span .gray-font
+{
+    width: auto;
+}
+/*销量、评价数、积分*/
+.good-detail .sale-comment-div
+{
+    border:1px dotted;
+    border-color: #999 transparent #999 transparent;
+}
+/**/
+.good-detail .sale-comment-div .red-font
+{
+    font-weight: bold;
+}
+.good-detail .data-count-span .gray-font
+{
+    height: 40px;
+}
+.good-detail .buy-btn-div
+{
+    text-align: right;
+}
+.good-detail .buy-btn
+{
+    width: 150px;
+    background-color: #FF0036;
+    height: 60px;
+    line-height: 60px;
+}

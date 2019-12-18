@@ -1,0 +1,84 @@
+/*========== 通用 ==========*/
+*
+{
+   font-family: Arial;
+}
+.f16
+{
+    font-size: 16px;
+}
+.f18
+{
+    font-size: 18px;
+}
+.f20
+{
+    font-size: 20px;
+}
+.f24
+{
+    font-size: 24px;
+}
+.f28
+{
+    font-size:28px;
+}
+.f30
+{
+    font-size: 30px;
+}
+.align-center
+{
+    text-align: center;
+}
+.top10
+{
+    margin-top:10px;
+}
+.bottom10
+{
+    margin-bottom: 10px;
+}
+.bottom15{
+    margin-bottom: 15px;
+}
+.pointer
+{
+    cursor: pointer;
+}
+.absolute
+{
+    position: absolute;
+}
+.relative
+{
+    position: relative;
+}
+.red-font
+{
+    color:#FF0036;
+}
+.red-bg
+{
+    background-color:#FF0036;
+}
+.gray-font
+{
+    color:#999;
+}
+.bold
+{
+    font-weight: bold;
+}
+.deep-gray
+{
+    color:#686868;
+}
+.inline-block
+{
+    display: inline-block;
+}
+.layui-btn
+{
+    background: #5FB878;
+}

@@ -1,0 +1,115 @@
+<form id="orderPay" class="layui-form">
+	<div class="head layui-row">
+		<div class="btn_item layui-col-md2 layui-col-md-offset1">
+			<button type="button" class="layui-btn">商品名称</button>
+		</div>
+		<div class="btn_item layui-col-md2">
+			<button type="button" class="layui-btn">商品属性</button>
+		</div>
+		<div class="btn_item layui-col-md2">
+			<button type="button" class="layui-btn">商品价格</button>
+		</div>
+		<div class="btn_item layui-col-md2">
+			<button type="button" class="layui-btn">商品数量</button>
+		</div>
+		<div class="btn_item layui-col-md2">
+			<button type="button" class="layui-btn">支付方式</button>
+		</div>
+
+	</div>
+
+	<div class="content layui-row">
+		<div class="btn_item layui-col-md2 layui-col-md-offset1">
+			<img src="" alt="" class="goog_img" ng-src="{{currentGood.goodImgSrc}}">
+			<span class="good_name">卫衣</span>
+		</div>
+		<div class="btn_item layui-col-md2">
+			<span class="good_info">颜色:白色</span>
+		</div>
+		<div class="btn_item layui-col-md2">
+			<span class="good_price">商品价格：329.00</span>
+		</div>
+		<div class="btn_item layui-col-md2">
+			<span class="good_count">1</span>
+		</div>
+		<div class="btn_item layui-col-md2">
+			<div class="layui-input-block input-bolck">
+				<select name="interest" lay-filter="aihao">
+					<option value=""></option>
+					<option value="0">微信</option>
+					<option value="1" selected="">支付宝</option>
+					<option value="2">银联支付</option>
+				</select>
+			</div>
+		</div>
+
+	</div>
+	<div class="delivery layui-row">
+		<div class="btn_item layui-col-md3 layui-col-md-offset1">
+
+
+			<label class="layui-form-label">配送地址</label>
+			<div class="layui-input-inline">
+				<input type="tel" name="phone" lay-verify="required|phone" autocomplete="off" class="layui-input">
+			</div>
+
+		</div>
+		<div class="btn_item layui-col-md3 layui-col-md-offset1">
+			<label class="layui-form-label">配送方式</label>
+			<div class="layui-input-inline">
+				<input type="tel" name="phone" lay-verify="required|phone" autocomplete="off" class="layui-input">
+			</div>
+		</div>
+
+
+	</div>
+	<div class=" layui-row">
+		<div class="btn_item layui-col-md3 layui-col-md-offset1 layui-form-item layui-form-text">
+			<label class="layui-form-label">留言</label>
+			<div class="layui-input-block  msg">
+				<textarea placeholder="请输入内容" class="layui-textarea" name="desc"></textarea>
+			</div>
+
+
+		</div>
+		<div class="btn_item layui-col-md3 layui-col-md-offset1">
+			<span class="good_info">运费险</span>
+			<div class="layui-input-block msg">
+				<input type="radio" name="insurance" value="1" title="购买" checked="">
+				<input type="radio" name="insurance" value="0" title="不购买">
+			</div>
+			<div class="pay">
+				<span class="tag">商品金额:</span>
+				<span class="price">329.00</span>
+			</div>
+			<div class="pay">
+				<span class="tag">抵扣金额:</span>
+				<span class="price">22.00</span>
+			</div>
+			<div class="pay">
+				<span class="tag">合计:</span>
+				<span class="price">22.00</span>
+			</div>
+
+		</div>
+		<div class="btn_item layui-col-md2 layui-col-md-offset1">
+			<div class="final_pay">
+				<div class="pay">
+					<span class="tag">实付款:</span>
+					<span class="price">329.00</span>
+				</div>
+				<div class="pay">
+					<span class="tag">收货人:</span>
+					<span class="price">李**</span>
+				</div>
+				<div class="pay">
+					<span class="tag">联系方式:</span>
+					<span class="price">1231231232</span>
+				</div>
+			</div>
+			
+			<button type="button" class="btn_pay">立即支付</button>
+		</div>
+
+	</div>
+</form>

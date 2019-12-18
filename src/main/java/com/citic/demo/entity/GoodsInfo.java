@@ -1,53 +1,81 @@
 package com.citic.demo.entity;
 
 public class GoodsInfo {
-    private Integer goodsId;
 
-    private String goodsName;
+    // ID
+    private Integer goodId;
 
-    private String des;
+    // 商品名
+    private String goodName;
 
-    private String goodsPhoto;
+    // 描述
+    private String goodDescription;
 
-    private String goodsCate;
+    // 价格
+    private String goodPrice;
 
-    public Integer getGoodsId() {
-        return goodsId;
+    // 图像
+    private String goodImgSrc;
+
+    // 类别
+    private String goodCate;
+
+    // 数量
+    private String count;
+
+    public Integer getGoodId() {
+        return goodId;
     }
 
-    public void setGoodsId(Integer goodsId) {
-        this.goodsId = goodsId;
+    public void setGoodId(Integer goodId) {
+        this.goodId = goodId;
     }
 
-    public String getGoodsName() {
-        return goodsName;
+    public String getGoodName() {
+        return goodName;
     }
 
-    public void setGoodsName(String goodsName) {
-        this.goodsName = goodsName == null ? null : goodsName.trim();
+    public void setGoodName(String goodName) {
+        this.goodName = goodName;
     }
 
-    public String getDes() {
-        return des;
+    public String getGoodDescription() {
+        return goodDescription;
     }
 
-    public void setDes(String des) {
-        this.des = des == null ? null : des.trim();
+    public void setGoodDescription(String goodDescription) {
+        this.goodDescription = goodDescription;
     }
 
-    public String getGoodsPhoto() {
-        return goodsPhoto;
+    public String getGoodPrice() {
+        return goodPrice;
     }
 
-    public void setGoodsPhoto(String goodsPhoto) {
-        this.goodsPhoto = goodsPhoto == null ? null : goodsPhoto.trim();
+    public void setGoodPrice(String goodPrice) {
+        this.goodPrice = goodPrice;
     }
 
-    public String getGoodsCate() {
-        return goodsCate;
+    public String getGoodImgSrc() {
+        return goodImgSrc;
     }
 
-    public void setGoodsCate(String goodsCate) {
-        this.goodsCate = goodsCate == null ? null : goodsCate.trim();
+    public void setGoodImgSrc(String goodImgSrc) {
+        this.goodImgSrc = goodImgSrc;
+    }
+
+    public String getGoodCate() {
+        return goodCate;
+    }
+
+    public void setGoodCate(String goodCate) {
+        this.goodCate = goodCate;
+    }
+
+    public String getCount() {
+        return count;
+    }
+
+    public void setCount(String count) {
+        this.count = count;
     }
 }

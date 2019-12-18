@@ -1,9 +1,11 @@
 package com.citic.demo.mapper;
 
 import com.citic.demo.entity.OrderInfo;
+import com.citic.demo.entity.PriceHistory;
+import com.citic.demo.entity.SaleWay;
+import com.citic.demo.entity.Tickets;
 import com.citic.demo.query.OrderInfoQuery;
 import com.citic.demo.request.OrderRequest;
-import com.citic.demo.response.OrderResponse;
 
 import java.util.List;
 
@@ -48,6 +50,53 @@ public interface OrderInfoMapper {
      */
     Integer saveOrder(OrderRequest orderRequest) throws Exception;
 
+
+    /**
+     *
+     * 获取所有优惠信息
+     *
+     * @return
+     * @throws Exception
+     */
+    List<SaleWay> querySaleWays() throws Exception;
+
+
+    /**
+     *
+     * 获取用户所有优惠券
+     *
+     * @return
+     * @throws Exception
+     */
+    List<Tickets> queryTickets(String id) throws Exception;
+
+    /**
+     *
+     * 修改用户所有优惠券
+     *
+     * @return
+     * @throws Exception
+     */
+    Integer updateTickets(List<Tickets> tickets) throws Exception;
+
+    /**
+     *
+     * 保存优惠信息
+     *
+     * @return
+     * @throws Exception
+     */
+    PriceHistory saveSalaryHistory(PriceHistory priceHistory) throws Exception;
+
+    /**
+     *
+     * 更新优惠信息
+     *
+     * @return
+     * @throws Exception
+     */
+    PriceHistory updateSalaryHistory(PriceHistory priceHistory) throws Exception;
+
     /**
      *
      * 修改订单
@@ -67,4 +116,13 @@ public interface OrderInfoMapper {
      * @throws Exception
      */
     Integer deleteOrder(Integer orderId) throws Exception;
+
+    /**
+     *
+     * 获取优惠信息
+     *
+     * @param priceHistory
+     * @return
+     */
+    SaleWay querySaleWay(PriceHistory priceHistory);
 }

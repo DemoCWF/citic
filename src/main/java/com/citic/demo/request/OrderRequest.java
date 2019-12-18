@@ -11,7 +11,7 @@ public class OrderRequest {
 
     private String goodsName;
 
-    private Date orderTime;
+    private Long orderTime;
 
     private Integer goodsNum;
 
@@ -21,9 +21,9 @@ public class OrderRequest {
 
     private String realPay;
 
-    private Date payTime;
+    private Long payTime;
 
-    private String saleway;
+    private String saleWay;
 
     public Integer getOrderId() {
         return orderId;
@@ -55,14 +55,6 @@ public class OrderRequest {
 
     public void setGoodsName(String goodsName) {
         this.goodsName = goodsName == null ? null : goodsName.trim();
-    }
-
-    public Date getOrderTime() {
-        return orderTime;
-    }
-
-    public void setOrderTime(Date orderTime) {
-        this.orderTime = orderTime;
     }
 
     public Integer getGoodsNum() {
@@ -97,19 +89,27 @@ public class OrderRequest {
         this.realPay = realPay == null ? null : realPay.trim();
     }
 
-    public Date getPayTime() {
+    public String getSaleway() {
+        return saleWay;
+    }
+
+    public void setSaleway(String saleWay) {
+        this.saleWay = saleWay == null ? null : saleWay.trim();
+    }
+
+    public Long getOrderTime() {
+        return orderTime;
+    }
+
+    public void setOrderTime(Long orderTime) {
+        this.orderTime = orderTime;
+    }
+
+    public Long getPayTime() {
         return payTime;
     }
 
-    public void setPayTime(Date payTime) {
+    public void setPayTime(Long payTime) {
         this.payTime = payTime;
-    }
-
-    public String getSaleway() {
-        return saleway;
-    }
-
-    public void setSaleway(String saleway) {
-        this.saleway = saleway == null ? null : saleway.trim();
     }
 }

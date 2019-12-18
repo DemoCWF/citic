@@ -1,0 +1,43 @@
+{[
+    {
+        orderId: "1",
+        goodName: "卡通卫衣",
+        goodImgSrc: "images/goodsImg/1.jpg",
+        goodPrice: "369.00",
+        goodNumber: "2", //商品数量
+        orderAmount: "738.00",
+        realPay: "600",
+        promotionWay: "满200减20",
+        orderTime: {
+            orderDate: "2019-12-1",
+            time: "23:00:00"
+        },
+        orderStatus: "已完成",
+        payWay: "银行卡支付",
+        goodAttr: {
+            size: ["S", "M", "L"],
+            color: ["白色", "黑色"],
+        }
+    },
+    {
+    orderId:"2",
+    goodName:"卡通卫衣",
+    goodImgSrc:"images/goodsImg/1.jpg",
+    goodPrice:"369.00",
+    goodNumber:"2", //商品数量
+    orderAmount:"738.00",
+    realPay:"600",
+    promotionWay:"满200减20",
+    orderTime:{
+        orderDate:"2019-12-1",
+        time:"23:00:00"
+    },
+    orderStatus:"已完成",
+    payWay:"银行卡支付",
+    goodAttr:{
+        size:["S","M","L"],
+        color:["白色","黑色"],
+    }
+    }
+]
+}

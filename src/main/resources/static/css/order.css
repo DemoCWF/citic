@@ -1,0 +1,118 @@
+.order-div .layui-table,.discounted-price-div,.total-pay-info,.order-pay-info,.discounted-price-div
+{
+    width:60%;
+    margin: 0 auto;
+}
+.order-div .layui-table
+{
+    width: 83%;
+}
+.order-div
+{
+    margin:50px auto;
+}
+.order-div img {
+    width: 70px;
+    border-radius: 5px;
+}
+.order-div th
+{
+    border: 1px solid;
+    border-color: #e6e6e6 transparent #e6e6e6 transparent;
+}
+.order-div .order-img-td,.order-list-table th:first-child
+{
+    border-left: 1px solid #e6e6e6;
+}
+.order-div .order-delete-btn,.order-list-table th:last-child
+{
+    border-right: 1px solid #e6e6e6;
+}
+.order-div  td
+{
+    text-align: center;
+    border-color: #e6e6e6 transparent #e6e6e6 transparent
+}
+/*加减按钮*/
+.sub-btn,.add-btn,.good-count
+{
+    height: 35px;
+}
+.good-count
+{
+    width: 35px;
+    height: 34px;
+    padding: 0px;
+    outline: none;
+    border: 1px solid;
+    border-color: #e6e6e6 transparent  #e6e6e6 transparent;
+
+}
+.sub-btn,.add-btn
+{
+    margin-top: -1px;
+    border-radius: 0px;
+    border:1px solid #5FB878;
+    line-height: 25px;
+}
+.sub-btn
+{
+    margin-right: -5px;
+}
+
+.add-btn
+{
+    margin-left: -5px;
+    margin-top:-1px;
+}
+.good-attr-div
+{
+    text-align: left;
+}
+.pay-way-form
+{
+    display: inline-block;
+    width: 200px;
+}
+/*优惠*/
+.order-pay-info .container-div
+{
+    margin:30px auto;
+}
+.order-pay-info .layui-form-label
+{
+    margin-right: 20px;
+}
+/*具体优惠情况*/
+.discounted-price
+{
+    font-size: 24px;
+    font-weight: bold;
+}
+.discounted-price-div > p
+{
+    margin:15px 0px
+}
+.toto-pay-info .red-font
+{
+    font-weight: bold;
+}
+.total-pay-info
+{
+    text-align: right;
+}
+.total-pay-info .pay-info-div
+{
+    display: inline-block;
+    width: 200px;
+    text-align: left;
+}
+.pay-info-div .wrapper-div
+{
+    margin: 15px 0;
+}
+.pay-now-btn-div button
+{
+    width: 100%;
+    background: #FF0036;
+}

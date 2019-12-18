@@ -5,7 +5,11 @@ public class Tickets {
 
     private Integer userId;
 
+    private Integer salaryId;
+
     private String ticketsType;
+
+    private String subType;
 
     private Integer ticketsNum;
 
@@ -39,5 +43,21 @@ public class Tickets {
 
     public void setTicketsNum(Integer ticketsNum) {
         this.ticketsNum = ticketsNum;
+    }
+
+    public String getSubType() {
+        return subType;
+    }
+
+    public void setSubType(String subType) {
+        this.subType = subType;
+    }
+
+    public Integer getSalaryId() {
+        return salaryId;
+    }
+
+    public void setSalaryId(Integer salaryId) {
+        this.salaryId = salaryId;
     }
 }

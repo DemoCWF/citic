@@ -5,13 +5,15 @@ import java.math.BigDecimal;
 public class SaleWay {
     private Integer salewayId;
 
-    private Integer userId;
-
     private Integer salewayType;
+
+    private Integer subType;
 
     private String salewayDes;
 
     private BigDecimal salewayScale;
+
+    private String judgePrice;
 
     private Integer salewayUse;
 
@@ -21,14 +23,6 @@ public class SaleWay {
 
     public void setSalewayId(Integer salewayId) {
         this.salewayId = salewayId;
-    }
-
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
     }
 
     public Integer getSalewayType() {
@@ -61,5 +55,21 @@ public class SaleWay {
 
     public void setSalewayUse(Integer salewayUse) {
         this.salewayUse = salewayUse;
+    }
+
+    public String getJudgePrice() {
+        return judgePrice;
+    }
+
+    public void setJudgePrice(String judgePrice) {
+        this.judgePrice = judgePrice;
+    }
+
+    public Integer getSubType() {
+        return subType;
+    }
+
+    public void setSubType(Integer subType) {
+        this.subType = subType;
     }
 }

@@ -15,6 +15,7 @@
         <result column="SALEWAY" property="saleway"/>
     </resultMap>
 
+
     <sql id="IF_Base_Column_List">
         <if test=" orderId != null">
             ORDER_ID,
@@ -145,7 +146,9 @@
     </select>
 
 
-    <insert id="saveOrder" parameterType="com.citic.demo.entity.OrderInfo" useGeneratedKeys="true">
+    <insert id="saveOrder" parameterType="com.citic.demo.entity.OrderInfo" useGeneratedKeys="true"
+            keyProperty="ORDER_ID"
+            keyColumn="ORDER_ID">
         insert into zx_orderinfo
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <include refid="IF_Base_Column_List"></include>
@@ -154,6 +157,43 @@
             <include refid="IF_Value_Column_List"></include>
         </trim>
     </insert>
+
+
+    <select id="querySaleWays" resultType="com.citic.demo.entity.SaleWay">
+        select
+        saleway.saleway_id as salewayId,
+        saleway.saleway_type as salewayType,
+        saleway.sub_type as subType,
+        saleway.saleway_des as salewayDes,
+        saleway.saleway_scale as salewayScale,
+        saleway.judge_price as judgePrice,
+        saleway.saleway_use
+        from zx_saleway saleway
+        where saleway.saleway_use = 1
+    </select>
+
+    <update id="updateTickets" parameterType="java.util.List">
+        update zx_tickets ticket
+        <foreach item="item" collection="tickets" separator=";">
+            set ticket.tickets_num = #{item.ticketsNum}
+            where
+            ticket.tickets_id = #{item.ticketsId}
+        </foreach>
+
+    </update>
+
+
+    <select id="queryTickets" parameterType="java.lang.Integer" resultType="com.citic.demo.entity.Tickets">
+        select
+        ticket.tickets_id as ticketsId,
+        ticket.user_id as userId,
+        ticket.salary_id as salaryId,
+        ticket.tickets_type as ticketsType,
+        ticket.sub_type as subType,
+        ticket.tickets_num as ticketsNum
+        from zx_tickets ticket
+        where ticket.user_id = #{id}
+    </select>
 
 
     <update id="updateOrder" parameterType="com.citic.demo.entity.OrderInfo">
@@ -184,5 +224,28 @@
     <delete id="deleteOrder" parameterType="java.lang.Integer">
         delete zx_goodsinfo where ORDER_ID = #{orderId}
     </delete>
+
+
+    <select id="querySaleWay" parameterType="com.citic.demo.entity.PriceHistory" resultType="com.citic.demo.entity.SaleWay">
+        select
+        saleway.saleway_id as salewayId,
+        saleway.saleway_type as salewayType,
+        saleway.sub_type as subType,
+        saleway.saleway_des as salewayDes,
+        saleway.saleway_scale as salewayScale,
+        saleway.judge_price as judgePrice,
+        saleway.saleway_use as salewayUse
+        from zx_saleway saleway
+        where 1 = 1
+        <if test=" salaryId != null">
+            and saleway.saleway_id = #{salaryId}
+        </if>
+        <if test=" salaryType != null">
+            and saleway.saleway_type = #{salaryType}
+        </if>
+        <if test=" subType != null">
+            and saleway.sub_type = #{subType}
+        </if>
+    </select>
 
 </mapper>

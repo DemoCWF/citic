@@ -1,0 +1,72 @@
+<div id="home">
+    <!--图片轮播-->
+    <div class="layui-carousel" id="banner-carousel">
+      <div carousel-item>
+          <div ng-repeat="imgSrc in bannerImgSrc" class="banner-div">
+              <img ng-src="{{ imgSrc }}" class="pointer" alt="">
+          </div>
+      </div>
+    </div>
+    <div class="layui-tab">
+      <ul class="layui-tab-title">
+        <li class="layui-this">热门商品</li>
+        <li>金融理财</li>
+       
+      </ul>
+    <!-- 显示内容 -->
+    <div class="layui-tab-content">
+        <!--  推荐商品  -->
+        <div class="layui-tab-item layui-show">
+            <div class="goods-list-div layui-row layui-col-space20">
+                <div class="layui-col-xs2 layui-col-md-2" ng-repeat="good in allGoods">
+                    <div class="good-img-div align-center">
+                        <a href="#/goodDetail">
+                            <img ng-src={{good.goodImgSrc}} alt="" class="good-img pointer" ng-click="showGoodDetail">
+                        </a>
+                    </div>
+                    <div class="name-price-div">
+                        <a class="good-name f16 top10" href="">{{good.goodName}}</a>
+                        <span class="good-price f16 pointer">{{good.goodPrice}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--理财产品-->
+        <div class="layui-tab-item">
+            <div class="item-wrap">
+                <div class="item">
+                    <div class="item-img">
+                        <img src="" />
+                    </div>
+                    <div class="item-title">供应理财点手机卡就打卡萨角度看ask角度看就ask的阿三的</div>
+                    <div class="tags">
+                        <div class="tag">固定收益</div>
+                        <div class="tag">PR3</div>
+                    </div>
+                    
+                    <div class="item-content">
+                        <div class="item-cell">
+                            <span class="c-666 mr20">业绩比较基准</span>
+                            <span class="c-red f20 fb">详见产品说明书</span>
+                            <img src="" class="my-img"/>
+                        </div>
+                        <div class="item-cell">
+                            <span class="c-666 mr20">起购金额</span>
+                            <span class="c-red">1万</span>
+                        </div>
+                        <div class="item-cell">
+                            <span class="c-666 mr20">理财期限</span>
+                            <span class="c-red">没两周开放一次</span>
+                        </div>
+                        <button class="btn-jy">交易</button>
+                    </div>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+      </div>
+    </div>
+  
+</div>

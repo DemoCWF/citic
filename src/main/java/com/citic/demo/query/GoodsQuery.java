@@ -10,7 +10,7 @@ public class GoodsQuery extends ObjectQuery {
 
     private String goodsName;
 
-    private List<String> goodsCate;
+    private List<String> goodCate;
 
     private String mult;
 
@@ -30,19 +30,19 @@ public class GoodsQuery extends ObjectQuery {
         this.goodsName = goodsName;
     }
 
-    public List<String> getGoodsCate() {
-        return goodsCate;
-    }
-
-    public void setGoodsCate(List<String> goodsCate) {
-        this.goodsCate = goodsCate;
-    }
-
     public String getMult() {
         return mult;
     }
 
     public void setMult(String mult) {
         this.mult = mult;
+    }
+
+    public List<String> getGoodCate() {
+        return goodCate;
+    }
+
+    public void setGoodCate(List<String> goodCate) {
+        this.goodCate = goodCate;
     }
 }

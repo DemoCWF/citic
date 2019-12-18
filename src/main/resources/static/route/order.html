@@ -1,0 +1,146 @@
+<div class="order-div">
+    <!--订单-->
+    <table  class="layui-table" lay-skin="line">
+       <!--表头-->
+       <thead>
+       <tr class="pointer">
+           <th>商品信息</th>
+           <!--<th>商品属性</th>-->
+           <th>商品属性</th>
+           <th>商品单价</th>
+           <th>商品数量</th>
+           <th>订单总价</th>
+           <th>支付方式</th>
+       </tr>
+       </thead>
+       <!--表格内容-->
+       <tbody>
+       <tr>
+           <!--商品信息-->
+           <td class="order-img-td" >
+               <img ng-src="{{currentGood.goodImgSrc}}" alt="">
+           </td>
+           <!--商品属性-->
+           <td>
+               <div class="inline-block good-attr-div">
+                   <p class="gray-font">名称 {{currentGood.goodName}}</p>
+                   <p class="gray-font">尺码 <span class="gray-font">S</span></p>
+                   <p class="gray-font">颜色 <span class="gray-font">白色</span></p>
+               </div>
+           </td>
+           <!--商品单价-->
+           <td>
+              <span class="gray-font">{{currentGood.goodPrice}}</span>
+           </td>
+           <!--商品数量-->
+           <td>
+               <button class="layui-btn sub-btn" ng-click="subCount()" >-</button>
+               <input ng-model="goodCount" type="text" class="good-count layui-input-inline align-center" name="goodCount">
+               <button class="layui-btn add-btn" ng-click="addCount()">+</button>
+           </td>
+           
+           <!--订单总价-->
+           <td>
+               <span class="gray-font">{{orderAmount}}</span>
+           </td>
+           <!--支付方式-->
+           <td>
+               <form class="layui-form pay-way-form">
+                    <div class="layui-input-block input-bolck">
+                        <select class="payWaySelect" lay-filter="payWaySelect" name="interest" lay-filter="payWay"  ng-model="currentPayWay" ng-change="changePayWay()">
+                            <option value="0" selected>银联支付</option>
+                            <option value="1" >微信</option>
+                            <option value="2">支付宝</option>
+                        </select>
+                    </div>
+               </form>
+           </td>
+       </tr>
+       </tbody>
+   </table>
+    <!--订单支付信息-->
+    <div class="order-pay-info">
+        <form  class="layui-form pay-info-form">
+            <div class="address-div container-div">
+               <!--省份-->
+              <label class="layui-form-label f18">配送地址</label>
+              <div class="layui-input-inline">
+                <select name="province" ng-change="showCities()" ng-model="currentProvince">
+                    <option value="">请选择省</option>
+                    <option ng-repeat="province in provinces" value="{{province.provinceName}}">{{province.provinceName}}</option>
+                </select>
+              </div>
+              <!--城市-->
+              <div class="layui-input-inline">
+                <select name="city">
+                  <option value="">请选择市</option>
+                    <option value="" ng-repeat="city in currentCities">{{city.cityName}}</option>
+                </select>
+              </div>
+              <!--地区-->
+              <div class="layui-input-inline">
+                <select name="area">
+                  <option value="">请选择县/区</option>
+                    <option value="" ng-repeat="area in currentArea">{{area}}</option>
+                </select>
+              </div>
+           </div>
+            <!--运费险-->
+            <div class="container-div freight-insurance-div">
+                <label class="layui-form-label f18">运费险</label>
+                <div class="layui-input-block msg">
+                    <input type="radio" name="insurance" value="1" title="购买" checked="">
+                    <input type="radio" name="insurance" value="0" title="不购买">
+                </div>
+            </div>
+            <!--可选优惠-->
+            <div class="container-div layui-form-item">
+                <label class="layui-form-label f18">可选优惠</label>
+                <div class="layui-input-block">
+                  <input type="checkbox" name="like[reduction]" title="满200减20" ng-model="reduction" ng-disabled="!chooseBank">
+                  <input type="checkbox" name="like[reduction]" title="随机立减"  ng-model="randomReduction" class="layui-disabled"  checked="{{chooseBank}}" disabled="!chooseBank">
+                  <input type="checkbox" name="like[integral]" title="积分兑换" ng-model="integral" ng-disabled="!chooseBank" >
+                  <input type="checkbox" ng-model="useCoupon" name="like[coupon]" ng-model="coupon" title="使用优惠券" ng-disabled="!chooseBank">
+                </div>
+              </div>
+        </form>
+    </div>
+
+    <div class="discounted-price-div">
+        <p class="f18">
+            <span>满减优惠： <span class="red-font discounted-price"> ￥20 </span></span>
+            <span class="f16 gray-font">已享受满 <span class="red-font">200</span> 减 <span class="red-font">20</span></span>
+        </p>
+        
+        <p class="f18">
+            <span>优惠券使用：</span>
+            <span class="red-font discounted-price ">  ￥20</span>
+        </p>
+        <p class="f18">
+            <span>积分抵扣：</span>
+            <span class="red-font discounted-price"> ￥20</span>
+        </p>
+    </div>
+    
+    <div class="total-pay-info">
+        <!--最终优惠结果-->
+        <div class="pay-info-div">
+            <div class="wrapper-div">
+                <span class="f16">商品总额：</span>
+                <span class="red-font f24 bold">￥{{orderAmount}}</span>
+            </div>
+            <div class="wrapper-div">
+                <span class="f16">优惠金额：</span>
+                <span class="red-font bold f24">￥{{totalDecount}}</span>
+            </div>
+            <div class="wrapper-div">
+                <span class="f16">合计：</span>
+                <span class="red-font bold f24">￥{{totalRealAmmount}}</span>
+            </div>
+            <div class="pay-now-btn-div wrapper-div">
+                <button class="layui-btn pay-now-btn">立即支付</button>
+            </div>
+        </div>
+       
+    </div>
+</div>

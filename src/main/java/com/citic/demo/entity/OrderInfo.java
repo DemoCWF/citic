@@ -1,7 +1,5 @@
 package com.citic.demo.entity;
 
-import java.util.Date;
-
 public class OrderInfo {
 
     private Integer orderId;
@@ -12,7 +10,7 @@ public class OrderInfo {
 
     private String goodsName;
 
-    private Date orderTime;
+    private Long orderTime;
 
     private Integer goodsNum;
 
@@ -22,7 +20,7 @@ public class OrderInfo {
 
     private String realPay;
 
-    private Date payTime;
+    private Long payTime;
 
     private String saleway;
 
@@ -58,14 +56,6 @@ public class OrderInfo {
         this.goodsName = goodsName == null ? null : goodsName.trim();
     }
 
-    public Date getOrderTime() {
-        return orderTime;
-    }
-
-    public void setOrderTime(Date orderTime) {
-        this.orderTime = orderTime;
-    }
-
     public Integer getGoodsNum() {
         return goodsNum;
     }
@@ -98,19 +88,27 @@ public class OrderInfo {
         this.realPay = realPay == null ? null : realPay.trim();
     }
 
-    public Date getPayTime() {
-        return payTime;
-    }
-
-    public void setPayTime(Date payTime) {
-        this.payTime = payTime;
-    }
-
     public String getSaleway() {
         return saleway;
     }
 
     public void setSaleway(String saleway) {
         this.saleway = saleway == null ? null : saleway.trim();
+    }
+
+    public Long getOrderTime() {
+        return orderTime;
+    }
+
+    public void setOrderTime(Long orderTime) {
+        this.orderTime = orderTime;
+    }
+
+    public Long getPayTime() {
+        return payTime;
+    }
+
+    public void setPayTime(Long payTime) {
+        this.payTime = payTime;
     }
 }

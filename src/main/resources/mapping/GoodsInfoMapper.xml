@@ -2,49 +2,60 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.citic.demo.mapper.GoodsInfoMapper">
     <resultMap id="BaseResultMap" type="com.citic.demo.entity.GoodsInfo">
-        <id column="goods_id" property="goodsId" jdbcType="INTEGER"/>
-        <result column="goods_name" property="goodsName" jdbcType="VARCHAR"/>
-        <result column="des" property="des" jdbcType="VARCHAR"/>
-        <result column="goods_photo" property="goodsPhoto" jdbcType="VARCHAR"/>
-        <result column="goods_cate" property="goodsCate" jdbcType="VARCHAR"/>
+        <id column="goods_id" property="goodId"/>
+        <result column="goods_name" property="goodName"/>
+        <result column="des" property="goodDescription"/>
+        <result column="price" property="goodPrice"/>
+        <result column="goods_photo" property="goodImgSrc"/>
+        <result column="goods_cate" property="goodCate"/>
+        <result column="goods_storage" property="count"/>
     </resultMap>
 
     <sql id="IF_Base_Column_List">
-        <if test=" goodsId != null">
+        <if test=" goodId != null">
             goods_id,
         </if>
-        <if test=" goodsName != null">
+        <if test=" goodName != null">
             goods_name,
         </if>
-        <if test=" des != null">
+        <if test=" goodDescription != null">
             des,
         </if>
-        <if test=" goodsPhoto != null">
+        <if test=" goodPrice != null">
+            price,
+        </if>
+        <if test=" goodImgSrc != null">
             goods_photo,
         </if>
-        <if test=" goodsCate != null">
+        <if test=" goodCate != null">
             goods_cate,
+        </if>
+        <if test=" count != null">
+            goods_storage,
         </if>
     </sql>
 
     <sql id="IF_Value_Column_List">
-        <if test=" goodsId != null">
+        <if test=" goodId != null">
             #{goodsId },
         </if>
-        <if test=" goodsName != null">
-            #{goodsName },
+        <if test=" goodName != null">
+            #{goodName },
         </if>
-        <if test=" goodsId != null">
-            #{goodsId },
+        <if test=" goodDescription != null">
+            #{goodDescription },
         </if>
-        <if test=" des != null">
-            #{des },
+        <if test=" goodPrice != null">
+            #{goodPrice },
         </if>
-        <if test=" goodsPhoto != null">
-            #{goodsPhoto },
+        <if test=" goodImgSrc != null">
+            #{goodImgSrc },
         </if>
-        <if test=" goodsCate != null">
-            #{goodsCate },
+        <if test=" goodCate != null">
+            #{goodCate },
+        </if>
+        <if test=" count != null">
+            #{count },
         </if>
     </sql>
 
@@ -53,16 +64,18 @@
         goods.goods_id as goods_id,
         goods.goods_name as goods_name,
         goods.des as des,
+        goods.price as price,
         goods.goods_photo as goods_photo,
-        goods.goods_cate as goods_cate
+        goods.goods_cate as goods_cate,
+        goods.goods_storage as goods_storage
         from zx_goodsinfo goods
-        where 1=1
+        where 1 = 1
         <if test=" mult != null ">
             and goods.goods_name like CONCAT('%',replace(replace(#{mult},'%','\%'),'_','\_'),'%')
         </if>
-        <if test=" goodsCate != null and goodsCate.size() > 0 ">
+        <if test=" goodCate != null and goodCate.size() > 0 ">
             and goods.goods_cate in
-            <foreach item="item" index="index" collection="goodsCate"
+            <foreach item="item" index="index" collection="goodCate"
                      open="(" separator="," close=")">
                 #{item}
             </foreach>
@@ -75,8 +88,10 @@
         goods.goods_id as goods_id,
         goods.goods_name as goods_name,
         goods.des as des,
+        goods.price as price,
         goods.goods_photo as goods_photo,
-        goods.goods_cate as goods_cate
+        goods.goods_cate as goods_cate,
+        goods.goods_storage as goods_storage
         from zx_goodsinfo goods
         where 1 = 1
         <if test="goodsId != null">
@@ -99,17 +114,23 @@
     <update id="update" parameterType="com.citic.demo.entity.GoodsInfo">
         update zx_goodsinfo
         <trim prefix="SET" suffixOverrides=",">
-            <if test=" goodsName != null">
-                goods_name = #{goodsName },
+            <if test=" goodName != null">
+                goods_name = #{goodName },
             </if>
-            <if test=" des != null">
-                des = #{des },
+            <if test=" goodDescription != null">
+                des = #{goodDescription },
             </if>
-            <if test=" goodsPhoto != null">
-                goods_photo = #{goodsPhoto },
+            <if test=" goodPrice != null">
+                price = #{goodPrice },
             </if>
-            <if test=" goodsCate != null">
-                goods_cate = #{goodsCate },
+            <if test=" goodImgSrc != null">
+                goods_photo = #{goodImgSrc },
+            </if>
+            <if test=" goodCate != null">
+                goods_cate = #{goodCate },
+            </if>
+            <if test=" count != null">
+                goods_storage = #{count }
             </if>
         </trim>
         where goods_id = #{goodsId}
@@ -128,9 +149,9 @@
         <if test=" mult != null ">
             and goods_name like CONCAT('%',replace(replace(#{mult},'%','\%'),'_','\_'),'%')
         </if>
-        <if test=" goodsCate != null and goodsCate.size() > 0 ">
+        <if test=" goodCate != null and goodCate.size() > 0 ">
             and goods_cate in
-            <foreach item="item" index="index" collection="goodsCate"
+            <foreach item="item" index="index" collection="goodCate"
                      open="(" separator="," close=")">
                 #{item}
             </foreach>
@@ -144,15 +165,16 @@
         goods.goods_name as goods_name,
         goods.des as des,
         goods.goods_photo as goods_photo,
-        goods.goods_cate as goods_cate
+        goods.goods_cate as goods_cate,
+        goods.goods_storage as goods_storage
         from zx_goodsinfo goods
         where 1 = 1
         <if test=" mult != null ">
             and goods.goods_name like CONCAT('%',replace(replace(#{mult},'%','\%'),'_','\_'),'%')
         </if>
-        <if test=" goodsCate != null and goodsCate.size() > 0 ">
+        <if test=" goodCate != null and goodCate.size() > 0 ">
             and goods.goods_cate in
-            <foreach item="item" index="index" collection="goodsCate"
+            <foreach item="item" index="index" collection="goodCate"
                      open="(" separator="," close=")">
                 #{item}
             </foreach>

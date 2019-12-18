@@ -2,9 +2,15 @@ package com.citic.demo.service;
 
 import com.citic.demo.base.PageResult;
 import com.citic.demo.entity.OrderInfo;
+import com.citic.demo.entity.PriceHistory;
+import com.citic.demo.entity.SaleWay;
+import com.citic.demo.entity.Tickets;
 import com.citic.demo.query.OrderInfoQuery;
 import com.citic.demo.request.OrderRequest;
 import com.citic.demo.response.OrderResponse;
+
+import java.util.List;
+import java.util.Map;
 
 public interface OrderInfoService {
 
@@ -36,6 +42,44 @@ public interface OrderInfoService {
      * @throws Exception
      */
     Integer saveOrder(OrderRequest orderRequest) throws Exception;
+
+
+    /**
+     *
+     * 获取所有优惠信息
+     *
+     * @return
+     * @throws Exception
+     */
+    Map<String, List<SaleWay>> saleWay() throws Exception;
+
+
+    /**
+     *
+     * 获取用户所有优惠券
+     *
+     * @return
+     * @throws Exception
+     */
+    Map<String, List<Tickets>> tickets(Integer userId) throws Exception;
+
+    /**
+     *
+     * 保存优惠信息
+     *
+     * @return
+     * @throws Exception
+     */
+    Integer saveSalaryHistory(PriceHistory priceHistory) throws Exception;
+
+    /**
+     *
+     * 更新优惠信息
+     *
+     * @return
+     * @throws Exception
+     */
+    PriceHistory updateSalaryHistory(PriceHistory priceHistory) throws Exception;
 
     /**
      *

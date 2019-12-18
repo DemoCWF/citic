@@ -1,0 +1,188 @@
+<div class="personalCenter" id="personalCenter">
+    <div class="layui-tab">
+      <ul class="layui-tab-title">
+        <li class="layui-this">基本信息</li>
+        <li>我的资产</li>
+        <li>订单管理</li>
+        <li>安全管理</li>
+      </ul>
+      <div class="layui-tab-content">
+        <!-- 基本信息 -->
+        <div class="layui-tab-item layui-show">
+        
+        </div>
+        <!-- 我的资产 -->
+        <div class="layui-tab-item">
+            <div class="cont-main">
+                <div class="main-wrap mt15">
+                    <div class="server-wrapper">
+                        <div class="server-tab">
+                            <div class="left-container">
+                                <div class="assets-div">
+                                    <!--我的积分-->
+                                    <div class="my-integral-div" >
+                                        <div class="integral-container">
+                                            <span class="my-integral-title">我的积分</span>
+                                            <span class="integral-count">12</span>
+                                            <input  class="get-integral-btn" type="button" value="签到领积分">
+                                        </div>
+                                    </div>
+                                    <!--我的优惠券-->
+                                    <div class="my-coupon-div" style="">
+                                        <div class="coupon-container">
+                                            <span class="my-coupon-title">我的优惠券</span>
+                                            <span class="my-coupon-count">2</span>
+                                            <img class="coupon-img" src="images/personalCenter/3.png">
+                                        </div>
+                                    </div>
+                                    <!--我的理财-->
+                                    <div class="my-financial-management-div">
+                                        <div class="my-financial-management-container">
+                                            <span class="my-financial-management-title">我的理财</span>
+                                            <span class="my-financial-management-count">2</span>
+                                             <img class="my-financial-management-img" src="images/personalCenter/2.png">
+                                        </div>
+                                    </div>
+                                    <div style="border-top:1px #ccc solid;width: 730px;position: absolute;margin-top: 200px;margin-left: 20px;float: left;"></div>
+                                   
+                                </div>
+                                <!--已获得优惠券-->
+                                <div class="get-coupon-div" >
+                                    <div class="get-coupon-container" >
+                                        <p class="get-coupon-title bottom15" >已获得优惠券：</p>
+                                        <div class="coupon relative">
+                                            <span class="coupon-count absolute red-font f30">20</span>
+                                            <img src="images/personalCenter/1.png"/>
+                                        </div>
+                                        <div class="coupon coupon2 relative">
+                                            <span class="coupon-count absolute red-font f30">20</span>
+                                            <img class="get-coupon-img2" src="images/personalCenter/4.png">
+                                        </div>
+                                        <p class="all-coupon-count">全部优惠券 (<span class="red-font">2</span>)</p>
+                                    </div>
+                                </div>
+                                <!--已获得理财产品-->
+                                <div class="financial-product-div" style="">
+                                    <div class="financial-product-container" >
+                                        <p class="financial-product-title bottom15" style="">已获得理财产品：</p>
+                                        <div class="relative">
+                                            <span class="absolute"></span>
+                                            <img src="images/personalCenter/1.png"/>
+                                        </div>
+                                        <img class="financial-product-img2" src="images/personalCenter/4.png" >
+                                        <p class="all-financial-product-title">全部理财产品 (<span class="red-font"> 2 </span>)</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 订单管理 -->
+        <div class="layui-tab-item">
+            <!--待收货等-->
+            <div class="order-status layui-row">
+                <!--待付款-->
+                <span class="pending-payment-div pointer">
+                    <span class="pending-payment-title deep-gray">待付款</span>
+                    <span class="pending-payment-count red-font">0</span>
+                </span>
+                <!--待发货-->
+                <span class="pending-ship-div pointer">
+                    <span class="pending-ship-title deep-gray">待发货</span>
+                    <span class="pending-ship-count red-font">0</span>
+                </span>
+               <!--待收获-->
+                <span class="pending-receipt-div pointer">
+                    <span class="pending-ship-title deep-gray">待收货</span>
+                    <span class="pending-ship-count red-font">0</span>
+                </span>
+                <span class="pending-comment-div pointer">
+                    <span class="pending-comment-title deep-gray">待评价</span>
+                    <span class="pending-comment-count red-font">0</span>
+                </span>
+                <span class="refunding-div pointer">
+                    <span class="refunding-title deep-gray">退款中</span>
+                    <span class="refunding-count red-font">0</span>
+                </span>
+            </div>
+            <!--订单列表-->
+            <div class="orders-list">
+                <table  class="order-list-table layui-table">
+                    <!--表头-->
+                    <thead>
+                    <tr class="pointer">
+                        <th>商品名称</th>
+                        <!--<th>商品属性</th>-->
+                        <th>数量</th>
+                        <th>单价</th>
+                        <th>订单总价</th>
+                        <th>实际支付</th>
+                        <th>优惠方式</th>
+                        <th>下单时间</th>
+                        <th>订单状态</th>
+                        <th>支付方式</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <!--表格内容-->
+                    <tbody>
+                    <tr ng-repeat="order in orderList">
+                        <td class="order-img-td">
+                            <img ng-src="{{order.goodImgSrc}}" alt="">
+                        </td>
+                        <!--商品数量-->
+                        <td>
+                            <span class="gray-font">{{order.goodNumber}}</span>
+                        </td>
+                        <!--商品单价-->
+                        <td>
+                            <span class="gray-font">{{order.goodPrice}}</span>
+                        </td>
+                        <!--订单总价-->
+                        <td>
+                            <span class="gray-font">{{order.orderAmount}}</span>
+                        </td>
+                        <!--实际支付-->
+                        <td>
+                            <span class="gray-font">{{order.realPay}}</span>
+                        </td>
+                        <!--优惠方式-->
+                        <td>
+                            <span class="gray-font">{{order.promotionWay}}</span>
+                        </td>
+                        <!--下单时间-->
+                        <td>
+                            <span class="gray-font">{{order.orderTime["orderDate"]}}</span>
+                            <span class="gray-font">{{order.orderTime["time"]}}</span>
+                        </td>
+                        <!--订单状态-->
+                        <td>
+                            <span class="gray-font">{{order.orderStatus}}</span>
+                        </td>
+                        <!--支付时间-->
+                        <td>
+                            <span class="gray-font">{{order.payWay}}</span>
+                        </td>
+                        <!--删除-->
+                        <td class="order-delete-btn">
+                            <button class="layui-btn layui-btn-danger" ng-click="deleteOrder(order)">删除</button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="tip-div" ng-if="!orderList.length">
+                    <p class="align-center gray-font f18">当前没有订单，快去购物吧 <span class="layui-icon layui-icon-face-smile red-font f24"></span></p>
+                </div>
+                
+            </div>
+        </div>
+        
+        <!-- 安全管理 -->
+        <div class="layui-tab-item">
+        </div>
+      </div>
+    </div>
+</div>

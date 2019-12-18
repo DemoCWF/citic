@@ -1,0 +1,330 @@
+/*---------- 个人中心 ----------*/
+.personalCenter
+{
+    margin-top: 50px;
+}
+.personalCenter .layui-this
+{
+    color: #FF0036;
+}
+.personalCenter .layui-tab-title li
+{
+    font-size: 20px;
+    padding:0 20px;
+    margin: 0 60px;
+}
+.personalCenter .layui-tab-title
+{
+    padding-left: 5%;
+}
+
+/*=========== 我的资产 ==========*/
+.main-wrap
+{
+    width:80%;
+    margin: 0 auto;
+}
+.server-tab
+{
+    margin-top: 26px;
+}
+.left-container
+{
+    float: left;
+    vertical-align: bottom;
+    text-align: center;
+}
+.assets-div
+{
+    width: 800px;
+    padding: 10px;
+    float: left;
+    background-color: #fff;
+    height: 240px;
+    margin-top:30px;
+}
+/*-------- 我的积分 -------*/
+.my-integral-div
+{
+    float: left;
+    width:200px ;
+    height: 152px;
+    border: 2px #ccc solid;
+    box-shadow: 1px 1px 1px #F5F5F5;
+    padding: 3px;
+}
+.integral-container
+{
+    width: 100%;
+    height: 100%;
+    border: 2px #F2873B dashed;
+}
+/*我的积分*/
+.my-integral-title
+{
+    font-size: 18px;
+    color: #686868;
+    font-weight: bold;
+    display: block;
+    width: 100px;
+    margin-left: 50px;
+    margin-top:20px;
+}
+/*积分数量*/
+.integral-count
+{
+    font-size: 36px;
+    color: #F88600;
+    display: block;
+    width: 100px;
+    margin-left: 50px;
+    margin-top: 8px;
+}
+/*签到领取积分的按钮*/
+.get-integral-btn
+{
+    background-color: #f56a48;
+    border-radius: 5px;
+    color: #fff;
+    font-size:14px;
+    border: 0px;
+    width: 107px;
+    height: 26px;
+    margin-top: 10px;
+}
+/*-------- 我的优惠券 --------*/
+.my-coupon-div
+{
+    float: left;
+    width:200px ;
+    height: 152px;
+    margin-left: 60px;
+    border: 2px #ccc solid;
+    box-shadow: 1px 1px 1px #F5F5F5;
+    padding: 3px;
+}
+.coupon-container
+{
+    width: 100%;
+    height: 100%;
+    border: 2px #F2873B dashed;
+}
+/*我的优惠券*/
+.my-coupon-title
+{
+    font-size: 18px;
+    color: #686868;
+    font-weight: bold;
+    display: block;
+    width: 100px;
+    margin-left: 50px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+/*优惠券数量*/
+.my-coupon-count
+{
+    width: 87px;
+    height: 20px;
+    background-color: #fee3dc;
+    padding: 5px;
+    border: 1px #C62B26 dashed;
+    border-radius: 5px;
+}
+/*优惠券图片*/
+.coupon-img
+{
+    position: absolute;
+    margin-top: 25px;
+    margin-left: -50px;
+}
+/*----------- 我的理财 -------*/
+.my-financial-management-div
+{
+    float: left;
+    width:200px ;
+    height: 152px;
+    margin-left: 60px;
+    border: 2px #ccc solid;
+    box-shadow: 1px 1px 1px #F5F5F5;
+    padding: 3px;
+}
+
+.my-financial-management-container
+{
+    width: 100%;
+    height: 100%;
+    border: 2px #F2873B dashed;
+}
+/*我的理财标题*/
+.my-financial-management-title
+{
+    font-size: 18px;
+    color: #686868;
+    font-weight: bold;
+    display: block;
+    width: 100px;
+    margin-left: 50px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+/*理财数量*/
+.my-financial-management-count
+{
+    position: relative;
+    bottom: 8px;
+    background-color: #fee3dc;
+    padding: 5px;
+    border: 1px #C62B26 dashed;
+    border-radius: 5px;
+}
+/*理财图片*/
+.my-financial-management-img
+{
+    position: absolute;
+    margin-top: 12px;
+    margin-left: -50px;
+}
+/*--------- 已获得优惠券 ------*/
+.get-coupon-div
+{
+    float: left;
+    width:250px ;
+    height: 152px;
+    margin-left: 20px;
+}
+.get-coupon-container
+{
+    background-color: #fff;
+    margin-top: -10px;
+    height: 300px;
+    padding: 10px;
+}
+/*已获得优惠券标题*/
+.get-coupon-title
+{
+    font-size: 22px;
+    text-align: left;
+}
+.coupon-count
+{
+    font-style: italic;
+    font-weight: bold;
+    top: 10px;
+    left: 41%;
+}
+.coupon2 .coupon-count
+{
+    top:35px
+}
+.get-coupon-img2
+{
+    margin-top: 20px;
+}
+/*全部优惠券*/
+.all-coupon-count
+{
+    margin-top: 30px;
+    font-size: 14px;
+    color: #686868;
+}
+/*--------- 已获得理财产品 ----------*/
+.financial-product-div
+{
+    float: left;
+    width:250px ;
+    height: 152px;
+    margin-left: 20px;
+}
+.financial-product-container
+{
+    background-color: #fff;
+    margin-top: -10px;
+    height: 300px;
+    padding: 10px;
+}
+/*已获得理财产品标题*/
+.financial-product-title
+{
+    font-size: 22px;text-align: left;
+}
+.financial-product-img2
+{
+    margin-top: 20px;
+}
+
+/*全部理财产品*/
+.all-financial-product-title
+{
+    margin-top: 30px;
+    font-size: 14px;
+    color: #686868;
+}
+
+/*============ 订单管理 ==========*/
+
+.order-status,.order-list-table,tip-div
+{
+    width: 83%;
+    margin:0px auto;
+}
+.order-status
+{
+    margin: 30px auto;
+}
+.order-status > span
+{
+    border-right: 1px solid #999;
+    padding: 2px 72px;
+}
+
+.order-status .pending-payment-div{
+    border-left: 1px solid #999;
+}
+
+/*----- 订单列表 -------*/
+{
+    width: 83%;
+    margin: 0 auto;
+}
+
+.order-list-table th,.order-list-table td
+{
+    text-align: center;
+}
+.order-list-table tr:hover
+{
+    cursor: pointer;
+}
+.order-list-table  td
+{
+    border-color: #e6e6e6 transparent #e6e6e6 transparent
+}
+
+.order-list-table img {
+    width: 70px;
+    border-radius: 5px;
+}
+.order-list-table th
+{
+    border: 1px solid;
+    border-color: #e6e6e6 transparent #e6e6e6 transparent;
+}
+.order-list-table .order-img-td,.order-list-table th:first-child
+{
+    border-left: 1px solid #e6e6e6;
+}
+.order-list-table .order-delete-btn,.order-list-table th:last-child
+{
+    border-right: 1px solid #e6e6e6;
+}
+.tip-div
+{
+    margin:30px auto;
+}
+
+/*============ 订单 =============*/
+.order-div .layui-table th
+{
+    text-align: center;
+}

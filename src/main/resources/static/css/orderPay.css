@@ -1,0 +1,89 @@
+.head {
+	padding-top: 20px;
+	width: 100%;
+}
+
+.content {
+	padding-top: 20px;
+	width: 100%;
+}
+
+.delivery {
+	padding-top: 20px;
+	width: 100%;
+}
+
+.btn_item {
+	min-height: 60px;
+}
+
+.goog_img {
+	width: 100px;
+	height: 100px;
+}
+
+.layui-input-block {
+	margin-left: 0px !important;
+}
+
+.layui-select-title {}
+
+span {
+	display: inline;
+}
+
+input {
+	display: inline;
+}
+
+.layui-textarea {
+	display: inline;
+	width: 120px;
+}
+
+.layui-form-label {
+	float: left;
+	display: block;
+	padding: 9px 0px !important;
+	width: 80px;
+	font-weight: 400;
+	line-height: 20px;
+	text-align: left !important;
+}
+
+.pay {
+	padding-top: 20px;
+}
+
+.price {
+	color: red;
+	font-weight: 400;
+	font-size: 20px;
+}
+
+.btn_pay {
+	margin-right: 0;
+	float: left;
+	overflow: hidden;
+	width: 100%;
+	height: 50px;
+	background-color: #ffeded;
+	border: 1px solid #FF0036;
+	color: #FF0036;
+	font-family: 'Microsoft Yahei';
+	color: white;
+	background: red;
+	font-size:20px;
+	margin-top: 20px;
+	
+	
+
+}
+.final_pay{
+	margin-top: 40px;
+	padding-left: 10px;
+	padding-bottom: 10px;
+	border:2px solid red;
+	background-color: #E2E2E2;
+	
+}

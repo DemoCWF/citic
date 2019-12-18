@@ -1,0 +1,136 @@
+#home .banner-div
+{
+    height: 400px;
+}
+.banner-div img
+{
+    width: 100%;
+}
+/*============== 商品列表 ==========*/
+.goods-list-div
+{
+    margin-top:20px;
+}
+.good-img-div
+{
+    margin-bottom: 10px;
+}
+.goods-list-div .good-img
+{
+    width: 100%;
+}
+
+.good-name:hover
+{
+    text-decoration: underline;
+    color: black;
+}
+.good-name
+{
+    font-weight: bold;
+}
+.good-price
+{
+    margin-left: 52%;
+    font-size: 24px;
+    font-weight: bold;
+    color: orangered;
+}
+
+/*================= 理财产品 ==========*/
+*{
+	margin:0;
+	padding:0;
+}
+.flex-start-center{
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	flex-wrap: wrap;
+}
+.item-wrap{
+	width: 33.33%;
+	border-bottom: 1px dashed #ddd;
+	padding-bottom: 30px;
+	margin-bottom: 20px;
+}
+.item{
+	padding: 0 30px 30px 30px;
+	border-right: 1px dashed #ddd;
+}
+.item-title{
+	font-size: 16px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	margin-bottom: 10px;
+}
+.tags{
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+}
+.tag{
+	height: 30px;
+	line-height: 30px;
+	padding: 0 10px;
+	border: 1px solid orange;
+	color: orange;
+	margin-right: 10px;
+}
+.item-content{
+	position: relative;
+}
+.btn-jy{
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	width:80px;
+	height:30px;
+	text-align: center;
+	line-height: 30px;
+	color: #fff;
+	background: red;
+	border: none;
+}
+.c-666{
+	color: #666666;
+}
+.c-red{
+	color: red;
+}
+.f20{
+	font-size: 20px;
+}
+.fb{
+	font-weight: bolder;
+}
+.mr20{
+	margin-right: 20px;
+}
+.item-cell{
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+}
+.my-img{
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	background-color: red;
+}
+.w1440{
+	width: 1440px;
+	margin: 0 auto;
+}
+.item-img{
+	width: 100%;
+	height: 150px;
+	background-color: #ddd;
+}
+.item-img img{
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}

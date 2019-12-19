@@ -46,6 +46,7 @@ public class UserController {
         try {
             this.userService.saveUserInfo(userRequest);
         }catch (Exception e){
+            log.info(e.getMessage());
             return ActionResponse.fail(RespBasicCode.ACCOUNT_LOGIN_ERROR, "账号已存在！");
         }
 
@@ -72,8 +73,9 @@ public class UserController {
 
         UserInfo userInfo = this.userService.queryUserInfoByPhoneAndPwd(userRequest);
         if (userInfo == null){
-
+            return ActionResponse.fail(RespBasicCode.ACCOUNT_LOGIN_ERROR, "用户不存在！");
         }
+        log.info(userInfo.toString());
         return ActionResponse.success(userInfo);
     }
 

@@ -2,6 +2,8 @@ package com.citic.demo.mapper;
 
 import com.citic.demo.entity.UserInfo;
 
+import java.util.List;
+
 public interface UserInfoMapper {
     int deleteByPrimaryKey(Integer userId);
 
@@ -17,5 +19,5 @@ public interface UserInfoMapper {
 
     UserInfo selectByPhoneAndPwd(UserInfo record);
 
-    int valPhoneAndMail(UserInfo userInfo);
+    Integer valPhoneAndMail(UserInfo userInfo);
 }

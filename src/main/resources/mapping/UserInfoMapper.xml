@@ -155,9 +155,9 @@
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
 
-    <select id="valPhoneAndMail" resultMap="BaseResultMap" parameterType="com.citic.demo.entity.UserInfo">
+    <select id="valPhoneAndMail" resultType="java.lang.Integer" parameterType="com.citic.demo.entity.UserInfo">
         select
-        count (*)
+        COUNT(*)
         from zx_userinfo
         where
         1 = 1

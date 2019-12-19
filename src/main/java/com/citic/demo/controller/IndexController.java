@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 /**
  * Title:
  * Description:
@@ -18,25 +21,20 @@ import org.springframework.web.bind.annotation.RestController;
 public class IndexController {
 
     @RequestMapping("/")
-    @ResponseBody
-    public String main(Model model){
+    public String main(){
         return "index";
     }
 
     @RequestMapping("/index")
-    public String index(Model model){
-        model.addAttribute("result", "后台返回index1");
+    public String index(){
         return "index";
     }
 
-    @RequestMapping("/login")
-    public String login(Model model){
-        return "redirect:/";
-    }
 
-    @RequestMapping("/loginout")
-    @ResponseBody
-    public String loginout(Model model){
+
+    @RequestMapping("/loginOut")
+    public String loginout(HttpServletResponse response, HttpServletRequest request){
+        request.getSession().removeAttribute("user");
         return "index";
     }
 }

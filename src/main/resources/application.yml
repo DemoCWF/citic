@@ -22,6 +22,7 @@ spring:
 
 
 
+
 mybatis:
   mapper-locations: classpath:mapping/*.xml     #mapper�ļ�·��
   type-aliases-package: com.citic.demo.entity   #ʵ����İ�·��

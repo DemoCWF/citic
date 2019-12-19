@@ -15,6 +15,7 @@ import com.citic.demo.service.OrderInfoService;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
+import sun.security.krb5.internal.Ticket;
 
 import javax.annotation.Resource;
 import java.math.BigDecimal;
@@ -102,6 +103,9 @@ public class OrderInfoServiceImp implements OrderInfoService {
         Long currentTime = System.currentTimeMillis();
         orderRequest.setOrderTime(currentTime);
         orderRequest.setOrderStatus("未完成");
+
+        //
+
         orderInfoMapper.saveOrder(orderRequest);
         return orderRequest.getOrderId();
     }
@@ -195,7 +199,6 @@ public class OrderInfoServiceImp implements OrderInfoService {
         orderInfo.setPayTime(time);
         orderInfo.setGoodNum(priceHistory.getGoodsNum());
         orderInfo.setPay(priceHistory.getCountPri());
-        orderInfo.setRealPay(priceHistory.getCountPri());
         orderInfo.setSaleway(priceHistory.getPayClass().toString());
 
         if (priceHistory.getPayClass() == 0) {
@@ -204,20 +207,34 @@ public class OrderInfoServiceImp implements OrderInfoService {
             DecimalFormat df = new DecimalFormat("0.00");
             String rand = df.format(a);
 
-            BigDecimal count = new BigDecimal(priceHistory.getSalePri());
+            BigDecimal count = new BigDecimal(priceHistory.getAfterPri());
             BigDecimal random = new BigDecimal(rand);
             String relPri = count.multiply(random).toString();
 
-            orderInfo.setRealPay(relPri);
-            // 用户相关信息修改
-            List<Tickets> ticketsList = orderInfoMapper.queryTickets(priceHistory.getUserId().toString());
-            List<String> salaryId = priceHistory.getSalaryId();
-            for (Tickets tickets : ticketsList) {
-                if (salaryId.contains(tickets.getSalaryId())){
-                    tickets.setTicketsNum(tickets.getTicketsNum() - 1);
-                }
+            relPri = df.format(Double.parseDouble(relPri) / 100);
+            Double pay = Double.parseDouble(priceHistory.getAfterPri()) - Double.parseDouble(relPri);
+
+            orderInfo.setRealPay(pay.toString());
+            // 用户相关信息修改--修改券的数量
+//            List<Tickets> ticketsList = orderInfoMapper.queryTickets(priceHistory.getUserId().toString());
+//            List<String> salaryId = priceHistory.getSalaryId();
+//            for (Tickets tickets : ticketsList) {
+//                if (salaryId.contains(tickets.getSalaryId())){
+//                    tickets.setTicketsNum(tickets.getTicketsNum() - 1);
+//                }
+//            }
+//            orderInfoMapper.updateTickets(ticketsList);
+
+            int ticketCount = orderInfoMapper.queryTicketCount(priceHistory);
+            if (ticketCount <= 0){
+                throw new Exception("抵扣券数量错误!");
             }
-            orderInfoMapper.updateTickets(ticketsList);
+            Tickets ticket = new Tickets();
+            ticket.setUserId(priceHistory.getUserId());
+            ticket.setTicketsType(priceHistory.getSalaryId().toString());
+            ticket.setTicketsNum(ticketCount - 1);
+            orderInfoMapper.updateTickets(ticket);
+
             // 商品数量修改
             GoodsInfo goodsInfo = goodsInfoMapper.queryGoodsInfoById(priceHistory.getGoodsId());
             Integer num = Integer.parseInt(goodsInfo.getCount()) - priceHistory.getGoodsNum();
@@ -225,8 +242,16 @@ public class OrderInfoServiceImp implements OrderInfoService {
             goodsInfoMapper.update(goodsInfo);
 
             // 用户积分修改
+            Score score = scoreMapper.selectByUserId(priceHistory.getUserId());
+            if (score.getScoreSum() < Integer.parseInt(priceHistory.getScores())){
+                throw new Exception("积分错误!");
+            }
+
+            score.setScoreSum(score.getScoreSum() - Integer.parseInt(priceHistory.getScores()));
+            scoreMapper.updateByPrimaryKeySelective(score);
         }
 
+        orderInfo.setOrderStatus("已完成");
         return orderInfoMapper.saveOrder(orderInfo);
     }
 

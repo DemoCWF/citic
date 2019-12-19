@@ -130,16 +130,16 @@ public class OrderInfoController {
      */
     @PostMapping("/update")
     @ResponseBody
-    public ActionResponse updateOrder(@RequestBody OrderRequest orderRequest) {
+    public ActionResponse updateOrder(@RequestBody OrderRequest orderRequest) throws Exception{
         if (orderRequest.getOrderId() == null) {
             ActionResponse.fail(RespBasicCode.PARAMETER_ERROR, "订单ID不能为空!");
         }
-        try {
-            orderInfoService.updateOrder(orderRequest);
-        } catch (Exception e) {
-            return ActionResponse.fail(RespBasicCode.BUSINESS_EXCEPTION);
-        }
-        return ActionResponse.success();
+//        try {
+//            orderInfoService.updateOrder(orderRequest);
+//        } catch (Exception e) {
+//            return ActionResponse.fail(RespBasicCode.BUSINESS_EXCEPTION);
+//        }
+        return ActionResponse.success(orderInfoService.updateOrder(orderRequest));
     }
 
     /**

@@ -103,7 +103,8 @@
     </sql>
 
 
-    <select id="queryOrderList" parameterType="com.citic.demo.query.OrderInfoQuery" resultType="com.citic.demo.response.OrderResponse">
+    <select id="queryOrderList" parameterType="com.citic.demo.query.OrderInfoQuery"
+            resultType="com.citic.demo.response.OrderResponse">
         select
         orderinfo.order_id as orderId,
         orderinfo.user_id as userId,
@@ -203,14 +204,12 @@
         </if>
     </select>
 
-    <update id="updateTickets" parameterType="java.util.List">
+    <update id="updateTickets" parameterType="com.citic.demo.entity.Tickets">
         update zx_tickets ticket
-        <foreach item="item" collection="tickets" separator=";">
-            set ticket.tickets_num = #{item.ticketsNum}
-            where
-            ticket.tickets_id = #{item.ticketsId}
-        </foreach>
-
+        set ticket.tickets_num = #{ticketsNum}
+        where
+        ticket.user_id = #{userId}
+        and ticket.tickets_type = #{ticketsType}
     </update>
 
 
@@ -224,6 +223,14 @@
         ticket.tickets_num as ticketsNum
         from zx_tickets ticket
         where ticket.user_id = #{id}
+    </select>
+
+    <select id="queryTicketCount" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        select
+        count(*)
+        from zx_tickets ticket
+        where ticket.user_id = #{userId}
+        and ticket.tickets_type = #{salaryId}
     </select>
 
 
@@ -257,7 +264,8 @@
     </delete>
 
 
-    <select id="querySaleWay" parameterType="com.citic.demo.entity.PriceHistory" resultType="com.citic.demo.entity.SaleWay">
+    <select id="querySaleWay" parameterType="com.citic.demo.entity.PriceHistory"
+            resultType="com.citic.demo.entity.SaleWay">
         select
         saleway.saleway_id as salewayId,
         saleway.saleway_type as salewayType,

@@ -19,7 +19,8 @@ public class PriceHistory {
     private Integer payClass;
 
     // 优惠ID
-    private List<String> salaryId;
+    private Integer salaryId;
+//    private List<String> salaryId;
 
     // 原始价格
     private String countPri;
@@ -92,14 +93,6 @@ public class PriceHistory {
         this.status = status;
     }
 
-    public List<String> getSalaryId() {
-        return salaryId;
-    }
-
-    public void setSalaryId(List<String> salaryId) {
-        this.salaryId = salaryId;
-    }
-
     public Integer getPayClass() {
         return payClass;
     }
@@ -122,5 +115,13 @@ public class PriceHistory {
 
     public void setGoodsNum(Integer goodsNum) {
         this.goodsNum = goodsNum;
+    }
+
+    public Integer getSalaryId() {
+        return salaryId;
+    }
+
+    public void setSalaryId(Integer salaryId) {
+        this.salaryId = salaryId;
     }
 }

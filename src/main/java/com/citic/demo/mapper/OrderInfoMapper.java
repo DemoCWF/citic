@@ -78,8 +78,8 @@ public interface OrderInfoMapper {
      * @return
      * @throws Exception
      */
-    Integer updateTickets(List<Tickets> tickets) throws Exception;
-
+//    Integer updateTickets(List<Tickets> tickets) throws Exception;
+    Integer updateTickets(Tickets tickets) throws Exception;
     /**
      *
      * 保存优惠信息
@@ -126,4 +126,12 @@ public interface OrderInfoMapper {
      * @return
      */
     SaleWay querySaleWay(PriceHistory priceHistory);
+
+    /**
+     *
+     *
+     *
+     * @return
+     */
+    int queryTicketCount(PriceHistory priceHistory);
 }

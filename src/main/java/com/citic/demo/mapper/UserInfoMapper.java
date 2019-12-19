@@ -17,5 +17,5 @@ public interface UserInfoMapper {
 
     UserInfo selectByPhoneAndPwd(UserInfo record);
 
-    int valPhoneAndMail(UserInfo userInfo);
+    Integer valPhoneAndMail(UserInfo userInfo);
 }

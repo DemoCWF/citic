@@ -54,7 +54,7 @@ public interface UserService {
      * @return
      * @throws Exception
      */
-    int saveUserInfo(UserRequest userRequest) throws Exception;
+    UserInfo saveUserInfo(UserRequest userRequest) throws Exception;
 
 
     /**

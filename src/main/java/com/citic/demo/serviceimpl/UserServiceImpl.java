@@ -1,6 +1,8 @@
 package com.citic.demo.serviceimpl;
 
+import com.citic.demo.base.ActionResponse;
 import com.citic.demo.base.BaseConverter;
+import com.citic.demo.base.RespBasicCode;
 import com.citic.demo.entity.GoodsInfo;
 import com.citic.demo.entity.UserInfo;
 import com.citic.demo.mapper.UserInfoMapper;
@@ -45,6 +47,18 @@ public class UserServiceImpl implements UserService {
     @Override
     public int saveUserInfo(UserRequest userRequest) throws Exception {
         UserInfo userInfo = this.requestConverter.convert(userRequest,UserInfo.class);
+        String mailReg="[A-z]+[A-z0-9_-]*\\@[A-z0-9]+\\.[A-z]+";
+        String phoneReg = "^1[3|4|5|7|8][0-9]\\d{4,8}$";
+        if (userRequest.getUserCount().matches(mailReg)){
+            userInfo.setMail(userRequest.getUserCount());
+        }
+        if (userRequest.getUserCount().matches(phoneReg)){
+            userInfo.setPhoneNum(userRequest.getUserCount());
+        }
+        if (userInfoMapper.valPhoneAndMail(userInfo) > 0)
+        {
+            throw new Exception();
+        }
         return this.userInfoMapper.insert(userInfo);
     }
 

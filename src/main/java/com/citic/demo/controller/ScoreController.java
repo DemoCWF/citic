@@ -29,7 +29,7 @@ public class ScoreController {
     @ResponseBody
     @RequestMapping(value = "/save")
     public ActionResponse saveScore(@RequestBody ScoreRequest scoreRequest) throws Exception {
-        return ActionResponse.success(this.scoreService.saveScore(scoreRequest));
+        return ActionResponse.success(scoreService.saveScore(scoreRequest));
 
     }
 

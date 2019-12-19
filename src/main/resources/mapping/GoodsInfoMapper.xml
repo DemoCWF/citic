@@ -37,7 +37,7 @@
 
     <sql id="IF_Value_Column_List">
         <if test=" goodId != null">
-            #{goodsId },
+            #{goodId },
         </if>
         <if test=" goodName != null">
             #{goodName },
@@ -94,8 +94,8 @@
         goods.goods_storage as goods_storage
         from zx_goodsinfo goods
         where 1 = 1
-        <if test="goodsId != null">
-            and goods.goods_id = #{goodsId }
+        <if test="goodId != null">
+            and goods.goods_id = #{goodId }
         </if>
     </select>
 
@@ -133,11 +133,11 @@
                 goods_storage = #{count }
             </if>
         </trim>
-        where goods_id = #{goodsId}
+        where goods_id = #{goodId}
     </update>
 
     <delete id="deleteById" parameterType="java.lang.Integer">
-        delete zx_goodsinfo where goods_id = #{goodsId}
+        delete zx_goodsinfo where goods_id = #{goodId}
     </delete>
 
 
@@ -164,6 +164,7 @@
         goods.goods_id as goods_id,
         goods.goods_name as goods_name,
         goods.des as des,
+        goods.price as price,
         goods.goods_photo as goods_photo,
         goods.goods_cate as goods_cate,
         goods.goods_storage as goods_storage

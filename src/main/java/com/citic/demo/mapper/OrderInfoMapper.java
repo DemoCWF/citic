@@ -6,6 +6,7 @@ import com.citic.demo.entity.SaleWay;
 import com.citic.demo.entity.Tickets;
 import com.citic.demo.query.OrderInfoQuery;
 import com.citic.demo.request.OrderRequest;
+import com.citic.demo.response.OrderResponse;
 
 import java.util.List;
 
@@ -19,7 +20,7 @@ public interface OrderInfoMapper {
      * @return
      * @throws Exception
      */
-    List<OrderInfo> queryOrderList(OrderInfoQuery orderInfoQuery) throws Exception;
+    List<OrderResponse> queryOrderList(OrderInfoQuery orderInfoQuery) throws Exception;
 
     /**
      * 获取订单数量
@@ -58,7 +59,7 @@ public interface OrderInfoMapper {
      * @return
      * @throws Exception
      */
-    List<SaleWay> querySaleWays() throws Exception;
+    List<SaleWay> querySaleWays(SaleWay saleWay) throws Exception;
 
 
     /**

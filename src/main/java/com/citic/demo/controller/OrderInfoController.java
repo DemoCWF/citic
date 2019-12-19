@@ -5,6 +5,7 @@ import com.citic.demo.base.PageResult;
 import com.citic.demo.base.RespBasicCode;
 import com.citic.demo.entity.OrderInfo;
 import com.citic.demo.entity.PriceHistory;
+import com.citic.demo.entity.UserInfo;
 import com.citic.demo.query.OrderInfoQuery;
 import com.citic.demo.request.OrderRequest;
 import com.citic.demo.service.OrderInfoService;
@@ -30,14 +31,10 @@ public class OrderInfoController {
      */
     @PostMapping("/query/all")
     @ResponseBody
-    public ActionResponse queryOrderList(@RequestBody OrderInfoQuery orderInfoQuery) {
-        PageResult<OrderInfo> pageResult = null;
-        try {
-            pageResult = orderInfoService.queryOrder(orderInfoQuery);
-        } catch (Exception e) {
+    public ActionResponse queryOrderList(@RequestBody OrderInfoQuery orderInfoQuery) throws Exception{
+        if (orderInfoQuery.getUserId() == null)
             return ActionResponse.fail(RespBasicCode.BUSINESS_EXCEPTION);
-        }
-        return ActionResponse.success(pageResult);
+        return ActionResponse.success(orderInfoService.queryOrder(orderInfoQuery));
     }
 
     /**
@@ -46,19 +43,13 @@ public class OrderInfoController {
      * @param id 订单ID
      * @return
      */
-    @GetMapping("/query/{id}")
+    @PostMapping("/query/{id}")
     @ResponseBody
-    public ActionResponse queryOrderById(@PathVariable("id") Integer id) {
+    public ActionResponse queryOrderById(@PathVariable("id") Integer id) throws Exception{
         if (id == null) {
             ActionResponse.fail(RespBasicCode.PARAMETER_ERROR, "订单ID不能为空!");
         }
-        OrderInfo orderInfo = null;
-        try {
-            orderInfo = orderInfoService.queryOrderById(id);
-        } catch (Exception e) {
-            return ActionResponse.fail(RespBasicCode.BUSINESS_EXCEPTION);
-        }
-        return ActionResponse.success(orderInfo);
+        return ActionResponse.success(orderInfoService.queryOrderById(id));
     }
 
     /**
@@ -69,13 +60,13 @@ public class OrderInfoController {
      */
     @PostMapping("/save")
     @ResponseBody
-    public ActionResponse saveOrder(@RequestBody OrderRequest orderRequest) {
+    public ActionResponse saveOrder(@RequestBody OrderRequest orderRequest) throws Exception{
         int orderId;
-        try {
+//        try {
             orderId = orderInfoService.saveOrder(orderRequest);
-        } catch (Exception e) {
-            return ActionResponse.fail(RespBasicCode.BUSINESS_EXCEPTION);
-        }
+//        } catch (Exception e) {
+//            return ActionResponse.fail(RespBasicCode.BUSINESS_EXCEPTION);
+//        }
         return ActionResponse.success(orderId);
     }
 
@@ -86,15 +77,14 @@ public class OrderInfoController {
      *
      * @return
      */
-    @GetMapping("/saleway")
+    @PostMapping("/saleway")
     @ResponseBody
-    public ActionResponse saleWay(){
+    public ActionResponse saleWay(@RequestBody UserInfo userInfo){
         try {
-            ActionResponse.success(orderInfoService.saleWay());
+            return ActionResponse.success(orderInfoService.saleWay(userInfo));
         } catch (Exception e) {
-            ActionResponse.fail(RespBasicCode.BUSINESS_EXCEPTION);
+            return ActionResponse.fail(RespBasicCode.BUSINESS_EXCEPTION);
         }
-        return ActionResponse.success();
     }
 
     /**
@@ -155,20 +145,20 @@ public class OrderInfoController {
     /**
      * 删除订单
      *
-     * @param id 订单ID
+     * @param orderInfoQuery
      * @return
      */
-    @GetMapping("/delete/{id}")
+    @PostMapping("/delete")
     @ResponseBody
-    public ActionResponse deleteOrder(@PathVariable("id") Integer id) {
-        if (id == null) {
+    public ActionResponse deleteOrder(@RequestBody OrderInfoQuery orderInfoQuery) throws Exception{
+        if (orderInfoQuery.getOrderId() == null) {
             ActionResponse.fail(RespBasicCode.PARAMETER_ERROR, "订单ID不能为空!");
         }
-        try {
-            orderInfoService.deleteOrder(id);
-        } catch (Exception e) {
-            return ActionResponse.fail(RespBasicCode.BUSINESS_EXCEPTION);
+
+        if (orderInfoQuery.getUserId() == null) {
+            ActionResponse.fail(RespBasicCode.PARAMETER_ERROR, "用户ID不能为空!");
         }
-        return ActionResponse.success();
+        orderInfoService.deleteOrder(orderInfoQuery);
+        return ActionResponse.success(orderInfoService.deleteOrder(orderInfoQuery));
     }
 }

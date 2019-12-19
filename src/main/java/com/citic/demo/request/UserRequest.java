@@ -16,6 +16,8 @@ import lombok.*;
 public class UserRequest {
     private Integer userId;
 
+    private String userCount;
+
     private String phoneNum;
 
     private String mail;
@@ -102,5 +104,13 @@ public class UserRequest {
 
     public void setGrade(String grade) {
         this.grade = grade == null ? null : grade.trim();
+    }
+
+    public String getUserCount() {
+        return userCount;
+    }
+
+    public void setUserCount(String userCount) {
+        this.userCount = userCount;
     }
 }

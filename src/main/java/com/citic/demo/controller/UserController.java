@@ -1,6 +1,7 @@
 package com.citic.demo.controller;
 
 import com.citic.demo.base.ActionResponse;
+import com.citic.demo.base.RespBasicCode;
 import com.citic.demo.entity.UserInfo;
 import com.citic.demo.query.GoodsQuery;
 import com.citic.demo.query.UserQuery;
@@ -42,7 +43,12 @@ public class UserController {
     @RequestMapping(value = "/save")
     public ActionResponse saveUserInfo(@RequestBody UserRequest userRequest) throws Exception{
         log.info(userRequest.toString());
-        this.userService.saveUserInfo(userRequest);
+        try {
+            this.userService.saveUserInfo(userRequest);
+        }catch (Exception e){
+            return ActionResponse.fail(RespBasicCode.ACCOUNT_LOGIN_ERROR, "账号已存在！");
+        }
+
         return ActionResponse.success();
     }
 
@@ -65,6 +71,9 @@ public class UserController {
     public ActionResponse valUserInfo(@RequestBody UserRequest userRequest) throws Exception{
 
         UserInfo userInfo = this.userService.queryUserInfoByPhoneAndPwd(userRequest);
+        if (userInfo == null){
+
+        }
         return ActionResponse.success(userInfo);
     }
 

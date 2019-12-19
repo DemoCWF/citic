@@ -25,7 +25,10 @@ public class TicketsController {
     @Autowired
     private TicketsService ticketsService;
 
-    /**新增优惠券
+    /**
+     *
+     * 新增优惠券
+     *
      * @param ticketRequest
      * @return
      * @throws Exception
@@ -41,7 +44,10 @@ public class TicketsController {
     }
 
 
-    /**删除优惠券
+    /**
+     *
+     * 删除优惠券
+     *
      * @param id
      * @return
      * @throws Exception
@@ -53,7 +59,7 @@ public class TicketsController {
     }
 
     /**修改优惠券
-     * @param id
+     * @param
      * @return
      * @throws Exception
      */

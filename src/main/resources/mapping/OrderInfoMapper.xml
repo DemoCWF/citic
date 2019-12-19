@@ -2,53 +2,61 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.citic.demo.mapper.OrderInfoMapper">
     <resultMap id="BaseResultMap" type="com.citic.demo.entity.OrderInfo">
-        <id column="ORDER_ID" property="orderId"/>
-        <result column="USER_ID" property="userId"/>
-        <result column="GOODS_ID" property="goodsId"/>
-        <result column="GOODS_NAME" property="goodsName"/>
-        <result column="ORDER_TIME" property="orderTime"/>
-        <result column="GOODS_NUM" property="goodsNum"/>
-        <result column="ORDER_STATE" property="orderState"/>
-        <result column="PAY" property="pay"/>
-        <result column="REAL_PAY" property="realPay"/>
-        <result column="PAY_TIME" property="payTime"/>
-        <result column="SALEWAY" property="saleway"/>
+        <id column="order_id" property="orderId"/>
+        <result column="user_id" property="userId"/>
+        <result column="goods_id" property="goodId"/>
+        <result column="goods_name" property="goodName"/>
+        <result column="goods_num" property="goodNum"/>
+        <result column="order_time" property="orderTime"/>
+        <result column="order_state" property="orderStatus"/>
+        <result column="pay" property="pay"/>
+        <result column="real_pay" property="realPay"/>
+        <result column="pay_time" property="payTime"/>
+        <result column="sale_price" property="salePrice"/>
+        <result column="saleway_type" property="saleway"/>
+        <result column="pay_way" property="payWay"/>
     </resultMap>
 
 
     <sql id="IF_Base_Column_List">
         <if test=" orderId != null">
-            ORDER_ID,
+            order_id,
         </if>
         <if test=" userId != null">
-            USER_ID,
+            user_id,
         </if>
-        <if test=" goodsId != null">
-            GOODS_ID,
+        <if test=" goodId != null">
+            goods_id,
         </if>
-        <if test=" goodsName != null">
-            GOODS_NAME,
+        <if test=" goodName != null">
+            goods_name,
+        </if>
+        <if test=" goodNum != null">
+            goods_num,
         </if>
         <if test=" orderTime != null">
-            ORDER_TIME,
+            order_time,
         </if>
-        <if test=" goodsNum != null">
-            GOODS_NUM,
-        </if>
-        <if test=" orderState != null">
-            ORDER_STATE,
+        <if test=" orderStatus != null">
+            order_state,
         </if>
         <if test=" pay != null">
-            PAY,
+            pay,
         </if>
         <if test=" realPay != null">
-            REAL_PAY,
+            real_pay,
         </if>
         <if test=" payTime != null">
-            PAY_TIME,
+            pay_time,
+        </if>
+        <if test=" salePrice != null">
+            sale_price,
         </if>
         <if test=" saleway != null">
-            SALEWAY,
+            saleway_type,
+        </if>
+        <if test=" payWay != null">
+            pay_way,
         </if>
     </sql>
 
@@ -59,20 +67,20 @@
         <if test=" userId != null">
             #{userId},
         </if>
-        <if test=" goodsId != null">
-            #{goodsId},
+        <if test=" goodId != null">
+            #{goodId},
         </if>
-        <if test=" goodsName != null">
-            #{goodsName},
+        <if test=" goodName != null">
+            #{goodName},
+        </if>
+        <if test=" goodNum != null">
+            #{goodNum},
         </if>
         <if test=" orderTime != null">
             #{orderTime},
         </if>
-        <if test=" goodsNum != null">
-            #{goodsNum},
-        </if>
-        <if test=" orderState != null">
-            #{orderState},
+        <if test=" orderStatus != null">
+            #{orderStatus},
         </if>
         <if test=" pay != null">
             #{pay},
@@ -83,29 +91,39 @@
         <if test=" payTime != null">
             #{payTime},
         </if>
+        <if test=" salePrice != null">
+            #{salePrice},
+        </if>
         <if test=" saleway != null">
             #{saleway},
+        </if>
+        <if test=" payWay != null">
+            #{payWay},
         </if>
     </sql>
 
 
-    <select id="queryOrderList" parameterType="com.citic.demo.query.OrderInfoQuery" resultMap="BaseResultMap">
+    <select id="queryOrderList" parameterType="com.citic.demo.query.OrderInfoQuery" resultType="com.citic.demo.response.OrderResponse">
         select
-        orderinfo.ORDER_ID as ORDER_ID,
-        orderinfo.USER_ID as USER_ID,
-        orderinfo.GOODS_ID as GOODS_ID,
-        orderinfo.GOODS_NAME as GOODS_NAME,
-        orderinfo.ORDER_TIME as ORDER_TIME,
-        orderinfo.GOODS_NUM as GOODS_NUM,
-        orderinfo.ORDER_STATE as ORDER_STATE,
-        orderinfo.PAY as PAY,
-        orderinfo.REAL_PAY as REAL_PAY,
-        orderinfo.PAY_TIME as PAY_TIME,
-        orderinfo.SALEWAY as SALEWAY
+        orderinfo.order_id as orderId,
+        orderinfo.user_id as userId,
+        orderinfo.goods_id as goodId,
+        orderinfo.goods_name as goodName,
+        FROM_UNIXTIME(orderinfo.order_time,'%Y-%m-%d %H:%i:%s') as orderTime,
+        goodsinfo.goods_photo as goodImgSrc,
+        goodsinfo.price as goodPrice,
+        orderinfo.goods_num as goodNumber,
+        orderinfo.order_state as orderStatus,
+        orderinfo.pay as orderAmount,
+        orderinfo.real_pay as realPay,
+        FROM_UNIXTIME(orderinfo.pay_time,'%Y-%m-%d %H:%i:%s') as payTime,
+        orderinfo.pay_way as payWay
         from zx_orderinfo orderinfo
+        left join zx_goodsinfo goodsinfo
+        on orderinfo.goods_id = goodsinfo.goods_id
         where 1 = 1
         <if test=" userId != null">
-            and orderinfo.USER_ID = #{userId}
+            and orderinfo.user_id = #{userId}
         </if>
         <if test="pageSize != -1">
             LIMIT #{pageSize} offset #{pageOffset}
@@ -116,9 +134,9 @@
         select
         count(1)
         from zx_orderinfo orderinfo
-        where 1=1
+        where 1 = 1
         <if test=" userId != null">
-            and orderinfo.USER_ID = #{userId}
+            and orderinfo.user_id = #{userId}
         </if>
         <if test="pageSize != -1">
             LIMIT #{pageSize} offset #{pageOffset}
@@ -127,28 +145,31 @@
 
 
     <select id="queryOrderById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-        orderinfo.ORDER_ID as ORDER_ID,
-        orderinfo.USER_ID as USER_ID,
-        orderinfo.GOODS_ID as GOODS_ID,
-        orderinfo.GOODS_NAME as GOODS_NAME,
-        orderinfo.ORDER_TIME as ORDER_TIME,
-        orderinfo.GOODS_NUM as GOODS_NUM,
-        orderinfo.ORDER_STATE as ORDER_STATE,
-        orderinfo.PAY as PAY,
-        orderinfo.REAL_PAY as REAL_PAY,
-        orderinfo.PAY_TIME as PAY_TIME,
-        orderinfo.SALEWAY as SALEWAY
+        select
+        orderinfo.order_id as order_id,
+        orderinfo.user_id as user_id,
+        orderinfo.goods_id as goods_id,
+        orderinfo.goods_name as goods_name,
+        orderinfo.goods_num as goods_num,
+        orderinfo.order_time as order_time,
+        orderinfo.order_state as order_state,
+        orderinfo.pay as pay,
+        orderinfo.real_pay as real_pay,
+        orderinfo.pay_time as pay_time,
+        orderinfo.sale_price as sale_price,
+        orderinfo.saleway_type as saleway_type,
+        orderinfo.pay_way as payWay
         from zx_orderinfo orderinfo
         where 1 = 1
         <if test="orderId != null">
-            and orderinfo.ORDER_ID = #{orderId }
+            and orderinfo.order_id = #{orderId }
         </if>
     </select>
 
 
     <insert id="saveOrder" parameterType="com.citic.demo.entity.OrderInfo" useGeneratedKeys="true"
-            keyProperty="ORDER_ID"
-            keyColumn="ORDER_ID">
+            keyProperty="orderId"
+            keyColumn="orderId">
         insert into zx_orderinfo
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <include refid="IF_Base_Column_List"></include>
@@ -169,7 +190,17 @@
         saleway.judge_price as judgePrice,
         saleway.saleway_use
         from zx_saleway saleway
-        where saleway.saleway_use = 1
+        where
+        1 = 1
+        <if test="salewayType != null">
+            and saleway.saleway_type = #{salewayType}
+        </if>
+        <if test="subType != null">
+            and saleway.sub_type = #{subType}
+        </if>
+        <if test="salewayUse != null">
+            saleway.saleway_use = #{salewayUse}
+        </if>
     </select>
 
     <update id="updateTickets" parameterType="java.util.List">
@@ -197,32 +228,32 @@
 
 
     <update id="updateOrder" parameterType="com.citic.demo.entity.OrderInfo">
-        update zx_goodsinfo
+        update zx_orderinfo
         <trim prefix="SET" suffixOverrides=",">
-            <if test=" goodsNum != null">
-                GOODS_NUM = #{goodsNum },
+            <if test=" goodNum != null">
+                goods_num = #{goodNum },
             </if>
-            <if test=" orderState != null">
-                ORDER_STATE = #{orderState },
+            <if test=" orderStatus != null">
+                order_state = #{orderStatus },
             </if>
             <if test=" pay != null">
-                PAY = #{pay },
+                pay = #{pay },
             </if>
             <if test=" realPay != null">
-                REAL_PAY = #{realPay },
+                real_pay = #{realPay },
             </if>
             <if test=" payTime != null">
-                PAY_TIME = #{payTime },
+                pay_time = #{payTime },
             </if>
             <if test=" saleway != null">
-                SALEWAY = #{saleway },
+                saleway_type = #{saleway },
             </if>
         </trim>
-        where ORDER_ID = #{orderId}
+        where order_id = #{orderId}
     </update>
 
     <delete id="deleteOrder" parameterType="java.lang.Integer">
-        delete zx_goodsinfo where ORDER_ID = #{orderId}
+        delete from zx_orderinfo where order_id = #{orderId}
     </delete>
 
 

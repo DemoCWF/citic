@@ -5,6 +5,8 @@ import com.citic.demo.base.PageResult;
 import com.citic.demo.entity.*;
 import com.citic.demo.mapper.GoodsInfoMapper;
 import com.citic.demo.mapper.OrderInfoMapper;
+import com.citic.demo.mapper.ScoreMapper;
+import com.citic.demo.mapper.TicketsMapper;
 import com.citic.demo.query.OrderInfoQuery;
 import com.citic.demo.request.GoodsRequest;
 import com.citic.demo.request.OrderRequest;
@@ -12,10 +14,12 @@ import com.citic.demo.response.OrderResponse;
 import com.citic.demo.service.OrderInfoService;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Service
@@ -28,6 +32,12 @@ public class OrderInfoServiceImp implements OrderInfoService {
     private GoodsInfoMapper goodsInfoMapper;
 
     @Resource
+    private ScoreMapper scoreMapper;
+
+    @Resource
+    private TicketsMapper ticketsMapper;
+
+    @Resource
     private BaseConverter<OrderInfo, OrderResponse> reponseConverter;
 
     /**
@@ -38,12 +48,12 @@ public class OrderInfoServiceImp implements OrderInfoService {
      * @throws Exception
      */
     @Override
-    public PageResult<OrderInfo> queryOrder(OrderInfoQuery orderInfoQuery) throws Exception {
+    public PageResult<OrderResponse> queryOrder(OrderInfoQuery orderInfoQuery) throws Exception {
         return new PageResult<>(orderInfoQuery.getPageSize(), this.queryOrderCount(orderInfoQuery),
                 orderInfoQuery.getCurrentPage(), this.queryOrderList(orderInfoQuery));
     }
 
-    private List<OrderInfo> queryOrderList(OrderInfoQuery orderInfoQuery) throws Exception {
+    private List<OrderResponse> queryOrderList(OrderInfoQuery orderInfoQuery) throws Exception {
         return orderInfoMapper.queryOrderList(orderInfoQuery);
     }
 
@@ -61,7 +71,7 @@ public class OrderInfoServiceImp implements OrderInfoService {
     @Override
     public OrderInfo queryOrderById(Integer orderId) throws Exception {
         OrderInfo orderInfo = orderInfoMapper.queryOrderById(orderId);
-        GoodsInfo goodsInfo = goodsInfoMapper.queryGoodsInfoById(orderInfo.getGoodsId());
+        GoodsInfo goodsInfo = goodsInfoMapper.queryGoodsInfoById(orderInfo.getGoodId());
         List<SaleWay> saleWay = null;
         if ("".equals(orderInfo.getSaleway()) || orderInfo.getSaleway() != null) {
             List<String> saleWayList = Arrays.asList(orderInfo.getSaleway().split(","));
@@ -77,7 +87,7 @@ public class OrderInfoServiceImp implements OrderInfoService {
 
         }
 
-        return null;
+        return orderInfo;
     }
 
     /**
@@ -89,6 +99,9 @@ public class OrderInfoServiceImp implements OrderInfoService {
      */
     @Override
     public Integer saveOrder(OrderRequest orderRequest) throws Exception {
+        Long currentTime = System.currentTimeMillis();
+        orderRequest.setOrderTime(currentTime);
+        orderRequest.setOrderStatus("未完成");
         orderInfoMapper.saveOrder(orderRequest);
         return orderRequest.getOrderId();
     }
@@ -100,7 +113,8 @@ public class OrderInfoServiceImp implements OrderInfoService {
      * @throws Exception
      */
     @Override
-    public Map<String, List<SaleWay>> saleWay() throws Exception {
+    public Map<String, List<SaleWay>> saleWay(UserInfo userInfo) throws Exception {
+        /**
         //获取所有优惠信息
         List<SaleWay> saleWayList = orderInfoMapper.querySaleWays();
         Map<String, List<SaleWay>> saleWayMap = new HashMap<>();
@@ -114,6 +128,25 @@ public class OrderInfoServiceImp implements OrderInfoService {
                 saleWayMap.put(salewayType, list);
             }
         }
+         */
+
+        Map<String, List<SaleWay>> saleWayMap = new HashMap<>();
+
+        // 1.获取满减信息
+        SaleWay saleWay = new SaleWay();
+        saleWay.setSalewayType(1);
+        saleWay.setSalewayUse(1);
+        List<SaleWay> reductions = orderInfoMapper.querySaleWays(saleWay);
+
+
+        // 2.用户所有优惠券及数量
+        List<Tickets> coupons = ticketsMapper.selectByUserId(userInfo.getUserId());
+
+
+
+        // 3.获取用户积分
+        Integer integral = scoreMapper.selectByUserId(userInfo.getUserId()).getScoreSum();
+
         return saleWayMap;
     }
 
@@ -156,11 +189,11 @@ public class OrderInfoServiceImp implements OrderInfoService {
 
         OrderRequest orderInfo = new OrderRequest();
         orderInfo.setUserId(priceHistory.getUserId());
-        orderInfo.setGoodsId(priceHistory.getGoodsId());
+        orderInfo.setGoodId(priceHistory.getGoodsId());
         Long time = System.currentTimeMillis();
         orderInfo.setOrderTime(time);
         orderInfo.setPayTime(time);
-        orderInfo.setGoodsNum(priceHistory.getGoodsNum());
+        orderInfo.setGoodNum(priceHistory.getGoodsNum());
         orderInfo.setPay(priceHistory.getCountPri());
         orderInfo.setRealPay(priceHistory.getCountPri());
         orderInfo.setSaleway(priceHistory.getPayClass().toString());
@@ -225,12 +258,13 @@ public class OrderInfoServiceImp implements OrderInfoService {
     /**
      * 删除订单
      *
-     * @param orderId
+     * @param orderInfoQuery
      * @return
      * @throws Exception
      */
     @Override
-    public Integer deleteOrder(Integer orderId) throws Exception {
-        return orderInfoMapper.deleteOrder(orderId);
+    public PageResult<OrderResponse> deleteOrder(OrderInfoQuery orderInfoQuery) throws Exception {
+        orderInfoMapper.deleteOrder(orderInfoQuery.getOrderId());
+        return this.queryOrder(orderInfoQuery);
     }
 }

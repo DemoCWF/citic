@@ -2,9 +2,8 @@ package com.citic.demo.query;
 
 import com.citic.demo.base.ObjectQuery;
 
-import java.util.Date;
-
 public class OrderInfoQuery extends ObjectQuery {
+
     private Integer orderId;
 
     private Integer userId;
@@ -13,7 +12,7 @@ public class OrderInfoQuery extends ObjectQuery {
 
     private String goodsName;
 
-    private Date orderTime;
+    private Long orderTime;
 
     private Integer goodsNum;
 
@@ -23,9 +22,13 @@ public class OrderInfoQuery extends ObjectQuery {
 
     private String realPay;
 
-    private Date payTime;
+    private Long payTime;
+
+    private String salePrice;
 
     private String saleway;
+
+    private String userAccount;
 
     public Integer getOrderId() {
         return orderId;
@@ -39,8 +42,8 @@ public class OrderInfoQuery extends ObjectQuery {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setUserId(String userId) {
+        this.userId = Integer.parseInt(userId);
     }
 
     public Integer getGoodsId() {
@@ -57,14 +60,6 @@ public class OrderInfoQuery extends ObjectQuery {
 
     public void setGoodsName(String goodsName) {
         this.goodsName = goodsName == null ? null : goodsName.trim();
-    }
-
-    public Date getOrderTime() {
-        return orderTime;
-    }
-
-    public void setOrderTime(Date orderTime) {
-        this.orderTime = orderTime;
     }
 
     public Integer getGoodsNum() {
@@ -99,19 +94,43 @@ public class OrderInfoQuery extends ObjectQuery {
         this.realPay = realPay == null ? null : realPay.trim();
     }
 
-    public Date getPayTime() {
-        return payTime;
-    }
-
-    public void setPayTime(Date payTime) {
-        this.payTime = payTime;
-    }
-
     public String getSaleway() {
         return saleway;
     }
 
     public void setSaleway(String saleway) {
         this.saleway = saleway == null ? null : saleway.trim();
+    }
+
+    public Long getOrderTime() {
+        return orderTime;
+    }
+
+    public void setOrderTime(Long orderTime) {
+        this.orderTime = orderTime;
+    }
+
+    public Long getPayTime() {
+        return payTime;
+    }
+
+    public void setPayTime(Long payTime) {
+        this.payTime = payTime;
+    }
+
+    public String getSalePrice() {
+        return salePrice;
+    }
+
+    public void setSalePrice(String salePrice) {
+        this.salePrice = salePrice;
+    }
+
+    public String getUserAccount() {
+        return userAccount;
+    }
+
+    public void setUserAccount(String userAccount) {
+        this.userAccount = userAccount;
     }
 }

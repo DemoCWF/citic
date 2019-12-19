@@ -170,8 +170,15 @@ var allGoods = [
         },
 ];
 var currentUser = {
+    "userId":"2",
     "userName":"小沐童",
-    "headImg":"images/headImg/headImg1.jpg"
+    "userEmail":"535165469@qq.com",
+    "userTel":"18382230408",
+    "userGrade":"青铜",
+    "headImg":"images/headImg/headImg1.jpg",
+    "integral":"200",
+    "address":"四川省成都市四川师范大学成龙校区",
+
 };
 var orderList=[
     {
@@ -284,8 +291,48 @@ function showCart() {
 
 var app = angular.module("PaySystem", ["ngRoute"]);
 
+//*--------- 主页 ----------*/
 app.controller("indexControl", ["$scope", "$rootScope", "$http", function ($scope, $rootScope, $http) {
-    $rootScope.isSignUp = false;
+    $rootScope.isSignUp = true;
+    //请求商品
+    $http({
+        method: "Post",
+        url: "/goods/query/all",
+        data:{
+            // userName:$scope.userName
+        }
+    }).then(function successCallback(response) {
+        $scope.isSignUp = true;
+        var dataBody = response.data["body"];
+        console.log(dataBody.items);
+        $scope.allGoods = dataBody.items;
+        //执行分页
+        layui.use('laypage', function(){
+        var laypage = layui.laypage;
+        //执行一个laypage实例
+        laypage.render({
+            elem: 'pages' //注意，这里的 test1 是 ID，不用加 # 号
+            ,limit:12
+            , count: dataBody["totalRecords"] //数据总数，从服务端得到
+            , jump: function (obj, first) {
+                $http({
+                    method: "Post",
+                    url: "/goods/query/all",
+                    data: {
+                        currentPage: obj.curr
+                    }
+                }).then(function successCallback(response) {
+                    var dataBody = response.data["body"];
+                    console.log(dataBody.items);
+                    $scope.allGoods = dataBody.items;
+                });
+            }
+        });
+      });
+        $scope.$apply();
+    });
+
+    $scope.allGoods = allGoods;
     $rootScope.currentUser = currentUser;
     $rootScope.showUserMenu=false;
     //显示用户菜单
@@ -314,18 +361,37 @@ app.controller("indexControl", ["$scope", "$rootScope", "$http", function ($scop
                       ,content: $("#signInDialog")
                       ,btn: ['登　录']
                       ,btn1:function(){
-                           if($scope.userName=="w_juan" && $scope.userPass=="07081024")
-                           {
-                               $scope.isSignUp = true;
-                               console.log($scope.isSignUp);
-                               // layer.closeAll();
-                               $scope.$apply();
-                               layer.close(layer.index);
-                           }
-                           else
-                           {
-                               layer.alert('用户名或密码输入错误！', {icon: 5,closeBtn:false});
-                           }
+                          $http({
+                              method: "Get",
+                              url: "../data/data.json",
+                              params:{
+                                  userName:$scope.userName
+                              }
+                          }).then(function successCallback(response) {
+                              $scope.isSignUp = true;
+                              console.log($scope.isSignUp);
+                              // layer.closeAll();
+                              $scope.$apply();
+                              layer.close(layer.index);
+                              // $scope.defaultHot = response.data.recommend[2];
+                              // for (var i = 1; i < response.data.recommend.length; i++) {
+                              //     recommendMenu.push(response.data.recommend[i]);
+                              // }
+                              // datas = response.data;
+                              // $scope.hotMenu =datas.hot;  //热门菜品
+                              // $scope.allRecommend = datas.recommend;
+                              // $rootScope.filterClass($scope.hotMenu);
+                              // $rootScope.filterClass($scope.allRecommend);
+                          });
+                           // if($scope.userName=="w_juan" && $scope.userPass=="07081024")
+                           // {
+                           //
+                           //
+                           // }
+                           // else
+                           // {
+                           //     layer.alert('用户名或密码输入错误！', {icon: 5,closeBtn:false});
+                           // }
                       }
            });
 
@@ -400,7 +466,6 @@ app.controller("indexControl", ["$scope", "$rootScope", "$http", function ($scop
                     }
                    }
                 });
-        console.log("hhh12,注册正确："+$scope.signUpCorrect);
         if($scope.signUpCorrect)
         {
             console.log("hhh");
@@ -409,7 +474,7 @@ app.controller("indexControl", ["$scope", "$rootScope", "$http", function ($scop
     };
 
     $rootScope.bannerImgSrc=bannerImgSrc;
-    $scope.allGoods = allGoods;
+
     //筛选对应分类菜单
     $rootScope.filterClass=function(dataClass){
         angular.forEach(dataClass,function(item){
@@ -430,72 +495,148 @@ app.controller("indexControl", ["$scope", "$rootScope", "$http", function ($scop
     $rootScope.showDetail = function (food) {
         $rootScope.food = food;
     };
-    /*
-    //获取菜单
-    $http({
-        method: "Get",
-        url: "../data/data.json"
-    }).then(function successCallback(response) {
-        $scope.defaultHot = response.data.recommend[2];
-        for (var i = 1; i < response.data.recommend.length; i++) {
-            recommendMenu.push(response.data.recommend[i]);
-        }
-        datas = response.data;
-        $scope.hotMenu =datas.hot;  //热门菜品
-        $scope.allRecommend = datas.recommend;
-        $rootScope.filterClass($scope.hotMenu);
-        $rootScope.filterClass($scope.allRecommend);
-    });
-
-     */
-    //$scope.recommend = recommendMenu; //推荐菜品,除第一个
-    $rootScope.orders = orders;   //已点菜单
-    $rootScope.order = function (x) {
-        x.selected = true;
-        x.num += 1;
-        orders.push(x);
-    };
 }]);
 /*----------------- 首页 ----------------------*/
 app.controller("homeControl",["$scope",function($scope){
-    $scope.bannerImgSrc = bannerImgSrc;
-    $scope.test="hello";
-    $scope.allGoods = allGoods;
+    // $scope.bannerImgSrc = bannerImgSrc;
+    // $scope.test="hello";
+    // $scope.allGoods = allGoods;
+
 }]);
 
 /*---------------- 商品详情 -----------------*/
-app.controller("goodDetailControl",["$scope",function($scope){
-    form.render();
-    //获取菜单
-    // $http({
-    //     method: "Get",
-    //     url: "../data/data.json"
-    // }).then(function successCallback(response) {
-    //     $scope.currentGood = allGoods[0];
-    // });
-    $scope.currentGood = allGoods[0];
+app.controller("goodDetailControl",["$scope","$http","$routeParams",function($scope,$http,$routeParams){
+    // form.render();
+    $http({
+            method: "Post",
+            url: "/goods/query/" + $routeParams["goodId"],
+            data:{
+                goodId:$routeParams["goodId"]
+            }
+        }).then(function successCallback(response) {
+            $scope.currentGood = response["data"].body;
+        });
 }]);
 
 /*---------------- 个人中心 ----------*/
-app.controller("personalCenterControl",["$scope",function($scope){
+app.controller("personalCenterControl",["$scope","$http",function($scope,$http){
     // form.render();
     // $scope.$apply();
-    $scope.orderList = orderList;
+    $scope.currentUser = currentUser;
+    $http({
+            method: "Post",
+            url: "/order/query/all",
+            data:{
+                userId:$scope.currentUser.userId,
+            }
+        }).then(function successCallback(response) {
+            var dataBody = response.data["body"];
+            $scope.orderList = dataBody.items;
+        });
+
+    // $scope.orderList = orderList;
     console.log(orderList.length);
     //删除订单
     $scope.deleteOrder=function(selectedOrder)
     {
         console.log("id="+selectedOrder.orderId);
+        layer.confirm('确认删除该订单？', {
+          btn: ['确认','取消'] //可以无限个按钮
+          ,btn1: function(index, layero){
+            //按钮【按钮三】的回调
+          }
+        }, function(index, layero){
+            console.log("确认");
+            $http({
+                method: "Post",
+                url: "/order/delete",
+                data:{
+                    userId:$scope.currentUser.userId,
+                    orderId:selectedOrder.orderId
+                }
+            }).then(function successCallback(response) {
+                var dataBody = response.data["body"];
+                $scope.orderList = dataBody.items;
+            });
+        });
         // var index = $scope.orderList.indexOf(selectedOrder);
-        for(var i = 0;i<$scope.orderList.length;i++)
-        {
-            if($scope.orderList[i].orderId == selectedOrder.orderId)
-            {
-                // console.log("delete");
-                $scope.orderList.splice(i,1);
-            }
-        }
-        console.log($scope.orderList.length);
+        // for(var i = 0;i<$scope.orderList.length;i++)
+        // {
+        //     if($scope.orderList[i].orderId == selectedOrder.orderId)
+        //     {
+        //         // console.log("delete");
+        //         $scope.orderList.splice(i,1);
+        //     }
+        // }
+        // console.log($scope.orderList.length);
+    }
+    /*============ 个人信息 ==========*/
+    $scope.showEditDialog = function()
+    {
+        console.log("hhh");
+        layer.open({
+               type: 1
+               ,maxWidth:450
+               ,title: "用户注册" //不显示标题栏
+               ,area: '450px;'
+               ,shade: 0.8
+               ,id: 'LAY_layuipro' //设定一个id，防止重复弹出
+               ,btnAlign: 'c'
+               ,moveType: 1 //拖拽模式，0或者1
+               ,content: $("#editInfoDialog")
+               ,btn: ['注　册']
+               ,btn1:function(){
+                var emailReg = /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
+                var telReg = /^[1][3,4,5,7,8][0-9]{9}$/;
+                console.log("userName:"+$scope.signUpUserName);
+                //判断用户名
+                if($scope.signUpUserName == "")
+                {
+                    layer.alert('给自己取个名字吧！', {icon: 5,closeBtn:false});
+                    $scope.signUpInfoCorrect = false;
+                }
+                else{
+                    //判断邮箱和电话
+                    if(emailReg.test($scope.signUpuserCount) || telReg.test($scope.signUpUserCount))
+                        {
+                            if($scope.userPass == "")
+                            {
+                                layer.alert('请输入密码！', {icon: 5,closeBtn:false});
+                                $scope.signUpInfoCorrect = false;
+                            }
+                            else {
+                                //两次密码输入不一致
+                                if($scope.signUpUserPass != $scope.signUpUserConfirmPass)
+                                {
+                                    $scope.signUpInfoCorrect = false;
+                                   layer.alert('两次密码输入不一致！', {icon: 5,closeBtn:false});
+                                }
+                                else{
+                                    $scope.signUpInfoCorrect = true;
+                                }
+                            }
+                        }
+                    else
+                        {
+                        layer.alert('请输入正确的邮箱或手机号码！', {icon: 5,closeBtn:false});
+                        $scope.signUpInfoCorrect = false;
+                    }
+                }
+                //用户输入信息均合法
+                if($scope.signUpInfoCorrect)
+                {
+                    $scope.currentUser={
+                        userName:$scope.signUpUserName,
+                        userCount:$scope.signUpUserCount,
+                        userPass:$scope.signUpUserPass,
+                        userSex:$("input[type=radio]:checked").val()
+                    };
+                    console.log($scope.currentUser);
+                    $scope.signUpCorrect = true;
+                    layer.close(layer.index);
+                }
+               }
+            });
     }
 }]);
 
@@ -677,7 +818,7 @@ app.config(["$routeProvider", function ($routeProvider) {
     }).when("/signUp", {
         controller: "signUpControl",
         templateUrl: "route/signUp.html"
-    }).when("/goodDetail",{
+    }).when("/goodDetail/:goodId",{
         controller:"goodDetailControl",
         templateUrl:"route/goodDetail.html"
     }).when("/personalCenter",{

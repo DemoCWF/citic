@@ -6,21 +6,23 @@ public class OrderInfo {
 
     private Integer userId;
 
-    private Integer goodsId;
+    private Integer goodId;
 
-    private String goodsName;
+    private String goodName;
 
     private Long orderTime;
 
-    private Integer goodsNum;
+    private Integer goodNum;
 
-    private String orderState;
+    private String orderStatus;
 
     private String pay;
 
     private String realPay;
 
     private Long payTime;
+
+    private String salePrice;
 
     private String saleway;
 
@@ -38,38 +40,6 @@ public class OrderInfo {
 
     public void setUserId(Integer userId) {
         this.userId = userId;
-    }
-
-    public Integer getGoodsId() {
-        return goodsId;
-    }
-
-    public void setGoodsId(Integer goodsId) {
-        this.goodsId = goodsId;
-    }
-
-    public String getGoodsName() {
-        return goodsName;
-    }
-
-    public void setGoodsName(String goodsName) {
-        this.goodsName = goodsName == null ? null : goodsName.trim();
-    }
-
-    public Integer getGoodsNum() {
-        return goodsNum;
-    }
-
-    public void setGoodsNum(Integer goodsNum) {
-        this.goodsNum = goodsNum;
-    }
-
-    public String getOrderState() {
-        return orderState;
-    }
-
-    public void setOrderState(String orderState) {
-        this.orderState = orderState == null ? null : orderState.trim();
     }
 
     public String getPay() {
@@ -110,5 +80,45 @@ public class OrderInfo {
 
     public void setPayTime(Long payTime) {
         this.payTime = payTime;
+    }
+
+    public String getSalePrice() {
+        return salePrice;
+    }
+
+    public void setSalePrice(String salePrice) {
+        this.salePrice = salePrice;
+    }
+
+    public Integer getGoodId() {
+        return goodId;
+    }
+
+    public void setGoodId(Integer goodId) {
+        this.goodId = goodId;
+    }
+
+    public String getGoodName() {
+        return goodName;
+    }
+
+    public void setGoodName(String goodName) {
+        this.goodName = goodName;
+    }
+
+    public Integer getGoodNum() {
+        return goodNum;
+    }
+
+    public void setGoodNum(Integer goodNum) {
+        this.goodNum = goodNum;
+    }
+
+    public String getOrderStatus() {
+        return orderStatus;
+    }
+
+    public void setOrderStatus(String orderStatus) {
+        this.orderStatus = orderStatus;
     }
 }

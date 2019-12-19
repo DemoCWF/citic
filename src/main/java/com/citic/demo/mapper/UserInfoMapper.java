@@ -16,4 +16,6 @@ public interface UserInfoMapper {
     int updateByPrimaryKey(UserInfo record);
 
     UserInfo selectByPhoneAndPwd(UserInfo record);
+
+    int valPhoneAndMail(UserInfo userInfo);
 }

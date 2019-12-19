@@ -1,37 +1,47 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.citic.demo.mapper.UserInfoMapper" >
-  <resultMap id="BaseResultMap" type="com.citic.demo.entity.UserInfo" >
-    <id column="user_id" property="userId" jdbcType="INTEGER" />
-    <result column="phone_num" property="phoneNum" jdbcType="VARCHAR" />
-    <result column="mail" property="mail" jdbcType="VARCHAR" />
-    <result column="user_name" property="userName" jdbcType="VARCHAR" />
-    <result column="password" property="password" jdbcType="VARCHAR" />
-    <result column="sex" property="sex" jdbcType="VARCHAR" />
-    <result column="user_photo" property="userPhoto" jdbcType="VARCHAR" />
-    <result column="adress" property="adress" jdbcType="VARCHAR" />
-    <result column="grade" property="grade" jdbcType="VARCHAR" />
-  </resultMap>
-  <sql id="Base_Column_List" >
+<mapper namespace="com.citic.demo.mapper.UserInfoMapper">
+    <resultMap id="BaseResultMap" type="com.citic.demo.entity.UserInfo">
+        <id column="user_id" property="userId" jdbcType="INTEGER"/>
+        <result column="phone_num" property="phoneNum" jdbcType="VARCHAR"/>
+        <result column="mail" property="mail" jdbcType="VARCHAR"/>
+        <result column="user_name" property="userName" jdbcType="VARCHAR"/>
+        <result column="password" property="password" jdbcType="VARCHAR"/>
+        <result column="sex" property="sex" jdbcType="VARCHAR"/>
+        <result column="user_photo" property="userPhoto" jdbcType="VARCHAR"/>
+        <result column="adress" property="adress" jdbcType="VARCHAR"/>
+        <result column="grade" property="grade" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
     user_id, phone_num, mail, user_name, password, sex, user_photo, adress, grade
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from zx_userinfo
-    where user_id = #{userId,jdbcType=INTEGER}
-  </select>
-  <select id="selectByPhoneAndPwd" resultMap="BaseResultMap" parameterType="com.citic.demo.entity.UserInfo" >
-    select
-    <include refid="Base_Column_List" />
-    from zx_userinfo
-    where phone_num = #{phoneNum,jdbcType=VARCHAR} and password =  #{password,jdbcType=VARCHAR}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from zx_userinfo
+        where user_id = #{userId,jdbcType=INTEGER}
+    </select>
+    <select id="selectByPhoneAndPwd" resultMap="BaseResultMap" parameterType="com.citic.demo.entity.UserInfo">
+        select
+        <include refid="Base_Column_List"/>
+        from zx_userinfo
+        where
+        1 = 1
+        <if test="phoneNum != null">
+            and phone_num = #{phoneNum,jdbcType=VARCHAR}
+        </if>
+        <if test="mail != null">
+            and mail = #{mail,jdbcType=VARCHAR}
+        </if>
+        <if test="password != null">
+            and password = #{password,jdbcType=VARCHAR}
+        </if>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from zx_userinfo
     where user_id = #{userId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.citic.demo.entity.UserInfo" >
+    <insert id="insert" parameterType="com.citic.demo.entity.UserInfo">
     insert into zx_userinfo (user_id, phone_num, mail, 
       user_name, password, sex, 
       user_photo, adress, grade
@@ -41,98 +51,98 @@
       #{userPhoto,jdbcType=VARCHAR}, #{adress,jdbcType=VARCHAR}, #{grade,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.citic.demo.entity.UserInfo" >
-    insert into zx_userinfo
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="userId != null" >
-        user_id,
-      </if>
-      <if test="phoneNum != null" >
-        phone_num,
-      </if>
-      <if test="mail != null" >
-        mail,
-      </if>
-      <if test="userName != null" >
-        user_name,
-      </if>
-      <if test="password != null" >
-        password,
-      </if>
-      <if test="sex != null" >
-        sex,
-      </if>
-      <if test="userPhoto != null" >
-        user_photo,
-      </if>
-      <if test="adress != null" >
-        adress,
-      </if>
-      <if test="grade != null" >
-        grade,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="userId != null" >
-        #{userId,jdbcType=INTEGER},
-      </if>
-      <if test="phoneNum != null" >
-        #{phoneNum,jdbcType=VARCHAR},
-      </if>
-      <if test="mail != null" >
-        #{mail,jdbcType=VARCHAR},
-      </if>
-      <if test="userName != null" >
-        #{userName,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null" >
-        #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="sex != null" >
-        #{sex,jdbcType=VARCHAR},
-      </if>
-      <if test="userPhoto != null" >
-        #{userPhoto,jdbcType=VARCHAR},
-      </if>
-      <if test="adress != null" >
-        #{adress,jdbcType=VARCHAR},
-      </if>
-      <if test="grade != null" >
-        #{grade,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.citic.demo.entity.UserInfo" >
-    update zx_userinfo
-    <set >
-      <if test="phoneNum != null" >
-        phone_num = #{phoneNum,jdbcType=VARCHAR},
-      </if>
-      <if test="mail != null" >
-        mail = #{mail,jdbcType=VARCHAR},
-      </if>
-      <if test="userName != null" >
-        user_name = #{userName,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null" >
-        password = #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="sex != null" >
-        sex = #{sex,jdbcType=VARCHAR},
-      </if>
-      <if test="userPhoto != null" >
-        user_photo = #{userPhoto,jdbcType=VARCHAR},
-      </if>
-      <if test="adress != null" >
-        adress = #{adress,jdbcType=VARCHAR},
-      </if>
-      <if test="grade != null" >
-        grade = #{grade,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where user_id = #{userId,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.citic.demo.entity.UserInfo" >
+    <insert id="insertSelective" parameterType="com.citic.demo.entity.UserInfo">
+        insert into zx_userinfo
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="phoneNum != null">
+                phone_num,
+            </if>
+            <if test="mail != null">
+                mail,
+            </if>
+            <if test="userName != null">
+                user_name,
+            </if>
+            <if test="password != null">
+                password,
+            </if>
+            <if test="sex != null">
+                sex,
+            </if>
+            <if test="userPhoto != null">
+                user_photo,
+            </if>
+            <if test="adress != null">
+                adress,
+            </if>
+            <if test="grade != null">
+                grade,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="phoneNum != null">
+                #{phoneNum,jdbcType=VARCHAR},
+            </if>
+            <if test="mail != null">
+                #{mail,jdbcType=VARCHAR},
+            </if>
+            <if test="userName != null">
+                #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null">
+                #{sex,jdbcType=VARCHAR},
+            </if>
+            <if test="userPhoto != null">
+                #{userPhoto,jdbcType=VARCHAR},
+            </if>
+            <if test="adress != null">
+                #{adress,jdbcType=VARCHAR},
+            </if>
+            <if test="grade != null">
+                #{grade,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.citic.demo.entity.UserInfo">
+        update zx_userinfo
+        <set>
+            <if test="phoneNum != null">
+                phone_num = #{phoneNum,jdbcType=VARCHAR},
+            </if>
+            <if test="mail != null">
+                mail = #{mail,jdbcType=VARCHAR},
+            </if>
+            <if test="userName != null">
+                user_name = #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                password = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null">
+                sex = #{sex,jdbcType=VARCHAR},
+            </if>
+            <if test="userPhoto != null">
+                user_photo = #{userPhoto,jdbcType=VARCHAR},
+            </if>
+            <if test="adress != null">
+                adress = #{adress,jdbcType=VARCHAR},
+            </if>
+            <if test="grade != null">
+                grade = #{grade,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where user_id = #{userId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.citic.demo.entity.UserInfo">
     update zx_userinfo
     set phone_num = #{phoneNum,jdbcType=VARCHAR},
       mail = #{mail,jdbcType=VARCHAR},
@@ -144,4 +154,18 @@
       grade = #{grade,jdbcType=VARCHAR}
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
+
+    <select id="valPhoneAndMail" resultMap="BaseResultMap" parameterType="com.citic.demo.entity.UserInfo">
+        select
+        count (*)
+        from zx_userinfo
+        where
+        1 = 1
+        <if test="phoneNum != null">
+            and phone_num = #{phoneNum,jdbcType=VARCHAR}
+        </if>
+        <if test="mail != null">
+            and mail = #{mail,jdbcType=VARCHAR}
+        </if>
+    </select>
 </mapper>

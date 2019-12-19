@@ -20,7 +20,7 @@
             <div class="goods-list-div layui-row layui-col-space20">
                 <div class="layui-col-xs2 layui-col-md-2" ng-repeat="good in allGoods">
                     <div class="good-img-div align-center">
-                        <a href="#/goodDetail">
+                        <a href="#/goodDetail/{{good.goodId}}">
                             <img ng-src={{good.goodImgSrc}} alt="" class="good-img pointer" ng-click="showGoodDetail">
                         </a>
                     </div>
@@ -30,6 +30,7 @@
                     </div>
                 </div>
             </div>
+            <div id="pages"></div>
         </div>
         <!--理财产品-->
         <div class="layui-tab-item">

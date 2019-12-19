@@ -1,37 +1,36 @@
 package com.citic.demo.response;
 
-import com.citic.demo.entity.GoodsInfo;
-import com.citic.demo.entity.SaleWay;
-
-import java.util.Date;
-
 public class OrderResponse {
 
     private Integer orderId;
 
     private Integer userId;
 
-    private Integer goodsId;
+    private Integer goodId;
 
-    private String goodsName;
+    private String goodName;
 
-    private Date orderTime;
+    private String orderTime;
 
-    private Integer goodsNum;
+    private String goodImgSrc;
 
-    private String orderState;
+    private String goodPrice;
 
-    private String pay;
+    private Integer goodNumber;
+
+    private String orderStatus;
+
+    // pay
+    private String orderAmount;
 
     private String realPay;
 
-    private Date payTime;
+    private String payTime;
 
+    // 优惠方式
     private String saleway;
 
-    private GoodsInfo goodsInfo;
-
-    private SaleWay saleWay;
+    private String payWay;
 
     public Integer getOrderId() {
         return orderId;
@@ -49,68 +48,12 @@ public class OrderResponse {
         this.userId = userId;
     }
 
-    public Integer getGoodsId() {
-        return goodsId;
-    }
-
-    public void setGoodsId(Integer goodsId) {
-        this.goodsId = goodsId;
-    }
-
-    public String getGoodsName() {
-        return goodsName;
-    }
-
-    public void setGoodsName(String goodsName) {
-        this.goodsName = goodsName;
-    }
-
-    public Date getOrderTime() {
-        return orderTime;
-    }
-
-    public void setOrderTime(Date orderTime) {
-        this.orderTime = orderTime;
-    }
-
-    public Integer getGoodsNum() {
-        return goodsNum;
-    }
-
-    public void setGoodsNum(Integer goodsNum) {
-        this.goodsNum = goodsNum;
-    }
-
-    public String getOrderState() {
-        return orderState;
-    }
-
-    public void setOrderState(String orderState) {
-        this.orderState = orderState;
-    }
-
-    public String getPay() {
-        return pay;
-    }
-
-    public void setPay(String pay) {
-        this.pay = pay;
-    }
-
     public String getRealPay() {
         return realPay;
     }
 
     public void setRealPay(String realPay) {
         this.realPay = realPay;
-    }
-
-    public Date getPayTime() {
-        return payTime;
-    }
-
-    public void setPayTime(Date payTime) {
-        this.payTime = payTime;
     }
 
     public String getSaleway() {
@@ -121,19 +64,83 @@ public class OrderResponse {
         this.saleway = saleway;
     }
 
-    public GoodsInfo getGoodsInfo() {
-        return goodsInfo;
+    public Integer getGoodId() {
+        return goodId;
     }
 
-    public void setGoodsInfo(GoodsInfo goodsInfo) {
-        this.goodsInfo = goodsInfo;
+    public void setGoodId(Integer goodId) {
+        this.goodId = goodId;
     }
 
-    public SaleWay getSaleWay() {
-        return saleWay;
+    public String getGoodName() {
+        return goodName;
     }
 
-    public void setSaleWay(SaleWay saleWay) {
-        this.saleWay = saleWay;
+    public void setGoodName(String goodName) {
+        this.goodName = goodName;
+    }
+
+    public String getGoodImgSrc() {
+        return goodImgSrc;
+    }
+
+    public void setGoodImgSrc(String goodImgSrc) {
+        this.goodImgSrc = goodImgSrc;
+    }
+
+    public String getGoodPrice() {
+        return goodPrice;
+    }
+
+    public void setGoodPrice(String goodPrice) {
+        this.goodPrice = goodPrice;
+    }
+
+    public Integer getGoodNumber() {
+        return goodNumber;
+    }
+
+    public void setGoodNumber(Integer goodNumber) {
+        this.goodNumber = goodNumber;
+    }
+
+    public String getOrderAmount() {
+        return orderAmount;
+    }
+
+    public void setOrderAmount(String orderAmount) {
+        this.orderAmount = orderAmount;
+    }
+
+    public String getOrderTime() {
+        return orderTime;
+    }
+
+    public void setOrderTime(String orderTime) {
+        this.orderTime = orderTime;
+    }
+
+    public String getPayTime() {
+        return payTime;
+    }
+
+    public void setPayTime(String payTime) {
+        this.payTime = payTime;
+    }
+
+    public String getOrderStatus() {
+        return orderStatus;
+    }
+
+    public void setOrderStatus(String orderStatus) {
+        this.orderStatus = orderStatus;
+    }
+
+    public String getPayWay() {
+        return payWay;
+    }
+
+    public void setPayWay(String payWay) {
+        this.payWay = payWay;
     }
 }

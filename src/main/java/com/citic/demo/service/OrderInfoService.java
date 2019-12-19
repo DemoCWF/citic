@@ -1,10 +1,7 @@
 package com.citic.demo.service;
 
 import com.citic.demo.base.PageResult;
-import com.citic.demo.entity.OrderInfo;
-import com.citic.demo.entity.PriceHistory;
-import com.citic.demo.entity.SaleWay;
-import com.citic.demo.entity.Tickets;
+import com.citic.demo.entity.*;
 import com.citic.demo.query.OrderInfoQuery;
 import com.citic.demo.request.OrderRequest;
 import com.citic.demo.response.OrderResponse;
@@ -21,7 +18,7 @@ public interface OrderInfoService {
      * @return
      * @throws Exception
      */
-    PageResult<OrderInfo> queryOrder(OrderInfoQuery orderInfoQuery) throws Exception;
+    PageResult<OrderResponse> queryOrder(OrderInfoQuery orderInfoQuery) throws Exception;
 
     /**
      *
@@ -51,7 +48,7 @@ public interface OrderInfoService {
      * @return
      * @throws Exception
      */
-    Map<String, List<SaleWay>> saleWay() throws Exception;
+    Map<String, List<SaleWay>> saleWay(UserInfo userInfo) throws Exception;
 
 
     /**
@@ -95,9 +92,9 @@ public interface OrderInfoService {
      *
      * 删除订单
      *
-     * @param orderId
+     * @param orderInfoQuery
      * @return
      * @throws Exception
      */
-    Integer deleteOrder(Integer orderId) throws Exception;
+    PageResult<OrderResponse> deleteOrder(OrderInfoQuery orderInfoQuery) throws Exception;
 }

@@ -53,7 +53,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int saveUserInfo(UserRequest userRequest) throws Exception {
+    public UserInfo saveUserInfo(UserRequest userRequest) throws Exception {
         UserInfo userInfo = this.requestConverter.convert(userRequest,UserInfo.class);
         String mailReg="[A-z]+[A-z0-9_-]*\\@[A-z0-9]+\\.[A-z]+";
         String phoneReg = "^1[3|4|5|7|8][0-9]\\d{4,8}$";
@@ -68,7 +68,9 @@ public class UserServiceImpl implements UserService {
             throw new Exception();
         }
 
-        return this.userInfoMapper.insert(userInfo);
+        this.userInfoMapper.insert(userInfo);
+
+        return userInfo;
     }
 
     @Override

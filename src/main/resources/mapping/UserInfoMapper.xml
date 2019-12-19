@@ -41,7 +41,7 @@
     delete from zx_userinfo
     where user_id = #{userId,jdbcType=INTEGER}
   </delete>
-    <insert id="insert" parameterType="com.citic.demo.entity.UserInfo">
+    <insert id="insert" parameterType="com.citic.demo.entity.UserInfo"  >
     insert into zx_userinfo (user_id, phone_num, mail, 
       user_name, password, sex, 
       user_photo, adress, grade
@@ -50,6 +50,9 @@
       #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, 
       #{userPhoto,jdbcType=VARCHAR}, #{adress,jdbcType=VARCHAR}, #{grade,jdbcType=VARCHAR}
       )
+    <selectKey resultType="java.lang.Integer" keyProperty="userId" >
+        SELECT @@IDENTITY AS ID
+    </selectKey>
   </insert>
     <insert id="insertSelective" parameterType="com.citic.demo.entity.UserInfo">
         insert into zx_userinfo

@@ -42,15 +42,21 @@ public class UserController {
     @ResponseBody
     @RequestMapping(value = "/save")
     public ActionResponse saveUserInfo(@RequestBody UserRequest userRequest) throws Exception{
-        log.info(userRequest.toString());
+        userRequest.setGrade("青铜");
+        userRequest.setAdress("四川省成都市四川师范大学成龙校区");
+        userRequest.setUserPhoto("images/headImg/headImg1.jpg");
+        UserInfo userInfo = this.userService.saveUserInfo(userRequest);
+
+
         try {
-            this.userService.saveUserInfo(userRequest);
+            log.info("返回ID》》》》》》》》》》 "+userInfo.toString());
+            return ActionResponse.success(userInfo);
         }catch (Exception e){
             log.info(e.getMessage());
             return ActionResponse.fail(RespBasicCode.ACCOUNT_LOGIN_ERROR, "账号已存在！");
         }
 
-        return ActionResponse.success();
+
     }
 
     @ResponseBody
